@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OpenBehavior: A Behavior-Centric Language for Autonomous Driving Scenario Description and Generation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+<h1>OpenBehavior: A Behavior-Centric Language for Autonomous Driving Scenario Description and Generation</h1>
+<p class="intro" >
+This page presents multiple categories of bugs discovered in the Apollo autonomous driving system.
+</p>
+
+<nav class="toc">
+    <strong style="font-size: 1.7em;">Bug Categories:</strong>
+    <div class="nav-item nav-main-item"><a href="#r1-t" class="nav-main-category">R1-T</a> 
+        <span class="nav-desc">
+        At a T-junction, the ego vehicle proceeds straight through the intersection. 
+            One NPC vehicle travels on the same road as the ego vehicle, 
+            while three NPC vehicles approach from the road on the left. 
+            All vehicles have destinations on the same road, but at different locations.
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r1-t1">R1-T1</a> 
+        <span class="nav-desc">
+            Apollo collides with the adversarial vehicle following its lane change.
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r1-t2">R1-T2</a>
+         <span class="nav-desc">
+            Due to Apollo’s failure to yield, it collides with the second left-turning vehicle.
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r1-t3">R1-T3</a> 
+        <span class="nav-desc">
+            Following a sudden lane change by the adversarial vehicle, 
+            Apollo makes a sharp turn and collides with a left-turning vehicle.
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r1-t4">R1-T4</a> 
+        <span class="nav-desc">
+            Due to Apollo’s failure to yield, it collides with the third left-turning vehicle.
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r1-t5">R1-T5</a> 
+        <span class="nav-desc">
+            After passing the intersection, 
+            Apollo fails to recognize the slow-moving vehicle ahead, 
+            resulting in a rear-end collision.
+        </span>
+    </div>
+    <div class="nav-item nav-main-item"><a href="#r1-x" class="nav-main-category">R1-X</a> 
+        <span class="nav-desc">
+            At a four-way intersection, the ego vehicle proceeds straight through the intersection. 
+            One NPC vehicle is in the lane to the left of the ego vehicle, 
+            while three NPC vehicles are on the road to the right of the ego vehicle. 
+            Among these NPC vehicles, three have their destinations on the road to the left of the ego vehicle, 
+            and one has its destination on the same road as the ego vehicle but at a different location.
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r1-x1">R1-X1</a>
+         <span class="nav-desc">
+            Influenced by the adversarial vehicle, 
+            Apollo fails to yield at the intersection and collides with the first vehicle approaching from the right.
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r1-x2">R1-X2</a>
+         <span class="nav-desc">
+            Influenced by the adversarial vehicle, 
+            Apollo fails to yield at the intersection, 
+            resulting in a side-impact collision with the first vehicle on the right.
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r1-x3">R1-X3</a>
+         <span class="nav-desc">
+            Apollo crosses the stop line and stops in the middle of the intersection, 
+            causing a collision with a vehicle approaching from the right.
+        </span>
+    </div>
+    <div class="nav-item nav-main-item"><a href="#r1-l" class="nav-main-category">R1-L</a> 
+        <span class="nav-desc">
+            On a highway, the ego vehicle and four NPC vehicles are on the same road. 
+            The NPC vehicles have randomly assigned positions and destinations, 
+            all of which remain on the same road.
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r1-l1">R1-L1</a> 
+        <span class="nav-desc">
+            The adversarial vehicle cuts in, and Apollo fails to react and brake in time, resulting in a collision.
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r1-l2">R1-L2</a> 
+        <span class="nav-desc">
+            An NPC vehicle changes lanes, and Apollo fails to react in time, leading to a collision.
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r1-l3">R1-L3</a> 
+        <span class="nav-desc">
+            The vehicle ahead slows down due to obstruction by an adversarial vehicle. 
+            Apollo fails to recognize the reduced speed and collides with it.
+        <!-- Description here -->
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r1-l4">R1-L4</a> 
+        <span class="nav-desc">
+            Apollo fails to detect a vehicle approaching from the left rear and changes lanes to the left, 
+            resulting in a collision.
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r1-l5">R1-L5</a> 
+        <span class="nav-desc">
+            Despite a vehicle ahead, Apollo plans a leftward maneuver and passes extremely close to an NPC vehicle.
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r1-l6">R1-L6</a>
+         <span class="nav-desc">
+            Apollo fails to yield to a diagonally stopped roadside vehicle intending to change lanes, 
+            leading to a collision.
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r1-l7">R1-L7</a> 
+        <span class="nav-desc">
+            Apollo fails to detect a traffic accident ahead and does not brake, 
+            resulting in a rear-end collision.
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r1-l8">R1-L8</a>
+        <span class="nav-desc">
+            Apollo changes lanes to the right and collides with a normally driving vehicle on the right.
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r1-l9">R1-L9</a> 
+        <span class="nav-desc">
+            Apollo initiates a lane change, attempts to abort midway due to a vehicle ahead, 
+            but reacts too late and collides with the front vehicle.
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r1-l10">R1-L10</a> 
+        <span class="nav-desc">
+            Apollo cuts in and collides with a vehicle approaching from the right rear.
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r1-l11">R1-L11</a>
+         <span class="nav-desc">
+            Despite a vehicle on its left, Apollo proceeds with a left lane change, 
+            resulting in a side-impact collision with an NPC vehicle.
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r1-l12">R1-L12</a> 
+        <span class="nav-desc">
+            A vehicle ahead hesitates during a lane change and comes to a stop, 
+            but Apollo continues forward and passes dangerously close to the NPC vehicle.
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r1-l13">R1-L13</a> 
+        <span class="nav-desc">
+            Apollo slows down and brakes due to uncertainty about the adversarial vehicle ahead, 
+            and is rear-ended by a following vehicle.
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r1-l14">R1-L14</a> 
+        <span class="nav-desc">
+            The vehicle ahead moves slowly, but Apollo fails to detect this and brake in time, 
+            resulting in a collision.
+        </span>
+    </div>
+    <div class="nav-item nav-main-item"><a href="#r2" class="nav-main-category">R2</a>
+         <span class="nav-desc">
+            In multiple scenarios, the ego vehicle fails to reach its destination.
+            </span></div>
+    <div class="nav-item nav-sub-item"><a href="#r2-1">R2-1</a> 
+        <span class="nav-desc">
+            Traffic congestion prevents Apollo from reaching its destination.
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r2-2">R2-2</a> 
+        <span class="nav-desc">
+            Under the influence of an NPC vehicle, Apollo loses control of the vehicle.
+        </span>
+    </div>
+    <div class="nav-item nav-sub-item"><a href="#r2-3">R2-3</a> 
+        <span class="nav-desc">
+            Two NPC vehicles merge ahead, preventing Apollo from proceeding.
+        </span>
+    </div>
+</nav>
+
+<div class="bug-container">
+    <h1>R1-T (T-Junction)</h1>
+    <section class="bug" id="r1-t">
+        <h2>R1-T Series</h2>
+        
+        <div class="sub-category" id="r1-t1">
+            <h3>R1-T1</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R1-T1/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">Apollo collides with the adversarial vehicle following its lane change.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-category" id="r1-t2">
+            <h3>R1-T2</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R1-T2/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">Due to Apollo's failure to yield, it collides with the second left-turning vehicle.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-category" id="r1-t3">
+            <h3>R1-T3</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R1-T3/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">Following a sudden lane change by the adversarial vehicle, Apollo makes a sharp turn and collides with a left-turning vehicle.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-category" id="r1-t4">
+            <h3>R1-T4</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R1-T4/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">Due to Apollo's failure to yield, it collides with the third left-turning vehicle.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-category" id="r1-t5">
+            <h3>R1-T5</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R1-T5/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">After passing the intersection, Apollo fails to recognize the slow-moving vehicle ahead, resulting in a rear-end collision.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="bug-container">
+    <h1>R1-X (Four-way Intersection)</h1>
+    <section class="bug" id="r1-x">
+        <h2>R1-X Series</h2>
+        
+        <div class="sub-category" id="r1-x1">
+            <h3>R1-X1</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R1-X1/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">Influenced by the adversarial vehicle, Apollo fails to yield at the intersection and collides with the first vehicle approaching from the right.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-category" id="r1-x2">
+            <h3>R1-X2</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R1-X2/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">Influenced by the adversarial vehicle, Apollo fails to yield at the intersection, resulting in a side-impact collision with the first vehicle on the right.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-category" id="r1-x3">
+            <h3>R1-X3</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R1-X3/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">Apollo crosses the stop line and stops in the middle of the intersection, causing a collision with a vehicle approaching from the right.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="bug-container">
+    <h1>R1-L (Highway)</h1>
+    <section class="bug" id="r1-l">
+        <h2>R1-L Series</h2>
+        
+        <div class="sub-category" id="r1-l1">
+            <h3>R1-L1</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R1-L1/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">The adversarial vehicle cuts in, and Apollo fails to react and brake in time, resulting in a collision.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-category" id="r1-l2">
+            <h3>R1-L2</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R1-L2/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">An NPC vehicle changes lanes, and Apollo fails to react in time, leading to a collision.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-category" id="r1-l3">
+            <h3>R1-L3</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R1-L3/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">The vehicle ahead slows down due to obstruction by an adversarial vehicle. Apollo fails to recognize the reduced speed and collides with it.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-category" id="r1-l4">
+            <h3>R1-L4</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R1-L4/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">Apollo fails to detect a vehicle approaching from the left rear and changes lanes to the left, resulting in a collision.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-category" id="r1-l5">
+            <h3>R1-L5</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R1-L5/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">Despite a vehicle ahead, Apollo plans a leftward maneuver and passes extremely close to an NPC vehicle.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-category" id="r1-l6">
+            <h3>R1-L6</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R1-L6/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">Apollo fails to yield to a diagonally stopped roadside vehicle intending to change lanes, leading to a collision.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-category" id="r1-l7">
+            <h3>R1-L7</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R1-L7/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">Apollo fails to detect a traffic accident ahead and does not brake, resulting in a rear-end collision.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-category" id="r1-l8">
+            <h3>R1-L8</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R1-L8/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">Apollo changes lanes to the right and collides with a normally driving vehicle on the right.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-category" id="r1-l9">
+            <h3>R1-L9</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R1-L9/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">Apollo initiates a lane change, attempts to abort midway due to a vehicle ahead, but reacts too late and collides with the front vehicle.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-category" id="r1-l10">
+            <h3>R1-L10</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R1-L10/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">Apollo cuts in and collides with a vehicle approaching from the right rear.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-category" id="r1-l11">
+            <h3>R1-L11</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R1-L11/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">Despite a vehicle on its left, Apollo proceeds with a left lane change, resulting in a side-impact collision with an NPC vehicle.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-category" id="r1-l12">
+            <h3>R1-L12</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R1-L12/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">A vehicle ahead hesitates during a lane change and comes to a stop, but Apollo continues forward and passes dangerously close to the NPC vehicle.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-category" id="r1-l13">
+            <h3>R1-L13</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R1-L13/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">Apollo slows down and brakes due to uncertainty about the adversarial vehicle ahead, and is rear-ended by a following vehicle.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-category" id="r1-l14">
+            <h3>R1-L14</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R1-L14/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">The vehicle ahead moves slowly, but Apollo fails to detect this and brake in time, resulting in a collision.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="bug-container">
+    <h1>R2 (Unable to reach the destination)</h1>
+    <section class="bug" id="r2">
+        <h2>R2 Series</h2>
+        <p class="desc">
+        R2 scenario bug cases.
+        </p>
+        
+        <div class="sub-category" id="r2-1">
+            <h3>R2-1</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R2-1/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">Traffic congestion prevents Apollo from reaching its destination.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-category" id="r2-2">
+            <h3>R2-2</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R2-2/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">Under the influence of an NPC vehicle, Apollo loses control of the vehicle.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sub-category" id="r2-3">
+            <h3>R2-3</h3>
+            <div class="videos">
+                <div class="video-item">
+                    <video controls>
+                        <source src="traffic_video/R2-3/output.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-desc">Two NPC vehicles merge ahead, preventing Apollo from proceeding.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+</body>
+</html>
