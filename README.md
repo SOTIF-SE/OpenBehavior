@@ -2,73 +2,6 @@
 
 <!-- PROJECT LOGO -->
 
-<div align="center">
-<h1 align="center">OpenBehavior</h1>
-
-<p align="center">
-    <br />
-    <a href="sunshinesheep.github.io">View Details Demo</a>
-  </p>
-
-</div>
-
-<!-- ABOUT THE PROJECT -->
-
-## About The Project
-
-This page presents multiple categories of bugs discovered in the Apollo autonomous driving system.
-
-<!-- GETTING STARTED -->
-
-## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-```
-
-### Installation
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/github_username/repo_name.git
-```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Change git remote url to avoid accidental pushes to base project
-   ```sh
-   git remote set-url origin github_username/repo_name
-   git remote -v # confirm the changes
-   ```
-
-## Quickstart
-
-**1、Run carla**
-
-```bash
-span
-```
-**2、Start manual_control**
-
-```
-python manual_control.py -a --rolename=ego_vehicle
-```
-**3、Run a OpenSCENARIO 2.0 scenario**
-
-```
-python scenario_runner.py --sync  --openscenario2 srunner/examples/cut_in_and_slow_right.osc --reloadWorld 
-```
 ## Examples Video
 
 ### S1 T Junction
@@ -226,5 +159,72 @@ python scenario_runner.py --sync  --openscenario2 srunner/examples/cut_in_and_sl
 </table>
 
 </details>
+
+<div align="center">
+
+<p align="center">
+    <br />
+    <a href="sunshinesheep.github.io">View Details Demo</a>
+  </p>
+
+</div>
+
+<!-- ABOUT THE PROJECT -->
+
+## About The Project
+
+This page presents multiple categories of bugs discovered in the Apollo autonomous driving system.
+
+<!-- GETTING STARTED -->
+
+## Getting Started
+
+This is an example of how you may give instructions on setting up your project locally.
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+
+```
+
+### Installation
+
+_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+
+1. Get a free API Key at [https://example.com](https://example.com)
+2. Clone the repo
+   ```sh
+   git clone https://github.com/github_username/repo_name.git
+```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Enter your API in `config.js`
+   ```js
+   const API_KEY = 'ENTER YOUR API';
+   ```
+5. Change git remote url to avoid accidental pushes to base project
+   ```sh
+   git remote set-url origin github_username/repo_name
+   git remote -v # confirm the changes
+   ```
+
+## Quickstart
+
+**1、Run carla**
+
+```bash
+span
+```
+**2、Start manual_control**
+
+```
+python manual_control.py -a --rolename=ego_vehicle
+```
+**3、Run a OpenSCENARIO 2.0 scenario**
+
+```
+python scenario_runner.py --sync  --openscenario2 srunner/examples/cut_in_and_slow_right.osc --reloadWorld 
+```
 
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
