@@ -146,13 +146,57 @@ python scenario_runner.py --sync  --openscenario2 srunner/examples/cut_in_and_sl
       <img src="traffic_video/R1-L1/out.gif" width="240"><br>
       <b>R1-L3</b>
     </td>
+  </tr>
+   <tr>
     <td align="center">
       <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      <b>R1-L3</b>
+      Method A
     </td>
     <td align="center">
       <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      <b>R1-L3</b>
+      Method B
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      Method B
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      Method A
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      Method B
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      Method B
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      Method A
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      Method B
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      Method B
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      Method A
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      Method B
     </td>
   </tr>
 </table>
@@ -173,58 +217,6 @@ python scenario_runner.py --sync  --openscenario2 srunner/examples/cut_in_and_sl
     <td align="center">
       <img src="traffic_video/R1-L1/out.gif" width="240"><br>
       Method B
-    </td>
-    <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method B
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method A
-    </td>
-    <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method B
-    </td>
-    <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method B
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method A
-    </td>
-    <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method B
-    </td>
-    <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method B
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method A
-    </td>
-    <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method B
-    </td>
-    <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method B
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method A
     </td>
     <td align="center">
       <img src="traffic_video/R1-L1/out.gif" width="240"><br>
