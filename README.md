@@ -12,26 +12,26 @@
 <table>
   <tr>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      <img src="traffic_video/R1-T1/out.gif" width="240"><br>
       <b>R1-T1</b>
     </td>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      <img src="traffic_video/R1-T2/out.gif" width="240"><br>
       <b>R1-T2</b>
     </td>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      <img src="traffic_video/R1-T3/out.gif" width="240"><br>
       <b>R1-T3</b>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      <b>R1-T2</b>
+      <img src="traffic_video/R1-T4/out.gif" width="240"><br>
+      <b>R1-T4</b>
     </td>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      <b>R1-T2</b>
+      <img src="traffic_video/R1-T5/out.gif" width="240"><br>
+      <b>R1-T5</b>
     </td>
   </tr>
 </table>
@@ -45,16 +45,16 @@
 <table>
   <tr>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      <img src="traffic_video/R1-X1/out.gif" width="240"><br>
       <b>R1-X1</b>
     </td>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      <b>R1-X1</b>
+      <img src="traffic_video/R1-X2/out.gif" width="240"><br>
+      <b>R1-X2</b>
     </td>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      <b>R1-X1</b>
+      <img src="traffic_video/R1-X3/out.gif" width="240"><br>
+      <b>R1-X3</b>
     </td>
   </tr>
 </table>
@@ -72,64 +72,64 @@
       <b>R1-L1</b>
     </td>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      <img src="traffic_video/R1-L2/out.gif" width="240"><br>
       <b>R1-L2</b>
     </td>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      <img src="traffic_video/R1-L3/out.gif" width="240"><br>
       <b>R1-L3</b>
     </td>
   </tr>
    <tr>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method A
+      <img src="traffic_video/R1-L4/out.gif" width="240"><br>
+      <b>R1-L4</b>
     </td>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method B
+      <img src="traffic_video/R1-L5/out.gif" width="240"><br>
+      <b>R1-L5</b>
     </td>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method B
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method A
-    </td>
-    <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method B
-    </td>
-    <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method B
+      <img src="traffic_video/R1-L6/out.gif" width="240"><br>
+      <b>R1-L6</b>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method A
+      <img src="traffic_video/R1-L7/out.gif" width="240"><br>
+      <b>R1-L7</b>
     </td>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method B
+      <img src="traffic_video/R1-L8/out.gif" width="240"><br>
+      <b>R1-L8</b>
     </td>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method B
+      <img src="traffic_video/R1-L9/out.gif" width="240"><br>
+      <b>R1-L9</b>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method A
+      <img src="traffic_video/R1-L10/out.gif" width="240"><br>
+      <b>R1-L10</b>
     </td>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method B
+      <img src="traffic_video/R1-L11/out.gif" width="240"><br>
+      <b>R1-L11</b>
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L12/out.gif" width="240"><br>
+      <b>R1-L12</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="traffic_video/R1-L13/out.gif" width="240"><br>
+      <b>R1-L13</b>
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L14/out.gif" width="240"><br>
+      <b>R1-L13</b>
     </td>
   </tr>
 </table>
