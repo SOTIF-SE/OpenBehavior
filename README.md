@@ -3,15 +3,13 @@
 <!-- PROJECT LOGO -->
 
 <div align="center">
-
-<h1 align="center">Best-README-Template</h1>
+<h1 align="center">OpenBehavior</h1>
 
 <p align="center">
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore more »</strong></a>
     <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Details Demo</a>
+    <a href="sunshinesheep.github.io">View Details Demo</a>
   </p>
+
 </div>
 
 <!-- ABOUT THE PROJECT -->
@@ -93,6 +91,16 @@ python scenario_runner.py --sync  --openscenario2 srunner/examples/cut_in_and_sl
       <b>R1-T3</b>
     </td>
   </tr>
+  <tr>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      <b>R1-T2</b>
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      <b>R1-T2</b>
+    </td>
+  </tr>
 </table>
 </details>
 
@@ -138,6 +146,14 @@ python scenario_runner.py --sync  --openscenario2 srunner/examples/cut_in_and_sl
       <img src="traffic_video/R1-L1/out.gif" width="240"><br>
       <b>R1-L3</b>
     </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      <b>R1-L3</b>
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      <b>R1-L3</b>
+    </td>
   </tr>
 </table>
 
@@ -157,6 +173,58 @@ python scenario_runner.py --sync  --openscenario2 srunner/examples/cut_in_and_sl
     <td align="center">
       <img src="traffic_video/R1-L1/out.gif" width="240"><br>
       Method B
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      Method B
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      Method A
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      Method B
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      Method B
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      Method A
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      Method B
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      Method B
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      Method A
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      Method B
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      Method B
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      Method A
     </td>
     <td align="center">
       <img src="traffic_video/R1-L1/out.gif" width="240"><br>
