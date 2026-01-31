@@ -1,0 +1,149 @@
+struct adapt_npc_bm:
+    def adapt(scenario_mode: string) is
+    if scenario_mode == "natural":
+        model = {
+            model_name: "normal",
+            behavior_type: "Script",
+            hyperparameters: {
+                max_acc: 5
+            }
+        }
+        logic={
+            logic_params: {
+                lane: "3, at:start",
+                position: "[1..20], behind: ego_vehicle, at:start",
+                lane: "1, side_of: ego_vehicle, side: right, at:end",
+                position: "[50..70], ahead_of: ego_vehicle, at:end"
+            }
+        }
+    elif scenario_mode == "diverse":
+        choose:
+            {
+                model = {
+                    model_name: "normal",
+                    behavior_type: "Script",
+                    hyperparameters: {
+                        max_acc: 5,
+                        max_speed: 20
+                    }
+                }
+                logic = {
+                    logic_params: {
+                        lane: "3, at:start",
+                        position: "[1..100], behind: ego_vehicle, at:start",
+                        lane: "1, at:end",
+                        position: "[30..70], ahead_of: ego_vehicle, at:end"
+                    }
+                }
+            },
+            {
+                model = {
+                    model_name: "cautious",
+                    behavior_type: "Script",
+                    hyperparameters: {
+                        max_acc: 5,
+                        max_speed: 20
+                    }
+                }
+                logic = {
+                    logic_params: {
+                        lane: "3, at:start",
+                        position: "[1..100], ahead_of: ego_vehicle, at:start",
+                        lane: "1, at:end",
+                        position: "[30..70], ahead_of: ego_vehicle, at:end"
+                    }
+                }
+            }
+    elif scenario_mode == "adversarial":
+        model= {
+            model_name: "aggressive",
+            behavior_type: "Script",
+            hyperparameters: "default"
+        }
+        logic= {
+            logic_params: {
+                lane: "3, at:start",
+                position: "[60..80m], behind: ego_vehicle, at:start",
+                lane: "1, at:end",
+                position: "[50..80m], ahead_of: ego_vehicle, at:end"
+            }
+        }
+
+
+    elif scenario_mode == "avunit_s1":
+        choose:
+            {
+                model = {
+                    model_name: "normal",
+                    behavior_type: "Script",
+                    hyperparameters: {
+                        max_acc: 5,
+                        max_speed: 20
+                    }
+                }
+                logic = {
+                    logic_params: {
+                        lane:"[3..5], at:start",
+                        position:"[90..100], ahead_of:ego_vehicle, at:start",
+                        lane:"3, at:end",
+                        position:"[50..80], ahead_of:ego_vehicle, at:end"
+                    }
+                }
+            },
+            {
+                model = {
+                    model_name: "adv_ai_agent",
+                    behavior_type: "AI",
+                    hyperparameters: {
+                        max_acc: 5,
+                        max_speed: 20
+                    }
+                }
+                logic = {
+                    logic_params: {
+                        lane:"[3..5], at:start",
+                        position:"[90..100], ahead_of:ego_vehicle, at:start",
+                        lane:"3, at:end",
+                        position:"[50..80], ahead_of:ego_vehicle, at:end"
+                    }
+                }
+            }
+
+    elif scenario_mode == "avunit_s4":
+        choose:
+            {
+                model = {
+                    model_name: "normal",
+                    behavior_type: "Script",
+                    hyperparameters: {
+                        max_acc: 5,
+                        max_speed: 20
+                    }
+                }
+                logic = {
+                    logic_params: {
+                        lane:"[2..4], at:start",
+                        position:"[5..20], ahead_of:ego_vehicle, at:start",
+                        lane:"2, at:end",
+                        position:"[-20..30], ahead_of:ego_vehicle, at:end"
+                    }
+                }
+            },
+            {
+                model = {
+                    model_name: "adv_ai_agent",
+                    behavior_type: "AI",
+                    hyperparameters: {
+                        max_acc: 5,
+                        max_speed: 20
+                    }
+                }
+                logic = {
+                    logic_params: {
+                        lane:"[2..4], at:start",
+                        position:"[5..20], ahead_of:ego_vehicle, at:start",
+                        lane:"2, at:end",
+                        position:"[-20..30], ahead_of:ego_vehicle, at:end"
+                    }
+                }
+            }

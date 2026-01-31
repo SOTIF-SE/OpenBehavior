@@ -1,0 +1,37 @@
+import basic.osc
+import adaptive1.osc
+
+scenario top:
+    path: Path
+    path.set_map("Town04")
+    path.path_min_driving_lanes(2)
+
+    ego_vehicle: Model3
+    npc1: Rubicon
+    npc2: TT
+    npc3: A2
+    npc4: TT
+    npc5: Rubicon
+
+    adaptive_targets: list of string = [npc2,npc3,npc4,npc5]
+    scenario_mode: string = "natural"
+    user_adaptive_npc_bm : string = adapt_npc_bm.adapt(scenario_mode: scenario_mode)
+
+    do parallel(duration: 60s):
+        ego_vehicle.drive(path) with:
+            set_behavior_model(behavior_type: Script, model: behavior_agent, hyperparameters: Default)
+            set_behavior_logic(
+                lane:"3, at:start",
+                position:"0, at:start",
+                lane:"4, at:end",
+                position:"1000, at:end"
+            )
+        auto_orchestrates_behavior(user_adaptive_npc_bm, adaptive_targets)
+        npc1.drive(path) with:
+            set_behavior_model(behavior_type: AI, model: adv_ai_agent, hyperparameters: Default)
+            set_behavior_logic(
+                lane:"4, at:start",
+                position:"50, ahead_of:ego_vehicle, at:start",
+                lane:"4, right_of: ego_vehicle, at:end",
+                position:"[180..200], ahead_of:ego_vehicle, at:end",
+            )
