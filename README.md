@@ -144,15 +144,15 @@
 <table>
   <tr>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      <img src="traffic_video/R2-1/out.gif" width="240"><br>
       <b>R2-1</b>
     </td>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      <img src="traffic_video/R2-2/out.gif" width="240"><br>
       <b>R2-2</b>
     </td>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
+      <img src="traffic_video/R2-3/out.gif" width="240"><br>
       <b>R2-3</b>
     </td>
   </tr>
