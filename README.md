@@ -1,4 +1,4 @@
-# OpenBehavior: A Behavior-Centric Language for Autonomous Driving Scenario Description and Generation
+# OpenBehavior: A Behavior-Centric Scenario Description Language for Autonomous Driving Testing 
 
 <!-- PROJECT LOGO -->
 
