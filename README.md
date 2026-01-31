@@ -1,417 +1,126 @@
 # OpenBehavior
+
 This is data and code about OpenBehavior
 wait for time
 
-<style>
-h1 {
-    text-align: center;
-}
+<!-- PROJECT LOGO -->
 
-.intro {
-    text-align: center;
-    margin-bottom: 50px;
-    color: #555;
-    font-size: 1.3em;
-}
+<div align="center">
+  <a href="https://github.com/othneildrew/Best-README-Template">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
-.bug-container {
-    margin-bottom: 140px;
-}
+  <h3 align="center">Best-README-Template</h3>
 
-.bug-container h1 {
-    font-size: 2.2em;
-}
+  <p align="center">
+    An awesome README template to jumpstart your projects!
+    <br />
+    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+  </p>
+<!-- TABLE OF CONTENTS -->
 
-.bug {
-    margin-bottom: 60px;
-}
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
 
-.bug h2 {
-    border-left: 6px solid #444;
-    padding-left: 10px;
-}
 
-.desc {
-    margin: 10px 0 20px;
-    color: #444;
-}
+<!-- ABOUT THE PROJECT -->
 
-.videos {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    align-items: flex-start;
-}
+## About The Project
 
-.video-item {
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
-    width: 100%;
-    margin-bottom: 20px;
-}
+There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
 
-video {
-    width: 640px;
-    border: 1px solid #ccc;
-    background: black;
-    flex-shrink: 0;
-}
+Here's why:
+* Your time should be focused on creating something amazing. A project that solves a problem and helps others
+* You shouldn't be doing the same tasks over and over like creating a README from scratch
+* You should implement DRY principles to the rest of your life :smile:
 
-.video-desc {
-    flex: 1;
-    min-width: 200px;
-    padding: 10px;
-    background: #f9f9f9;
-    border-radius: 4px;
-    color: #555;
-    font-size: 1.2em;
-    line-height: 1.5;
-}
+Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
 
-.sub-category {
-    margin: 30px 0;
-    padding: 20px;
-    background: #f5f5f5;
-    border-radius: 8px;
-    border-left: 4px solid #666;
-    scroll-margin-top: 20px;
-}
+Use the `BLANK_README.md` to get started.
 
-.sub-category h3 {
-    margin-top: 0;
-    margin-bottom: 15px;
-    color: #333;
-    font-size: 1.2em;
-}
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-nav.toc {
-    margin-bottom: 30px;
-    padding: 20px;
-    background: #f9f9f9;
-    border-radius: 8px;
-}
 
-nav.toc .nav-item {
-    margin: 8px 0;
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-}
 
-nav.toc a {
-    color: #0066cc;
-    text-decoration: none;
-    font-weight: 500;
-    min-width: 60px;
-    display: inline-block;
-    font-size: 1.2em;
-}
+<!-- GETTING STARTED -->
 
-nav.toc a:hover {
-    text-decoration: underline;
-}
+## Getting Started
 
-nav.toc a.nav-main-category {
-    font-size: 1.6em;
-    font-weight: 600;
-}
+This is an example of how you may give instructions on setting up your project locally.
+To get a local copy up and running follow these simple example steps.
 
-nav.toc .nav-desc {
-    color: #666;
-    font-style: italic;
-    font-size: 1.1em;
-    flex: 1;
-}
+### Prerequisites
 
-nav.toc .nav-main-item .nav-desc {
-    font-style: normal;
-    font-size: 1.2em;
-    font-weight: 400;
-    color: #444;
-}
+This is an example of how to list things you need to use the software and how to install them.
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
 
-nav.toc .nav-main-item:not(:first-of-type) {
-    margin-top: 25px;
-    padding-top: 20px;
-    border-top: 1px solid #ddd;
-}
+### Installation
 
-nav.toc .nav-sub-item {
-    margin-top: 12px;
-    font-style: italic;
-    padding-left: 20px;
-}
+_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
 
-nav.toc .nav-sub-item a::before {
-    content: "• ";
-    color: #666;
-    margin-right: 5px;
-}
-</style>
+1. Get a free API Key at [https://example.com](https://example.com)
+2. Clone the repo
+   ```sh
+   git clone https://github.com/github_username/repo_name.git
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Enter your API in `config.js`
+   ```js
+   const API_KEY = 'ENTER YOUR API';
+   ```
+5. Change git remote url to avoid accidental pushes to base project
+   ```sh
+   git remote set-url origin github_username/repo_name
+   git remote -v # confirm the changes
+   ```
 
-<h1>OpenBehavior: A Behavior-Centric Language for Autonomous Driving Scenario Description and Generation</h1>
-<p class="intro" >
-This page presents multiple categories of bugs discovered in the Apollo autonomous driving system.
-</p>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<div class="bug-container">
-    <h1>R1-T (T-Junction)</h1>
-    <section class="bug" id="r1-t">
-        <h2>R1-T Series</h2>
-        <div class="sub-category" id="r1-t1">
-            <h3>R1-T1</h3>
-            <div class="videos">
-                <div class="video-item">
-                    <video controls>
-                        <source src="traffic_video/R1-T1/output.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-desc">Apollo collides with the adversarial vehicle following its lane change.</div>
-                </div>
-            </div>
-        </div>
-        <div class="sub-category" id="r1-t2">
-            <h3>R1-T2</h3>
-            <div class="videos">
-                <div class="video-item">
-                    <video controls>
-                        <source src="traffic_video/R1-T2/output.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-desc">Due to Apollo's failure to yield, it collides with the second left-turning vehicle.</div>
-                </div>
-            </div>
-        </div>
-        <div class="sub-category" id="r1-t3">
-            <h3>R1-T3</h3>
-            <div class="videos">
-                <div class="video-item">
-                    <video controls>
-                        <source src="traffic_video/R1-T3/output.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-desc">Following a sudden lane change by the adversarial vehicle, Apollo makes a sharp turn and collides with a left-turning vehicle.</div>
-                </div>
-            </div>
-        </div>
-        <div class="sub-category" id="r1-t4">
-            <h3>R1-T4</h3>
-            <div class="videos">
-                <div class="video-item">
-                    <video controls>
-                        <source src="traffic_video/R1-T4/output.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-desc">Due to Apollo's failure to yield, it collides with the third left-turning vehicle.</div>
-                </div>
-            </div>
-        </div>
-        <div class="sub-category" id="r1-t5">
-            <h3>R1-T5</h3>
-            <div class="videos">
-                <div class="video-item">
-                    <video controls>
-                        <source src="traffic_video/R1-T5/output.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-desc">After passing the intersection, Apollo fails to recognize the slow-moving vehicle ahead, resulting in a rear-end collision.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-<div class="bug-container">
-    <h1>R1-X (Four-way Intersection)</h1>
-    <section class="bug" id="r1-x">
-        <h2>R1-X Series</h2>
-        <div class="sub-category" id="r1-x1">
-            <h3>R1-X1</h3>
-            <div class="videos">
-                <div class="video-item">
-                    <video controls>
-                        <source src="traffic_video/R1-X1/output.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-desc">Influenced by the adversarial vehicle, Apollo fails to yield at the intersection and collides with the first vehicle approaching from the right.</div>
-                </div>
-            </div>
-        </div>
-        <div class="sub-category" id="r1-x2">
-            <h3>R1-X2</h3>
-            <div class="videos">
-                <div class="video-item">
-                    <video controls>
-                        <source src="traffic_video/R1-X2/output.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-desc">Influenced by the adversarial vehicle, Apollo fails to yield at the intersection, resulting in a side-impact collision with the first vehicle on the right.</div>
-                </div>
-            </div>
-        </div>
-        <div class="sub-category" id="r1-x3">
-            <h3>R1-X3</h3>
-            <div class="videos">
-                <div class="video-item">
-                    <video controls>
-                        <source src="traffic_video/R1-X3/output.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-desc">Apollo crosses the stop line and stops in the middle of the intersection, causing a collision with a vehicle approaching from the right.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-<div class="bug-container">
-    <h1>R1-L (Highway)</h1>
-    <section class="bug" id="r1-l">
-        <h2>R1-L Series</h2>
-        <div class="sub-category" id="r1-l1">
-            <h3>R1-L1</h3>
-            <div class="videos">
-                <div class="video-item">
-                    <video controls>
-                        <source src="traffic_video/R1-L1/output.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-desc">The adversarial vehicle cuts in, and Apollo fails to react and brake in time, resulting in a collision.</div>
-                </div>
-            </div>
-        </div>
-        <div class="sub-category" id="r1-l2">
-            <h3>R1-L2</h3>
-            <div class="videos">
-                <div class="video-item">
-                    <video controls>
-                        <source src="traffic_video/R1-L2/output.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-desc">An NPC vehicle changes lanes, and Apollo fails to react in time, leading to a collision.</div>
-                </div>
-            </div>
-        </div>
-        <div class="sub-category" id="r1-l3">
-            <h3>R1-L3</h3>
-            <div class="videos">
-                <div class="video-item">
-                    <video controls>
-                        <source src="traffic_video/R1-L3/output.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-desc">The vehicle ahead slows down due to obstruction by an adversarial vehicle. Apollo fails to recognize the reduced speed and collides with it.</div>
-                </div>
-            </div>
-        </div>
-        <div class="sub-category" id="r1-l4">
-            <h3>R1-L4</h3>
-            <div class="videos">
-                <div class="video-item">
-                    <video controls>
-                        <source src="traffic_video/R1-L4/output.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-desc">Apollo fails to detect a vehicle approaching from the left rear and changes lanes to the left, resulting in a collision.</div>
-                </div>
-            </div>
-        </div>
-        <div class="sub-category" id="r1-l5">
-            <h3>R1-L5</h3>
-            <div class="videos">
-                <div class="video-item">
-                    <video controls>
-                        <source src="traffic_video/R1-L5/output.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-desc">Despite a vehicle ahead, Apollo plans a leftward maneuver and passes extremely close to an NPC vehicle.</div>
-                </div>
-            </div>
-        </div>
-        <div class="sub-category" id="r1-l6">
-            <h3>R1-L6</h3>
-            <div class="videos">
-                <div class="video-item">
-                    <video controls>
-                        <source src="traffic_video/R1-L6/output.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-desc">Apollo fails to yield to a diagonally stopped roadside vehicle intending to change lanes, leading to a collision.</div>
-                </div>
-            </div>
-        </div>
-        <div class="sub-category" id="r1-l7">
-            <h3>R1-L7</h3>
-            <div class="videos">
-                <div class="video-item">
-                    <video controls>
-                        <source src="traffic_video/R1-L7/output.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-desc">Apollo fails to detect a traffic accident ahead and does not brake, resulting in a rear-end collision.</div>
-                </div>
-            </div>
-        </div>
-        <div class="sub-category" id="r1-l8">
-            <h3>R1-L8</h3>
-            <div class="videos">
-                <div class="video-item">
-                    <video controls>
-                        <source src="traffic_video/R1-L8/output.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-desc">Apollo changes lanes to the right and collides with a normally driving vehicle on the right.</div>
-                </div>
-            </div>
-        </div>
-        <div class="sub-category" id="r1-l9">
-            <h3>R1-L9</h3>
-            <div class="videos">
-                <div class="video-item">
-                    <video controls>
-                        <source src="traffic_video/R1-L9/output.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-desc">Apollo initiates a lane change, attempts to abort midway due to a vehicle ahead, but reacts too late and collides with the front vehicle.</div>
-                </div>
-            </div>
-        </div>
-        <div class="sub-category" id="r1-l10">
-            <h3>R1-L10</h3>
-            <div class="videos">
-                <div class="video-item">
-                    <video controls>
-                        <source src="traffic_video/R1-L10/output.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-desc">Apollo cuts in and collides with a vehicle approaching from the right rear.</div>
-                </div>
-            </div>
-        </div>
-        <div class="sub-category" id="r1-l11">
-            <h3>R1-L11</h3>
-            <div class="videos">
-                <div class="video-item">
-                    <video controls>
-                        <source src="traffic_video/R1-L11/output.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-desc">Despite a vehicle on its left, Apollo proceeds with a left lane change, resulting in a side-impact collision with an NPC vehicle.</div>
-                </div>
-            </div>
-        </div>
-        <div class="sub-category" id="r1-l12">
-            <h3>R1-L12</h3>
-            <div class="videos">
-                <div class="video-item">
-                    <video controls>
-                        <source src="traffic_video/R1-L12/output.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-desc">A vehicle ahead hesitates during a lane change and comes to a stop, but Apollo continues forward and passes dangerously close to the NPC vehicle.</div>
-                </div>
-            </div>
-        </div>
-        <div class="sub-category" id="r1-l13">
-            <h3>R1-L13</h3>
-            <div class="videos">
-                <div class="video-item">
-                    <video controls>
-                        <source src="traffic_video/R1-L13/output.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-desc">Apollo slows down and brakes due to uncertainty about the adversarial vehicle ahead, and is rear-ended by a following vehicle.</div>
-                </div>
-            </div>
-        </div>
-        <div class="sub-category" id="r1-l14">
-            <h3>R1-L14</h3>
-            <div class="videos">
-                <div class="video-item">
-                    <video controls>
-                        <source src="traffic_video/R1-L14/output.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-desc">The vehicle ahead moves slowly, but Apollo fails to detect this and brake in time, resulting in a collision.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
+
+
+<!-- USAGE EXAMPLES -->
+## Examples
+
+Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+
+_For more examples, please refer to the [Documentation](https://example.com)_
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
