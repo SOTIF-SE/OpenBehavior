@@ -39,7 +39,7 @@ _Below is an example of how you can instruct your audience on installing and set
 2. Clone the repo
    ```sh
    git clone https://github.com/github_username/repo_name.git
-   ```
+```
 3. Install NPM packages
    ```sh
    npm install
@@ -81,15 +81,15 @@ python scenario_runner.py --sync  --openscenario2 srunner/examples/cut_in_and_sl
 <table>
   <tr>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      <img src="traffic_video/R1-L1/out.gif" width="260"><br>
       <b>R1-T1</b>
     </td>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      <img src="traffic_video/R1-L1/out.gif" width="260"><br>
       <b>R1-T2</b>
     </td>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      <img src="traffic_video/R1-L1/out.gif" width="260"><br>
       <b>R1-T3</b>
     </td>
   </tr>
@@ -104,15 +104,15 @@ python scenario_runner.py --sync  --openscenario2 srunner/examples/cut_in_and_sl
 <table>
   <tr>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      <img src="traffic_video/R1-L1/out.gif" width="260"><br>
       <b>R1-X1</b>
     </td>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      <img src="traffic_video/R1-L1/out.gif" width="260"><br>
       <b>R1-X1</b>
     </td>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      <img src="traffic_video/R1-L1/out.gif" width="260"><br>
       <b>R1-X1</b>
     </td>
   </tr>
@@ -127,15 +127,15 @@ python scenario_runner.py --sync  --openscenario2 srunner/examples/cut_in_and_sl
 <table>
   <tr>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      <img src="traffic_video/R1-L1/out.gif" width="260"><br>
       <b>R1-L1</b>
     </td>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      <img src="traffic_video/R1-L1/out.gif" width="260"><br>
       <b>R1-L2</b>
     </td>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      <img src="traffic_video/R1-L1/out.gif" width="260"><br>
       <b>R1-L3</b>
     </td>
   </tr>
@@ -151,15 +151,15 @@ python scenario_runner.py --sync  --openscenario2 srunner/examples/cut_in_and_sl
 <table>
   <tr>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      <img src="traffic_video/R1-L1/out.gif" width="260"><br>
       Method A
     </td>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      <img src="traffic_video/R1-L1/out.gif" width="260"><br>
       Method B
     </td>
     <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      <img src="traffic_video/R1-L1/out.gif" width="260"><br>
       Method B
     </td>
   </tr>
