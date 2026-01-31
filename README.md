@@ -1,18 +1,12 @@
-# OpenBehavior
-
-This is data and code about OpenBehavior
-wait for time
+# OpenBehavior: A Behavior-Centric Language for Autonomous Driving Scenario Description and Generation
 
 <!-- PROJECT LOGO -->
 
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
 
-  <h3 align="center">Best-README-Template</h3>
+<h1 align="center">Best-README-Template</h1>
 
-  <p align="center">
+<p align="center">
     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore more »</strong></a>
     <br />
     <br />
@@ -20,52 +14,11 @@ wait for time
   </p>
 </div>
 
-<!-- TABLE OF CONTENTS -->
-
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
-
-
 <!-- ABOUT THE PROJECT -->
 
 ## About The Project
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
-
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
+This page presents multiple categories of bugs discovered in the Apollo autonomous driving system.
 
 <!-- GETTING STARTED -->
 
@@ -76,11 +29,7 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+```
 
 ### Installation
 
@@ -105,20 +54,117 @@ _Below is an example of how you can instruct your audience on installing and set
    git remote -v # confirm the changes
    ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+## Quickstart
 
+**1、Run carla**
 
-## Examples
+```bash
+span
+```
+**2、Start manual_control**
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+```
+python manual_control.py -a --rolename=ego_vehicle
+```
+**3、Run a OpenSCENARIO 2.0 scenario**
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+```
+python scenario_runner.py --sync  --openscenario2 srunner/examples/cut_in_and_slow_right.osc --reloadWorld 
+```
+## Examples Video
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+### S1 T Junction
 
+<details>
+<summary><strong>R1-T</strong></summary>
 
+<table>
+  <tr>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      <b>R1-T1</b>
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      <b>R1-T2</b>
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      <b>R1-T3</b>
+    </td>
+  </tr>
+</table>
+</details>
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+### S2 X Junction
+
+<details>
+<summary><strong>R1-X</strong></summary>
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      <b>R1-X1</b>
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      <b>R1-X1</b>
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      <b>R1-X1</b>
+    </td>
+  </tr>
+</table>
+</details>
+
+### S3 Highway
+
+<details>
+<summary><strong>R1-L</strong></summary>
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      <b>R1-L1</b>
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      <b>R1-L2</b>
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      <b>R1-L3</b>
+    </td>
+  </tr>
+</table>
+
+</details>
+
+### R2 Unable to reach the deatination
+
+<details>
+<summary><strong>R2</strong></summary>
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      Method A
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      Method B
+    </td>
+    <td align="center">
+      <img src="traffic_video/R1-L1/out.gif" width="300"><br>
+      Method B
+    </td>
+  </tr>
+</table>
+
+</details>
 
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
