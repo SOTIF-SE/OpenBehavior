@@ -145,15 +145,15 @@
   <tr>
     <td align="center">
       <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method A
+      <b>R2-1</b>
     </td>
     <td align="center">
       <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method B
+      <b>R2-2</b>
     </td>
     <td align="center">
       <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      Method B
+      <b>R2-3</b>
     </td>
   </tr>
 </table>
