@@ -13,7 +13,7 @@
 </p> -->
 
 <!-- <center><img src="images/Roadmap.png" width = "625"></center> -->
-![Overview of the OpenBehavior workflow](images/Roadmap.png)
+![Overview of the OpenBehavior workflow](images/Roadmap.jpg)
 
 **Figure 2:** *Overview of the OpenBehavior workflow. Users specify scenarios with a behavior-centric language and high-level
 scenario intents using OBSpec, which are then instantiated
