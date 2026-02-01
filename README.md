@@ -7,9 +7,11 @@
 <center><img src="images/GT_obstacles.gif" width = "625"></center>
 
 ## Approach Overview
-<p align="center">
+<!-- <p align="center">
   <img src="images/Roadmap.png" width="85%">
-</p>
+</p> -->
+
+<center><img src="images/Roadmap.png" width = "625"></center>
 
 ## Experiment Results
 
