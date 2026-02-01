@@ -176,30 +176,30 @@ Experiment records are available in the `experiment_result `folder.
 
 1.  **Run carla**
 
-```bash
-./CarlaUE4.sh
-```
+  ```bash
+  ./CarlaUE4.sh
+  ```
 
 
 2.  **Run an OpenBehavior's scenario**
 
-```bash
-conda activate scen
-
-python openbehavior_runner.py --sync  --openbehavior2 OpenBehavior_Osc/obehavior_s1.osc --reloadWorld
-```
+  ```bash
+  conda activate scen
+  
+  python openbehavior_runner.py --sync  --openbehavior2 OpenBehavior_Osc/obehavior_s1.osc --reloadWorld
+  ```
 <!--original: python scenario_runner.py --sync  --openscenario2 AVUnit_Osc/avunit_s1.osc --reloadWorld -->
 
 
 3.  **Run OBOrchestration** <!-- original: Run OSCFuzz -->
 
- ```bash
-conda activate law
-
-cd judgement
-
-python OBOrchestration.py
-```
+   ```bash
+  conda activate law
+  
+  cd judgement
+  
+  python OBOrchestration.py
+  ```
 <!-- python OscFuzz.py -->
 
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
