@@ -195,17 +195,23 @@ This page presents multiple categories of bugs discovered in the Apollo autonomo
 ./CarlaUE4.sh
 ```
 
-**2、Start manual_control**
+
+**2、Run a OpenBehavior scenario**
 
 ```
-python manual_control.py -a --rolename=ego_vehicle
-```
+conda activate scen
 
-**3、Run a OpenBehavior scenario
-
-```
 python scenario_runner.py --sync  --openscenario2 AVUnit_Osc/avunit_s1.osc --reloadWorld
+```
 
+**3、Run OSCFuzz**
+
+```commandline
+conda activate law
+
+cd law_judgement
+
+python OscFuzz.py
 ```
 
 
