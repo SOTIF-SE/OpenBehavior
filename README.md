@@ -4,6 +4,7 @@
 
 ## [Project Page](http://www.katrinrenz.de/plant) | [Paper](https://arxiv.org/abs/2210.14222) | [Supplementary](https://www.katrinrenz.de/plant/resources/PlanT_supp.pdf) 
 
+## Approach Overview
 <p align="center">
   <img src="images/Roadmap.png" width="85%">
 </p>
