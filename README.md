@@ -23,7 +23,7 @@ testing of the autonomous driving system.*
 
 ## Four Functional Scenarios
 
-We evaluate **OpenBehavior** on four representative functional scenarios commonly observed in real-world road and intersection environments.
+We evaluate **OpenBehavior** on the following four functional scenarios related to intersections and roads in the real world:
 
 ### Scenario Overview
 
@@ -49,7 +49,7 @@ During testing:
 
 
 ### 🎥 Scenario Failure Demonstrations
-### S1: T-Junction Scenarios (R1-T)
+### T-Junction (R1-T)
 
 <summary><b> Click to expand R1-T Videos</b></summary>
 
@@ -61,7 +61,7 @@ During testing:
 
 
 
-### S2: X-Junction Scenarios (R1-X)
+### Crossroad Intersection (R1-X)
 <!-- <details> -->
 <summary><b> Click to expand R1-X Videos</b></summary>
 
@@ -71,7 +71,7 @@ During testing:
 
 <!-- </details> -->
 
-### S3: Highway Scenarios (R1-L)
+### Straight Road (R1-L)
 <!-- <details> -->
 <summary><b> Click to expand R1-L Videos</b></summary>
 
