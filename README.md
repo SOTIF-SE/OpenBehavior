@@ -42,10 +42,10 @@ We evaluate **OpenBehavior** on the following four functional scenarios related 
 ### Scenario Settings
 
 The illustrations of these four functional scenarios are shown in the figures below.  
-During testing:
+<!--During testing:
 
 - The **start position and destination of the ego vehicle** (highlighted by the red route line) are fixed.
-- The **trajectories and behaviors of NPC vehicles are not predefined**, allowing diverse and dynamic interactions to emerge during testing.
+- The **trajectories and behaviors of NPC vehicles are not predefined**, allowing diverse and dynamic interactions to emerge during testing. -->
 
 
 ### 🎥 Scenario Failure Demonstrations
