@@ -98,7 +98,7 @@ During testing:
 <!-- </details> -->
 
 
-## Experiment Results
+## 📊 Experiment Results
 
 Experimental results demonstrate that OpenBehavior’s behavioral features and designed specifications can uncover 25 interaction-induced failure patterns in Apollo, outperforming existing approaches.
 
