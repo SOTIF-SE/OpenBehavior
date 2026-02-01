@@ -84,6 +84,9 @@ During testing:
 | <img src="traffic_video/R1-L7/out.gif" width="240"> | <img src="traffic_video/R1-L8/out.gif" width="240"> | <img src="traffic_video/R1-L9/out.gif" width="240"> |
 | **R1-L10** | **R1-L11** | **R1-L12** |
 | <img src="traffic_video/R1-L10/out.gif" width="240"> | <img src="traffic_video/R1-L11/out.gif" width="240"> | <img src="traffic_video/R1-L12/out.gif" width="240"> |
+| **R1-L13** | **R1-L14** |  |
+| <img src="traffic_video/R1-L13/out.gif" width="240"> | <img src="traffic_video/R1-L14/out.gif" width="240"> |  |
+
 
 <!-- </details> -->
 
