@@ -129,7 +129,7 @@
     </td>
     <td align="center">
       <img src="traffic_video/R1-L14/out.gif" width="240"><br>
-      <b>R1-L13</b>
+      <b>R1-L14</b>
     </td>
   </tr>
 </table>
