@@ -23,65 +23,53 @@ testing of the autonomous driving system.*
 
 
 
-## Examples Video
+### S1: T-Junction Scenarios (R1-T)
+<details>
+<summary><b>▶ Click to expand R1-T Videos</b></summary>
 
-### S1: T-Junction Scenarios
+| R1-T1 | R1-T2 | R1-T3 |
+| :---: | :---: | :---: |
+| <img src="traffic_video/R1-T1/out.gif" width="240"> | <img src="traffic_video/R1-T2/out.gif" width="240"> | <img src="traffic_video/R1-T3/out.gif" width="240"> |
+| **R1-T4** | **R1-T5** | |
+| <img src="traffic_video/R1-T4/out.gif" width="240"> | <img src="traffic_video/R1-T5/out.gif" width="240"> | |
 
-**Representative examples (R1-T):**
+</details>
 
-- **R1-T1**  
-  ![](traffic_video/R1-T1/out.gif)
+### S2: X-Junction Scenarios (R1-X)
+<details>
+<summary><b>▶ Click to expand R1-X Videos</b></summary>
 
-- **R1-T2**  
-  ![](traffic_video/R1-T2/out.gif)
+| R1-X1 | R1-X2 | R1-X3 |
+| :---: | :---: | :---: |
+| <img src="traffic_video/R1-X1/out.gif" width="240"> | <img src="traffic_video/R1-X2/out.gif" width="240"> | <img src="traffic_video/R1-X3/out.gif" width="240"> |
 
-- **R1-T3**  
-  ![](traffic_video/R1-T3/out.gif)
+</details>
 
-📁 Additional cases are available in `traffic_video/R1-T*`.
+### S3: Highway Scenarios (R1-L)
+<details>
+<summary><b>▶ Click to expand R1-L Videos</b></summary>
 
-### S2: X-Junction Scenarios
+| R1-L1 | R1-L2 | R1-L3 |
+| :---: | :---: | :---: |
+| <img src="traffic_video/R1-L1/out.gif" width="240"> | <img src="traffic_video/R1-L2/out.gif" width="240"> | <img src="traffic_video/R1-L3/out.gif" width="240"> |
+| **R1-L4** | **R1-L5** | **R1-L6** |
+| <img src="traffic_video/R1-L4/out.gif" width="240"> | <img src="traffic_video/R1-L5/out.gif" width="240"> | <img src="traffic_video/R1-L6/out.gif" width="240"> |
+| **R1-L7** | **R1-L8** | **R1-L9** |
+| <img src="traffic_video/R1-L7/out.gif" width="240"> | <img src="traffic_video/R1-L8/out.gif" width="240"> | <img src="traffic_video/R1-L9/out.gif" width="240"> |
+| **R1-L10** | **R1-L11** | **R1-L12** |
+| <img src="traffic_video/R1-L10/out.gif" width="240"> | <img src="traffic_video/R1-L11/out.gif" width="240"> | <img src="traffic_video/R1-L12/out.gif" width="240"> |
 
-**Representative examples (R1-X):**
+</details>
 
-- **R1-X1**  
-  ![](traffic_video/R1-X1/out.gif)
+### R2: Destination Unreachable
+<details>
+<summary><b>▶ Click to expand R2 Videos</b></summary>
 
-- **R1-X2**  
-  ![](traffic_video/R1-X2/out.gif)
+| R2-1 | R2-2 | R2-3 |
+| :---: | :---: | :---: |
+| <img src="traffic_video/R2-1/out.gif" width="240"> | <img src="traffic_video/R2-2/out.gif" width="240"> | <img src="traffic_video/R2-3/out.gif" width="240"> |
 
-- **R1-X3**  
-  ![](traffic_video/R1-X3/out.gif)
-
-
-### S3: Highway Scenarios
-
-Due to the large behavioral diversity on highways, we show a subset
-of representative cases below.
-
-- **R1-L1**  
-  ![](traffic_video/R1-L1/out.gif)
-
-- **R1-L4**  
-  ![](traffic_video/R1-L4/out.gif)
-
-- **R1-L9**  
-  ![](traffic_video/R1-L9/out.gif)
-
-📁 The full set of highway cases (R1-L1–R1-L14) is provided in
-`traffic_video/R1-L*`.
-
-
-### R2: Unable to Reach the Destination
-
-- **R2-1**  
-  ![](traffic_video/R2-1/out.gif)
-
-- **R2-2**  
-  ![](traffic_video/R2-2/out.gif)
-
-- **R2-3**  
-  ![](traffic_video/R2-3/out.gif)
+</details>
 
 
 ## Experiment Results
