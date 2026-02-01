@@ -134,7 +134,7 @@ Experiment records are available in the `experiment_result `folder.
      git clone -b v8.0.0 https://github.com/ApolloAuto/apollo.git
      ```
 
-   - Follow the official manunal to install
+   - Follow the official manual to install
 
 3. Setup Carla_apollo_bridge
 
