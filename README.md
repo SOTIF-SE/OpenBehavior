@@ -21,11 +21,37 @@ and adaptively orchestrated to generate interactive scenarios for systematic
 testing of the autonomous driving system.*
 
 
+## Four Functional Scenarios
+
+We evaluate **BehavAVExplor** on four representative functional scenarios commonly observed in real-world road and intersection environments.
+
+### Scenario Overview
+
+- **S1 – T-Intersection**  
+  The ego vehicle goes straight through a T-intersection.
+
+- **S2 – Crossroad Intersection**  
+  The ego vehicle turns left at a crossroad intersection.
+
+- **S3 – Lane Following on a Straight Road**  
+  The ego vehicle follows its lane on a straight road with four lanes.
+
+- **S4 – Lane Change on a Straight Road**  
+  The ego vehicle performs a lane change on a straight road with four lanes.
+
+### Scenario Settings
+
+The illustrations of these four functional scenarios are shown in the figures below.  
+During testing:
+
+- The **start position and destination of the ego vehicle** (highlighted by the red route line) are fixed.
+- The **trajectories and behaviors of NPC vehicles are not predefined**, allowing diverse and dynamic interactions to emerge during testing.
 
 
+🎥
 ### S1: T-Junction Scenarios (R1-T)
 <details>
-<summary><b>▶ Click to expand R1-T Videos</b></summary>
+<summary><b> Click to expand R1-T Videos</b></summary>
 
 | R1-T1 | R1-T2 | R1-T3 |
 | :---: | :---: | :---: |
@@ -37,7 +63,7 @@ testing of the autonomous driving system.*
 
 ### S2: X-Junction Scenarios (R1-X)
 <details>
-<summary><b>▶ Click to expand R1-X Videos</b></summary>
+<summary><b> Click to expand R1-X Videos</b></summary>
 
 | R1-X1 | R1-X2 | R1-X3 |
 | :---: | :---: | :---: |
@@ -47,7 +73,7 @@ testing of the autonomous driving system.*
 
 ### S3: Highway Scenarios (R1-L)
 <details>
-<summary><b>▶ Click to expand R1-L Videos</b></summary>
+<summary><b> Click to expand R1-L Videos</b></summary>
 
 | R1-L1 | R1-L2 | R1-L3 |
 | :---: | :---: | :---: |
@@ -63,7 +89,7 @@ testing of the autonomous driving system.*
 
 ### R2: Destination Unreachable
 <details>
-<summary><b>▶ Click to expand R2 Videos</b></summary>
+<summary><b> Click to expand R2 Videos</b></summary>
 
 | R2-1 | R2-2 | R2-3 |
 | :---: | :---: | :---: |
@@ -80,7 +106,7 @@ Experiment records are available in the `experiment_result `folder.
 
 <!-- GETTING STARTED -->
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
