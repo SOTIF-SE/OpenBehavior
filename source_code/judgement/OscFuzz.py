@@ -14,7 +14,6 @@ import time
 import numpy as np
 
 from score_for_scenario import ScoreForScenario
-from law_judgement_extra import Monitor
 import start_docker
 
 def load_template(path):
@@ -44,7 +43,7 @@ def generate_trace(scene, gen, idx):
     try:
         start_docker.start_pro(f'generation_{gen + 1}/ind_{idx}.json') # 需要输入data数据信息，以加载地图
         bashCommand = f"conda run -n scen python ../scenario_runner.py --sync --waitForEgo --GA True --openscenario2 ../AVUnit_Osc/avunit_s4.osc\
-            --config_json /home/abc/scenario_runner/law_judgement/mutation/generation_{gen + 1}/ind_{idx}.json"
+            --config_json /home/abc/scenario_runner/judgement/mutation/generation_{gen + 1}/ind_{idx}.json"
         start_run = time.perf_counter()
         process = subprocess.Popen(bashCommand.split(), stdout=sys.stdout, stderr=sys.stderr)
         output, error = process.communicate()

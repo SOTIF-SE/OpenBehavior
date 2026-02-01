@@ -237,7 +237,7 @@ def start_pro(config_file_name):
         carla_process.start()
         time.sleep(13)
 
-    with open(HOME + "/scenario_runner/law_judgement/mutation/" + config_file_name) as trace_file:
+    with open(HOME + "/scenario_runner/judgement/mutation/" + config_file_name) as trace_file:
         data = json.load(trace_file)
         data_map = data["map"]
 
@@ -395,7 +395,7 @@ def stop_all():
 # if __name__ == '__main__':
 #     HOME = os.environ["HOME"]
 #     # APOLLO = "/home/zhao/zhao/autodrive/apollo"
-#     generated_scenarios_path = HOME + "/projects/scenario_runner_able_edition/Law_Judgement/generated_scenarios/"
+#     generated_scenarios_path = HOME + "/projects/scenario_runner_able_edition/Judgement/generated_scenarios/"
 #     for scenarios in os.listdir(generated_scenarios_path):
 #         scenarios = "avunit_s2.json"
 #         if os.path.isfile(generated_scenarios_path + scenarios):
