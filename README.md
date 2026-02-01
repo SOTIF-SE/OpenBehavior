@@ -21,11 +21,11 @@ and adaptively orchestrated to generate interactive scenarios for systematic
 testing of the autonomous driving system.*
 
 
-## Four Functional Scenarios
+## 🛣️ Functional Scenarios
 
 We evaluate **OpenBehavior** on the following four functional scenarios related to intersections and roads in the real world:
 
-### Scenario Overview
+### 🧪 Scenario Overview
 
 - **S1 – T-Intersection**  
   The ego vehicle goes straight through a T-intersection.
@@ -39,7 +39,7 @@ We evaluate **OpenBehavior** on the following four functional scenarios related 
 - **S4 – Lane Change on a Straight Road**  
   The ego vehicle performs a lane change on a straight road with four lanes.
 
-### Scenario Settings
+### ⚙️ Scenario Settings
 
 The illustrations of these four functional scenarios are shown in the figures below.  
 <!--During testing:
