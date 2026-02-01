@@ -50,7 +50,7 @@ During testing:
 
 ### 🎥 Scenario Failure Demonstrations
 ### S1: T-Junction Scenarios (R1-T)
-<details>
+
 <summary><b> Click to expand R1-T Videos</b></summary>
 
 | R1-T1 | R1-T2 | R1-T3 |
@@ -59,7 +59,7 @@ During testing:
 | **R1-T4** | **R1-T5** | |
 | <img src="traffic_video/R1-T4/out.gif" width="240"> | <img src="traffic_video/R1-T5/out.gif" width="240"> | |
 
-</details>
+
 
 ### S2: X-Junction Scenarios (R1-X)
 <details>
