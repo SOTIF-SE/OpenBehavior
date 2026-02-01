@@ -49,7 +49,8 @@ The illustrations of these four functional scenarios are shown in the figures be
 
 
 ### 🎥 Scenario Failure Demonstrations
-### T-Junction (R1-T)
+### R1: Collision Avoidance
+#### T-Junction (R1-T)
 
 <summary><b> Click to expand R1-T Videos</b></summary>
 
@@ -61,7 +62,7 @@ The illustrations of these four functional scenarios are shown in the figures be
 
 
 
-### Crossroad Intersection (R1-X)
+#### Crossroad Intersection (R1-X)
 <!-- <details> -->
 <summary><b> Click to expand R1-X Videos</b></summary>
 
@@ -71,7 +72,7 @@ The illustrations of these four functional scenarios are shown in the figures be
 
 <!-- </details> -->
 
-### Straight Road (R1-L)
+#### Straight Road (R1-L)
 <!-- <details> -->
 <summary><b> Click to expand R1-L Videos</b></summary>
 
@@ -90,7 +91,7 @@ The illustrations of these four functional scenarios are shown in the figures be
 
 <!-- </details> -->
 
-### R2: Destination Unreachable
+### R2: Reaching Destination
 <!-- <details> -->
 <summary><b> Click to expand R2 Videos</b></summary>
 
