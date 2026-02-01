@@ -62,17 +62,17 @@ During testing:
 
 
 ### S2: X-Junction Scenarios (R1-X)
-<details>
+<!-- <details> -->
 <summary><b> Click to expand R1-X Videos</b></summary>
 
 | R1-X1 | R1-X2 | R1-X3 |
 | :---: | :---: | :---: |
 | <img src="traffic_video/R1-X1/out.gif" width="240"> | <img src="traffic_video/R1-X2/out.gif" width="240"> | <img src="traffic_video/R1-X3/out.gif" width="240"> |
 
-</details>
+<!-- </details> -->
 
 ### S3: Highway Scenarios (R1-L)
-<details>
+<!-- <details> -->
 <summary><b> Click to expand R1-L Videos</b></summary>
 
 | R1-L1 | R1-L2 | R1-L3 |
@@ -85,17 +85,17 @@ During testing:
 | **R1-L10** | **R1-L11** | **R1-L12** |
 | <img src="traffic_video/R1-L10/out.gif" width="240"> | <img src="traffic_video/R1-L11/out.gif" width="240"> | <img src="traffic_video/R1-L12/out.gif" width="240"> |
 
-</details>
+<!-- </details> -->
 
 ### R2: Destination Unreachable
-<details>
+<!-- <details> -->
 <summary><b> Click to expand R2 Videos</b></summary>
 
 | R2-1 | R2-2 | R2-3 |
 | :---: | :---: | :---: |
 | <img src="traffic_video/R2-1/out.gif" width="240"> | <img src="traffic_video/R2-2/out.gif" width="240"> | <img src="traffic_video/R2-3/out.gif" width="240"> |
 
-</details>
+<!-- </details> -->
 
 
 ## Experiment Results
