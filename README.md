@@ -4,7 +4,8 @@
 
 ## [Project Page](http://www.katrinrenz.de/plant) | [Paper](https://arxiv.org/abs/2210.14222) | [Supplementary](https://www.katrinrenz.de/plant/resources/PlanT_supp.pdf) 
 
-<center><img src="images/GT_obstacles.gif" width = "625"></center>
+![Ground-truth obstacles visualization](images/GT_obstacles.gif)
+
 
 ## Approach Overview
 <!-- <p align="center">
