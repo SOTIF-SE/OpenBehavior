@@ -27,7 +27,7 @@ We evaluate **OpenBehavior** on the following four functional scenarios related 
 
 ### 🧪 Scenario Overview
 
-- **S1 – [T-Intersection] (avunit/osc1/s1_t_intersection.osc)**  
+- **[S1 – T-Intersection](avunit/osc1/s1_t_intersection.osc)**  
   The ego vehicle goes straight through a T-intersection.
 
 - **S2 – [Crossroad Intersection] (avunit/osc1/s1_t_intersection.osc)**  
