@@ -27,16 +27,16 @@ We evaluate **OpenBehavior** on the following four functional scenarios related 
 
 ### 🧪 Scenario Overview
 
-- **S1 – T-Intersection**  
+- **S1 – T-Intersection (avunit/osc1/s1_t_intersection.osc)**  
   The ego vehicle goes straight through a T-intersection.
 
-- **S2 – Crossroad Intersection**  
+- **S2 – Crossroad Intersection (avunit/osc1/s1_t_intersection.osc)**  
   The ego vehicle turns left at a crossroad intersection.
 
-- **S3 – Lane Following on a Straight Road**  
+- **S3 – Lane Following on a Straight Road (avunit/osc1/s1_t_intersection.osc)**  
   The ego vehicle follows its lane on a straight road with four lanes.
 
-- **S4 – Lane Change on a Straight Road**  
+- **S4 – Lane Change on a Straight Road (avunit/osc1/s1_t_intersection.osc)**  
   The ego vehicle performs a lane change on a straight road with four lanes.
 
 ### ⚙️ Scenario Settings
