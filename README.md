@@ -108,7 +108,7 @@ Experiment records are available in the `experiment_result `folder.
 
 ## 🚀 Getting Started
 
-### Prerequisites
+### Experiment Setup
 
 1. Install Carla(0.9.13)
 
