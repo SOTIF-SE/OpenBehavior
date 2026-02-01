@@ -5,7 +5,7 @@
 ## [Project Page](http://www.katrinrenz.de/plant) | [Paper](https://arxiv.org/abs/2210.14222) | [Supplementary](https://www.katrinrenz.de/plant/resources/PlanT_supp.pdf) 
 
 <p align="center">
-  <img src="images/Roadmap.pdf" width="85%">
+  <img src="images/Roadmap.png" width="85%">
 </p>
 
 ## Examples Video
