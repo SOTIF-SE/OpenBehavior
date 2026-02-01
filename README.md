@@ -9,6 +9,14 @@
   <img src="images/Roadmap.png" width="85%">
 </p>
 
+## Experiment Results
+
+Experimental results demonstrate that OpenBehavior’s behavioral features and designed specifications can uncover 25 interaction-induced failure patterns in Apollo, outperforming existing approaches.
+
+Experiment records are available in the `experiment_result `folder.
+
+## Getting Started
+
 ## Examples Video
 
 ### S1 T Junction
