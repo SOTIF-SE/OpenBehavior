@@ -23,7 +23,7 @@ testing of the autonomous driving system.*
 
 ## Four Functional Scenarios
 
-We evaluate **BehavAVExplor** on four representative functional scenarios commonly observed in real-world road and intersection environments.
+We evaluate **OpenBehavior** on four representative functional scenarios commonly observed in real-world road and intersection environments.
 
 ### Scenario Overview
 
