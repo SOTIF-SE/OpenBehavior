@@ -2,6 +2,12 @@
 
 <!-- PROJECT LOGO -->
 
+## [Project Page](http://www.katrinrenz.de/plant) | [Paper](https://arxiv.org/abs/2210.14222) | [Supplementary](https://www.katrinrenz.de/plant/resources/PlanT_supp.pdf) 
+
+<p align="center">
+  <img src="images/Roadmap.pdf" width="85%">
+</p>
+
 ## Examples Video
 
 ### S1 T Junction
@@ -136,7 +142,7 @@
 
 </details>
 
-### R2 Unable to reach the deatination
+### R2 Unable to reach the destination
 
 <details>
 <summary><strong>R2</strong></summary>
