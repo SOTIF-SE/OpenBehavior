@@ -20,182 +20,75 @@ scenario intents using OBSpec, which are then instantiated
 and adaptively orchestrated to generate interactive scenarios for systematic
 testing of the autonomous driving system.*
 
+
+
+
+## Examples Video
+
+### S1: T-Junction Scenarios
+
+**Representative examples (R1-T):**
+
+- **R1-T1**  
+  ![](traffic_video/R1-T1/out.gif)
+
+- **R1-T2**  
+  ![](traffic_video/R1-T2/out.gif)
+
+- **R1-T3**  
+  ![](traffic_video/R1-T3/out.gif)
+
+📁 Additional cases are available in `traffic_video/R1-T*`.
+
+### S2: X-Junction Scenarios
+
+**Representative examples (R1-X):**
+
+- **R1-X1**  
+  ![](traffic_video/R1-X1/out.gif)
+
+- **R1-X2**  
+  ![](traffic_video/R1-X2/out.gif)
+
+- **R1-X3**  
+  ![](traffic_video/R1-X3/out.gif)
+
+
+### S3: Highway Scenarios
+
+Due to the large behavioral diversity on highways, we show a subset
+of representative cases below.
+
+- **R1-L1**  
+  ![](traffic_video/R1-L1/out.gif)
+
+- **R1-L4**  
+  ![](traffic_video/R1-L4/out.gif)
+
+- **R1-L9**  
+  ![](traffic_video/R1-L9/out.gif)
+
+📁 The full set of highway cases (R1-L1–R1-L14) is provided in
+`traffic_video/R1-L*`.
+
+
+### R2: Unable to Reach the Destination
+
+- **R2-1**  
+  ![](traffic_video/R2-1/out.gif)
+
+- **R2-2**  
+  ![](traffic_video/R2-2/out.gif)
+
+- **R2-3**  
+  ![](traffic_video/R2-3/out.gif)
+
+
 ## Experiment Results
 
 Experimental results demonstrate that OpenBehavior’s behavioral features and designed specifications can uncover 25 interaction-induced failure patterns in Apollo, outperforming existing approaches.
 
 Experiment records are available in the `experiment_result `folder.
-
-## Examples Video
-
-### S1 T Junction
-
-<details>
-<summary><strong>R1-T</strong></summary>
-
-<table>
-  <tr>
-    <td align="center">
-      <img src="traffic_video/R1-T1/out.gif" width="240"><br>
-      <b>R1-T1</b>
-    </td>
-    <td align="center">
-      <img src="traffic_video/R1-T2/out.gif" width="240"><br>
-      <b>R1-T2</b>
-    </td>
-    <td align="center">
-      <img src="traffic_video/R1-T3/out.gif" width="240"><br>
-      <b>R1-T3</b>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="traffic_video/R1-T4/out.gif" width="240"><br>
-      <b>R1-T4</b>
-    </td>
-    <td align="center">
-      <img src="traffic_video/R1-T5/out.gif" width="240"><br>
-      <b>R1-T5</b>
-    </td>
-  </tr>
-</table>
-</details>
-
-### S2 X Junction
-
-<details>
-<summary><strong>R1-X</strong></summary>
-
-<table>
-  <tr>
-    <td align="center">
-      <img src="traffic_video/R1-X1/out.gif" width="240"><br>
-      <b>R1-X1</b>
-    </td>
-    <td align="center">
-      <img src="traffic_video/R1-X2/out.gif" width="240"><br>
-      <b>R1-X2</b>
-    </td>
-    <td align="center">
-      <img src="traffic_video/R1-X3/out.gif" width="240"><br>
-      <b>R1-X3</b>
-    </td>
-  </tr>
-</table>
-</details>
-
-### S3 Highway
-
-<details>
-<summary><strong>R1-L</strong></summary>
-
-<table>
-  <tr>
-    <td align="center">
-      <img src="traffic_video/R1-L1/out.gif" width="240"><br>
-      <b>R1-L1</b>
-    </td>
-    <td align="center">
-      <img src="traffic_video/R1-L2/out.gif" width="240"><br>
-      <b>R1-L2</b>
-    </td>
-    <td align="center">
-      <img src="traffic_video/R1-L3/out.gif" width="240"><br>
-      <b>R1-L3</b>
-    </td>
-  </tr>
-   <tr>
-    <td align="center">
-      <img src="traffic_video/R1-L4/out.gif" width="240"><br>
-      <b>R1-L4</b>
-    </td>
-    <td align="center">
-      <img src="traffic_video/R1-L5/out.gif" width="240"><br>
-      <b>R1-L5</b>
-    </td>
-    <td align="center">
-      <img src="traffic_video/R1-L6/out.gif" width="240"><br>
-      <b>R1-L6</b>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="traffic_video/R1-L7/out.gif" width="240"><br>
-      <b>R1-L7</b>
-    </td>
-    <td align="center">
-      <img src="traffic_video/R1-L8/out.gif" width="240"><br>
-      <b>R1-L8</b>
-    </td>
-    <td align="center">
-      <img src="traffic_video/R1-L9/out.gif" width="240"><br>
-      <b>R1-L9</b>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="traffic_video/R1-L10/out.gif" width="240"><br>
-      <b>R1-L10</b>
-    </td>
-    <td align="center">
-      <img src="traffic_video/R1-L11/out.gif" width="240"><br>
-      <b>R1-L11</b>
-    </td>
-    <td align="center">
-      <img src="traffic_video/R1-L12/out.gif" width="240"><br>
-      <b>R1-L12</b>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <img src="traffic_video/R1-L13/out.gif" width="240"><br>
-      <b>R1-L13</b>
-    </td>
-    <td align="center">
-      <img src="traffic_video/R1-L14/out.gif" width="240"><br>
-      <b>R1-L14</b>
-    </td>
-  </tr>
-</table>
-
-</details>
-
-### R2 Unable to reach the destination
-
-<details>
-<summary><strong>R2</strong></summary>
-
-<table>
-  <tr>
-    <td align="center">
-      <img src="traffic_video/R2-1/out.gif" width="240"><br>
-      <b>R2-1</b>
-    </td>
-    <td align="center">
-      <img src="traffic_video/R2-2/out.gif" width="240"><br>
-      <b>R2-2</b>
-    </td>
-    <td align="center">
-      <img src="traffic_video/R2-3/out.gif" width="240"><br>
-      <b>R2-3</b>
-    </td>
-  </tr>
-</table>
-</details>
-
-<div align="center">
-<p align="center">
-    <br />
-    <a href="xxx">View Details Demo</a>
-  </p>
-
-</div>
-
-<!-- ABOUT THE PROJECT -->
-
-## About The Project
-
-This page presents multiple categories of bugs discovered in the Apollo autonomous driving system.
 
 <!-- GETTING STARTED -->
 
