@@ -210,7 +210,8 @@ Experiment records are available in the `experiment_result `folder.
 
          
 
-## Quickstart
+## Running the Experiments
+
 
 **1、Run carla**
 
