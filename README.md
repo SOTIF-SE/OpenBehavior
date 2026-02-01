@@ -91,7 +91,6 @@ The illustrations of these four functional scenarios are shown in the figures be
 
 ### R2: Reaching Destination
 <!-- <details> -->
-<summary><b> Click to expand R2 Videos</b></summary>
 
 | R2-1 | R2-2 | R2-3 |
 | :---: | :---: | :---: |
