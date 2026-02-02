@@ -1,0 +1,130 @@
+{
+    "ScenarioName": "scenario0",
+    "MapVariable": "",
+    "map": "Town04",
+    "time": {
+        "hour": 11,
+        "minute": 0
+    },
+    "weather": {
+        "rain": 0.0,
+        "sunny": 5.0,
+        "wetness": 0.0,
+        "fog": 2.0
+    },
+    "ego": {
+        "ID": "ego_vehicle",
+        "name": "vehicle.lincoln.mkz_2017",
+        "groundTruthPerception": true,
+        "color": "16,16,16",
+        "start": {
+            "lane_position": {
+                "lane": "lane_39",
+                "offset": 67.99907684326175,
+                "roadID": -2
+            },
+            "heading": {
+                "ref_lane_point": {
+                    "lane": "lane_39",
+                    "offset": 67.99907684326175,
+                    "roadID": -2
+                },
+                "ref_angle": 0.0
+            },
+            "speed": 0.0
+        },
+        "destination": {
+            "lane_position": {
+                "lane": "lane_40",
+                "offset": 86.13139343261722,
+                "roadID": -2
+            },
+            "location": {
+                "x": -206.94546508789062,
+                "y": 12.681782722473145,
+                "z": 4.402416229248047
+            },
+            "heading": {
+                "ref_lane_point": {
+                    "lane": "lane_40",
+                    "offset": 86.13139343261722,
+                    "roadID": -2
+                },
+                "ref_angle": 0.0
+            },
+            "speed": 1.0010900878457953
+        }
+    },
+    "npcList": [
+        {
+            "ID": "npc0",
+            "name": "vehicle.audi.tt",
+            "groundTruthPerception": true,
+            "color": "0,39,105",
+            "start": {
+                "lane_position": {
+                    "lane": "lane_47",
+                    "offset": 49.88318206787105,
+                    "roadID": 6
+                },
+                "heading": {
+                    "ref_lane_point": {
+                        "lane": "lane_47",
+                        "offset": 49.88318206787105,
+                        "roadID": 6
+                    },
+                    "ref_angle": 0.0
+                },
+                "speed": 0.0
+            },
+            "motion": [
+                {
+                    "timestamp": 185,
+                    "location": {
+                        "x": -45.50310516357422,
+                        "y": 16.39809799194336,
+                        "z": -89.78118896484375
+                    },
+                    "yaw": -179.767333984375,
+                    "lane_position": {
+                        "lane": "lane_47",
+                        "offset": 49.88318206787105,
+                        "roadID": 6
+                    },
+                    "heading": {
+                        "ref_lane_point": {
+                            "lane": "lane_47",
+                            "offset": 49.88318206787105,
+                            "roadID": 6
+                        },
+                        "ref_angle": 0.0
+                    },
+                    "isLaneChanging": true,
+                    "speed": 0.0,
+                    "brake": 0.0,
+                    "linearAcceleration": {
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    }
+                },
+                {
+                    "timestamp": 190,
+                    "location": {
+                        "x": -45.50310516357422,
+                        "y": 16.39809799194336,
+                        "z": -89.78118896484375
+                    },
+                    "yaw": -179.767333984375,
+                    "lane_position": {
+                        "lane": "lane_47",
+                        "offset": 49.88318206787105,
+                        "roadID": 6
+                    },
+                    "heading": {
+                        "ref_lane_point": {
+                            "lane": "lane_47",
+                            "offset": 49.88318206787105,
+                            "roadID": 6
+                        },
+                 
