@@ -27,7 +27,7 @@ class AutonomousAgent(object):
         self._global_plan = None
         self._global_plan_world_coord = None
 
-        # this data structure will contain all sensor data
+        # this experiment_result structure will contain all sensor experiment_result
         self.sensor_interface = SensorInterface()
 
         # agent's initialization

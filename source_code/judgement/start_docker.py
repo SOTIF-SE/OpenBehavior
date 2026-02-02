@@ -28,7 +28,7 @@ env_dict_apollo[
 
 env_dict_bridge = {}
 env_dict_bridge[
-    "PATH"] = "/apollo/bazel-bin/cyber:/apollo/bazel-bin/cyber/tools/cyber_recorder:/apollo/bazel-bin/cyber/tools/cyber_monitor:/apollo/cyber/tools/cyber_launch:/apollo/cyber/tools/cyber_channel:/apollo/cyber/tools/cyber_node:/apollo/cyber/tools/cyber_service:/usr/local/Qt5.5.1/5.5/gcc_64/bin:/apollo/bazel-bin/modules/tools/visualizer:/apollo/bazel-bin/modules/data/tools/rosbag_to_record:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    "PATH"] = "/apollo/bazel-bin/cyber:/apollo/bazel-bin/cyber/tools/cyber_recorder:/apollo/bazel-bin/cyber/tools/cyber_monitor:/apollo/cyber/tools/cyber_launch:/apollo/cyber/tools/cyber_channel:/apollo/cyber/tools/cyber_node:/apollo/cyber/tools/cyber_service:/usr/local/Qt5.5.1/5.5/gcc_64/bin:/apollo/bazel-bin/modules/tools/visualizer:/apollo/bazel-bin/modules/experiment_result/tools/rosbag_to_record:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 env_dict_bridge[
     "PYTHONPATH"] = "/root/carla_apollo_bridge_13/carla-python-0.9.13/carla:/root/carla_apollo_bridge_13/carla-python-0.9.13/carla/dist/carla-0.9.13-py2.7-linux-x86_64.egg:/apollo/py_proto:/apollo/bazel-bin/cyber/py_wrapper:/apollo/cyber/python:"
 env_dict_bridge["CYBER_PATH"] = "/apollo/cyber"
@@ -81,17 +81,6 @@ def run_bridge(container):
                                    workdir="/root/carla_apollo_bridge_13")
     for sub_output in output:
         print(sub_output.decode(), end='')
-
-# change here
-def setup_srunner(able_file_name):
-    print(able_file_name)
-    HOME = os.environ["HOME"]
-    srunner_path = HOME + "/scenario_runner_able_edition/"
-    env_srunner = os.environ.copy()
-    env_srunner["PYTHONPATH"] = Carla_Python_Path
-    env_srunner["PATH"] = os.pathsep.join([srunner_path, env_srunner["PATH"]])
-    subprocess.run(["python3", "scenario_runner.py", "--sync", "--waitForEgo", "--able", "trace/" + able_file_name],
-                   cwd=srunner_path, env=env_srunner)
 
 
 def start_all_modules():
@@ -173,33 +162,6 @@ def get_random_transform(world):
     return random.choice(spawn_points)
 
 
-# def send_routing_request(end_location=None, waypoints=[]):
-#     world = carla.Client(host, port).get_world()
-#     start_transform = get_current_transform(world)
-#     correcting_vector = start_transform.get_forward_vector()
-#     shift = 1.355
-#     start_location = start_transform.location - shift * correcting_vector
-#     if end_location is None:
-#         end_location = get_random_transform(world).location
-#     start_location.z = 0.0
-#     end_location.z = 0.0
-#
-#     apollo_socket = create_connection("ws://localhost:8888/websocket")
-#     apollo_socket.send(json.dumps({
-#         'type': 'SendRoutingRequest',
-#         'start': {'x': start_location.x, 'y': -start_location.y, 'z': start_location.z,
-#                   'heading': math.radians(-start_transform.rotation.yaw)},
-#         'end': {
-#             'x': end_location.x,
-#             'y': -end_location.y,
-#             'z': end_location.z,
-#         },
-#         'waypoint': waypoints
-#     }))
-#     print(apollo_socket.recv())
-#     apollo_socket.close()
-
-
 def start_pro(config_file_name):
     client = docker.from_env()
     container = client.containers.get("apollo_dev_root")
@@ -279,104 +241,11 @@ def start_pro(config_file_name):
 
     # Setup scenario runner
     print("Starting srunner...")
-    # srunner_process = Process(target=setup_srunner, args=(able_file_name,))
-    # srunner_process.start()
-    # srunner_process.join()
-    # print("OVER")
-    # time.sleep(120)
-    # finally:
-    #     print("Error!")
-    #     exit(0)
-        # # Stop bridge and clean up
-        # print("Stopping bridge process:", manual_control_process, bridge_process)
-
-        # for proc in psutil.process_iter():
-        #     cmdline = proc.cmdline()
-        #     if len(cmdline) == 2 and cmdline[0] == "python" and cmdline[1] == "carla_cyber_bridge/run_bridge.py":
-        #         cmd = "bash -c \"ps -ef | grep 'python carla_cyber_bridge/run_bridge.py' | grep -v 'grep' | awk '{print $2}' | xargs kill -s 2\""
-        #         _, output = container_bridge.exec_run(cmd, user='root',
-        #                                     stdin=True,
-        #                                     stream=True,
-        #                                     environment=env_dict_bridge,
-        #                                     workdir="/root/carla_apollo_bridge_13")
-        #         for sub_output in output:
-        #             print(sub_output.decode(), end='')
-        #         time.sleep(1)
-        #         if psutil.pid_exists(proc.pid) and len(proc.cmdline()) == 2 and proc.cmdline()[0] == "python" and proc.cmdline()[1] == "carla_cyber_bridge/run_bridge.py":
-        #             _, output = container_bridge.exec_run(cmd, user='root',
-        #                                         stdin=True,
-        #                                         stream=True,
-        #                                         environment=env_dict_bridge,
-        #                                         workdir="/root/carla_apollo_bridge_13")
-        #             for sub_output in output:
-        #                 print(sub_output.decode(), end='')
-        # bridge_process.join()
-
-        # for proc in psutil.process_iter():
-        #     cmdline = proc.cmdline()
-        #     if len(cmdline) == 2 and cmdline[0] == "python" and cmdline[1] == "examples/manual_control.py":
-        #         cmd = "bash -c \"ps -ef | grep 'python examples/manual_control.py' | grep -v 'grep' | awk '{print $2}' | xargs kill -s 2\""
-        #         _, output = container_bridge.exec_run(cmd, user='root',
-        #                                     stdin=True,
-        #                                     stream=True,
-        #                                     environment=env_dict_bridge,
-        #                                     workdir="/root/carla_apollo_bridge_13")
-        #         for sub_output in output:
-        #             print(sub_output.decode(), end='')
-        # manual_control_process.join()
-
-        # time.sleep(10)
-        # container_bridge.stop()
-
-        # # Shut down Carla
-        # print("Stopping carla process:", carla_process)
-        # for proc in psutil.process_iter():
-        #     if "CarlaUE4-Linux-Shipping" in proc.name():
-        #         proc.kill()
-        # carla_process.join()
-
-        # # Shut down Dreamview
-        # cmd = "bash /apollo/scripts/bootstrap.sh stop"
-        # _, output = container.exec_run(cmd, user='zhao',
-        #                             stdin=True,
-        #                             stream=True,
-        #                             environment=env_dict_apollo)
-        # for sub_output in output:
-        #     print(sub_output.decode(), end='')
 
 def stop_all():
     client = docker.from_env()
     container = client.containers.get("apollo_dev_root")
     container_bridge = client.containers.get("carla-apollo-13")
-
-    # Stop manual_control and bridge
-    # 或者直接关闭容器，但是可能存在容器故障的问题
-    # for proc in psutil.process_iter():
-    #     cmdline = proc.cmdline()
-    #     if len(cmdline) == 2 and cmdline[0] == "python" and cmdline[1] == "carla_cyber_bridge/run_bridge.py":
-    #         cmd = "bash -c \"ps -ef | grep 'python carla_cyber_bridge/run_bridge.py' | grep -v 'grep' | awk '{print $2}' | xargs kill -s 2\""
-    #         _, output = container_bridge.exec_run(cmd, user='root',
-    #                                     stdin=True,
-    #                                     stream=True,
-    #                                     environment=env_dict_bridge,
-    #                                     workdir="/root/carla_apollo_bridge_13")
-    #         time.sleep(1)
-    #         if psutil.pid_exists(proc.pid) and len(proc.cmdline()) == 2 and proc.cmdline()[0] == "python" and proc.cmdline()[1] == "carla_cyber_bridge/run_bridge.py":
-    #             _, output = container_bridge.exec_run(cmd, user='root',
-    #                                         stdin=True,
-    #                                         stream=True,
-    #                                         environment=env_dict_bridge,
-    #                                         workdir="/root/carla_apollo_bridge_13")
-    #
-    # for proc in psutil.process_iter():
-    #     cmdline = proc.cmdline()
-    #     if len(cmdline) == 2 and cmdline[0] == "python" and cmdline[1] == "examples/manual_control.py":
-    #         cmd = "bash -c \"ps -ef | grep 'python examples/manual_control.py' | grep -v 'grep' | awk '{print $2}' | xargs kill -s 2\""
-    #         _, output = container_bridge.exec_run(cmd, user='root',
-    #                                     stdin=True,
-    #                                     stream=True,
-    #                                     environment=env_dict_bridge,
-    #                                     workdir="/root/carla_apollo_bridge_13")
 
     container_bridge.stop()
 
@@ -391,36 +260,3 @@ def stop_all():
                                 stdin=True,
                                 stream=True,
                                 environment=env_dict_apollo)
-
-# if __name__ == '__main__':
-#     HOME = os.environ["HOME"]
-#     # APOLLO = "/home/zhao/zhao/autodrive/apollo"
-#     generated_scenarios_path = HOME + "/projects/scenario_runner_able_edition/Judgement/generated_scenarios/"
-#     for scenarios in os.listdir(generated_scenarios_path):
-#         scenarios = "avunit_s2.json"
-#         if os.path.isfile(generated_scenarios_path + scenarios):
-#             with open(generated_scenarios_path + scenarios, "r") as scenarios_file:
-#                 data = json.load(scenarios_file)
-#             idx = 0
-#             for scenario in data:
-#                 if "actions" in scenario:
-#                     del scenario["actions"]
-#                 able_dir_name = ("temp_" + scenarios).replace(".json", "")
-#                 able_file_name = "trace_temp_" + scenarios
-#                 if os.path.isfile(
-#                         HOME + "/projects/scenario_runner_able_edition/trace/" + able_dir_name + "/replay_" + able_dir_name + "_" + str(
-#                                 idx) + ".json"):
-#                     print("Skip " + able_dir_name + "_" + str(idx) + ".json")
-#                 else:
-#                     while not os.path.isfile(
-#                             HOME + "/projects/scenario_runner_able_edition/trace/" + able_dir_name + "/replay_" + able_dir_name + "_" + str(
-#                                     idx) + ".json"):
-#                         with open(HOME + "/projects/scenario_runner_able_edition/trace/" + able_file_name,
-#                                   "w") as able_file:
-#                             json.dump(scenario, able_file, indent=4)
-#                         print("Running " + able_dir_name + "_" + str(idx) + ".json")
-#                         main(able_file_name)
-#                         time.sleep(10)
-#                         # if os.path.isdir(APOLLO + "/data"):
-#                         # shutil.rmtree(APOLLO + "/data")
-#                 idx += 1

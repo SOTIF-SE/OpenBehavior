@@ -52,7 +52,7 @@ class HumanInterface(object):
         """
         Run the GUI
         """
-        # process sensor data
+        # process sensor experiment_result
         image_center = input_data['Center'][1][:, :, -2::-1]
 
         # display image

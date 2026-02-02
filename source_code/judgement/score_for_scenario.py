@@ -5,7 +5,7 @@ import re
 import statistics
 import time
 
-Record_Path = "/home/abc/scenario_runner/scenario_record/avunit_s4.json"
+Record_Path = "/home/abc/scenario_runner/scenario_record/openbehavior_s4.json"
 
 
 def load_template(path):
@@ -207,7 +207,7 @@ class ScoreForScenario:
 
     # 获取ego目标位置
     def get_target_location(self):
-        file = "/home/abc/scenario_runner/trace/avunit_s4/trace_avunit_s4_0_-1.json"
+        file = "/home/abc/scenario_runner/trace/obehavior_s4/trace_obehavior_s4_0_-1.json"
         with open(file, "r") as f:
             data = json.load(f)
         self.target_location = data["ego"]["destination"]["location"]
@@ -482,12 +482,12 @@ class ScoreForScenario:
 
 
 if __name__ == "__main__":
-    file = "/home/abc/scenario_runner/trace/avunit_s4/"
+    file = "/home/abc/scenario_runner/trace/obehavior_s4/"
     ai_num = 0
     for filename in sorted(os.listdir(file)):
-        if filename == "trace_avunit_s4_0_-1.json":
+        if filename == "trace_obehavior_s4_0_-1.json":
             continue
-        match = re.search(r"trace_avunit_s4_(\d+)_(\d+)\.json", filename)
+        match = re.search(r"trace_obehavior_s4_(\d+)_(\d+)\.json", filename)
         gen_value = int(match.group(1))
         idx_value = int(match.group(2))
         config_path = "mutation/generation_{}/ind_{}.json".format(gen_value, idx_value)

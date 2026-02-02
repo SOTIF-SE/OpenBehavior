@@ -3136,7 +3136,7 @@ class StartRecorder(AtomicBehavior):
     automatically stop the previous one.
 
     Args:
-        recorder_name (str): name of the file to write the recorded data.
+        recorder_name (str): name of the file to write the recorded experiment_result.
             Remember that a simple name will save the recording in
             'CarlaUE4/Saved/'. Otherwise, if some folder appears in the name,
             it will be considered an absolute path.

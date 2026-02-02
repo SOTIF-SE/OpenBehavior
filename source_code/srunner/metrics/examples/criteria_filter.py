@@ -42,5 +42,5 @@ class CriteriaFilter(BasicMetric):
             }
         )
 
-        with open('srunner/metrics/data/CriteriaFilter_results.json', 'w') as fw:
+        with open('srunner/metrics/experiment_result/CriteriaFilter_results.json', 'w') as fw:
             json.dump(results, fw, sort_keys=False, indent=4)

@@ -768,7 +768,7 @@ def process_speed_modifier(
                 # if ego_total_distance > 0:
                 #     ego_car_wp = ego_car_wp.next(ego_total_distance)[0]
                 if start_distance is not None:
-                    # special for avunit_s1
+                    # special for s1
                     # if actor_name == "npc1":
                     #     start_wp = CarlaDataProvider.get_waypoint_by_actorname_and_laneid(actor_name, start_lane)
                     #     start_wp = start_wp.previous(100)[0]

@@ -6,7 +6,7 @@
 # For a copy, see <https://opensource.org/licenses/MIT>.
 
 """
-This module provides all frequently used data from CARLA via
+This module provides all frequently used experiment_result from CARLA via
 local buffers to avoid blocking calls to CARLA
 """
 
@@ -34,10 +34,10 @@ def calculate_velocity(actor):
 class CarlaDataProvider(object):  # pylint: disable=too-many-public-methods
 
     """
-    This class provides access to various data of all registered actors
-    It buffers the data and updates it on every CARLA tick
+    This class provides access to various experiment_result of all registered actors
+    It buffers the experiment_result and updates it on every CARLA tick
 
-    Currently available data:
+    Currently available experiment_result:
     - Absolute velocity
     - Location
     - Transform
@@ -663,7 +663,7 @@ class CarlaDataProvider(object):  # pylint: disable=too-many-public-methods
             pre_left = wp
             wp = wp.get_left_lane()
 
-        # # Store data from the left lane to the right lane
+        # # Store experiment_result from the left lane to the right lane
         # # list<key, value>, key=laneid, value=waypoint
         lane_list = []
         lane_id_set.clear()
@@ -689,11 +689,11 @@ class CarlaDataProvider(object):  # pylint: disable=too-many-public-methods
     @staticmethod
     def set_traffic_lights(session):
         osc2trafficlights_dict = {
-            "avunit_s1": CarlaDataProvider.junction_s1,
-            "avunit_s2": CarlaDataProvider.junction_s2,
-            "avunit_s3": CarlaDataProvider.junction_s3,
-            "avunit_s4": CarlaDataProvider.junction_s4,
-            "avunit_s8": CarlaDataProvider.junction_s8,
+            "obehavior_s1": CarlaDataProvider.junction_s1,
+            "obehavior_s2": CarlaDataProvider.junction_s2,
+            "obehavior_s3": CarlaDataProvider.junction_s3,
+            "obehavior_s4": CarlaDataProvider.junction_s4,
+            "obehavior_s8": CarlaDataProvider.junction_s8,
             "test": CarlaDataProvider.junction_s3
         }
         CarlaDataProvider.session = session
@@ -717,11 +717,11 @@ class CarlaDataProvider(object):  # pylint: disable=too-many-public-methods
     @staticmethod
     def get_waypoint_by_actorname_and_laneid(actor_name: str, lane_id: int):
         osc2roadid_dict = {
-            "avunit_s1": CarlaDataProvider.actor2roadid_s1_start,
-            "avunit_s2": CarlaDataProvider.actor2roadid_s2_start,
-            "avunit_s3": CarlaDataProvider.actor2roadid_s3_start,
-            "avunit_s4": CarlaDataProvider.actor2roadid_s4_start,
-            "avunit_s8": CarlaDataProvider.actor2roadid_s8_start
+            "obehavior_s1": CarlaDataProvider.actor2roadid_s1_start,
+            "obehavior_s2": CarlaDataProvider.actor2roadid_s2_start,
+            "obehavior_s3": CarlaDataProvider.actor2roadid_s3_start,
+            "obehavior_s4": CarlaDataProvider.actor2roadid_s4_start,
+            "obehavior_s8": CarlaDataProvider.actor2roadid_s8_start
         }
         actor2roadid_start = osc2roadid_dict[CarlaDataProvider.session]
         pos = CarlaDataProvider.generate_road_spawn_points(actor2roadid_start[actor_name],
@@ -739,11 +739,11 @@ class CarlaDataProvider(object):  # pylint: disable=too-many-public-methods
     @staticmethod
     def get_endwaypoint_by_actorname_and_laneid(actor_name: str) -> carla.Location:
         osc2roadid_dict = {
-            "avunit_s1": CarlaDataProvider.actor2roadid_s1_end,
-            "avunit_s2": CarlaDataProvider.actor2roadid_s2_end,
-            "avunit_s3": CarlaDataProvider.actor2roadid_s3_end,
-            "avunit_s4": CarlaDataProvider.actor2roadid_s4_end,
-            "avunit_s8": CarlaDataProvider.actor2roadid_s8_end
+            "obehavior_s1": CarlaDataProvider.actor2roadid_s1_end,
+            "obehavior_s2": CarlaDataProvider.actor2roadid_s2_end,
+            "obehavior_s3": CarlaDataProvider.actor2roadid_s3_end,
+            "obehavior_s4": CarlaDataProvider.actor2roadid_s4_end,
+            "obehavior_s8": CarlaDataProvider.actor2roadid_s8_end
         }
         actor2roadid_end = osc2roadid_dict[CarlaDataProvider.session]
         end_transform = CarlaDataProvider.generate_road_end_points(actor2roadid_end[actor_name],

@@ -75,7 +75,7 @@ class Decorator(behaviour.Behaviour):
         subtree traversal reversed direction and headed back to this node.
         Returns:
             :class:`~py_trees.behaviour.Behaviour` or :obj:`None`: child behaviour,
-                itself or :obj:`None` if its status is :data:`~py_trees.common.Status.INVALID`
+                itself or :obj:`None` if its status is :experiment_result:`~py_trees.common.Status.INVALID`
         """
         if self.decorated.status != common.Status.INVALID:
             return self.decorated.tip()
@@ -95,7 +95,7 @@ class SuccessIsRunning(Decorator):
 
     def update(self):
         """
-        Reflect :data:`~py_trees.common.Status.SUCCESS` as :data:`~py_trees.common.Status.RUNNING`.
+        Reflect :experiment_result:`~py_trees.common.Status.SUCCESS` as :experiment_result:`~py_trees.common.Status.RUNNING`.
         Returns:
             :class:`~py_trees.common.Status`: the behaviour's new status :class:`~py_trees.common.Status`
         """

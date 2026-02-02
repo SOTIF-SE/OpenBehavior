@@ -26,14 +26,14 @@ import carla
 class SensorReceivedNoData(Exception):
 
     """
-    Exceptions thrown when the sensors used by the agent take too long to receive data
+    Exceptions thrown when the sensors used by the agent take too long to receive experiment_result
     """
 
 
 class CallBack(object):
 
     """
-    Class the sensors listen to in order to receive their data each frame
+    Class the sensors listen to in order to receive their experiment_result each frame
     """
 
     def __init__(self, tag, sensor, data_provider):
@@ -119,7 +119,7 @@ class CallBack(object):
 class SensorInterface(object):
 
     """
-    Class that contains all sensor data
+    Class that contains all sensor experiment_result
     """
 
     def __init__(self):
@@ -150,7 +150,7 @@ class SensorInterface(object):
 
     def get_data(self):
         """
-        Returns the data of a sensor
+        Returns the experiment_result of a sensor
         """
         try:
             data_dict = {}
@@ -160,6 +160,6 @@ class SensorInterface(object):
                 data_dict[sensor_data[0]] = ((sensor_data[1], sensor_data[2]))
 
         except Empty:
-            raise SensorReceivedNoData("A sensor took too long to send its data")
+            raise SensorReceivedNoData("A sensor took too long to send its experiment_result")
 
         return data_dict

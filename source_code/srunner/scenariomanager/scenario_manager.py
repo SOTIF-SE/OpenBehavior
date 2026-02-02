@@ -31,11 +31,11 @@ from srunner.scenariomanager.watchdog import Watchdog
 
 from camera_recorder.camera_recorder import CameraRecorder
 
-def load_template(path="/home/abc/scenario_runner/scenario_record/avunit_s4_extra_time.json"):
+def load_template(path="/home/abc/scenario_runner/scenario_record/obehavior_s4_extra_time.json"):
     with open(path, "r") as f:
         return json.load(f)
 
-def save_result(scene, path="/home/abc/scenario_runner/scenario_record/avunit_s4_extra_time.json"):
+def save_result(scene, path="/home/abc/scenario_runner/scenario_record/obehavior_s4_extra_time.json"):
     with open(path, "w") as f:
         json.dump(scene, f, indent=4)
 
@@ -164,9 +164,9 @@ class ScenarioManager(object):
         #     idx_value = int(match.group(2))
         #     file = "/home/abc/scenario_runner/trace/test_script/trace_test_script_/{}_{}.json".format(gen_value-1, idx_value)
         # else:
-        #     print("Error! Need data json")
+        #     print("Error! Need experiment_result json")
         #     exit(0)
-        file = "/home/abc/scenario_runner/trace/avunit_s4/trace_avunit_s4_0_-1.json"
+        file = "/home/abc/scenario_runner/trace/obehavior_s4/trace_obehavior_s4_0_-1.json"
         with open(file, "r") as f:
             data = json.load(f)
         self.able_data = data
@@ -274,7 +274,7 @@ class ScenarioManager(object):
             self.start_system_time
         self.scenario_duration_game = end_game_time - start_game_time
 
-        if os.path.exists("/home/abc/scenario_runner/scenario_record/avunit_s4_extra_time.json"):
+        if os.path.exists("/home/abc/scenario_runner/scenario_record/obehavior_s4_extra_time.json"):
             time_data = load_template()
         else:
             time_data = {}

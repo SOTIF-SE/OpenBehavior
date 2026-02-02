@@ -332,7 +332,7 @@ class BackgroundBehavior(AtomicBehavior):
             'remove_entries': False,
             'remove_middle': False,
             'remove_exits': False,
-        }  # Same as the Junction.scenario_info, but this stores the data in case no junctions are active
+        }  # Same as the Junction.scenario_info, but this stores the experiment_result in case no junctions are active
 
     def _get_route_data(self, route):
         """Extract the information from the route"""
@@ -1061,7 +1061,7 @@ class BackgroundBehavior(AtomicBehavior):
 
     def _end_junction_behavior(self, ego_wp, junction):
         """
-        Destroys unneeded actors (those behind the ego), moves the rest to other data structures
+        Destroys unneeded actors (those behind the ego), moves the rest to other experiment_result structures
         and cleans up the variables. If no other junctions are active, starts road mode
         """
         actor_dict = junction.actor_dict

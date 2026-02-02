@@ -186,9 +186,9 @@ Experiment records are available in the `experiment_result `folder.
     ```bash
     conda activate scen
     
-    python openbehavior_runner.py --sync  --openbehavior2 OpenBehavior_Osc/obehavior_s1.osc --reloadWorld
+    python openbehavior_runner.py --sync  --openbehavior OpenBehavior_Osc/obehavior_s1.osc --reloadWorld
     ```
-<!--original: python scenario_runner.py --sync  --openscenario2 AVUnit_Osc/avunit_s1.osc --reloadWorld -->
+<!--original: python openbehavior_runner.py --sync  --openscenario2 OpenBehavior_Osc/avunit_s1.osc --reloadWorld -->
 
 
 3.  **Run OBOrchestration** <!-- original: Run OSCFuzz -->
@@ -200,6 +200,6 @@ Experiment records are available in the `experiment_result `folder.
     
     python OBOrchestration.py
     ```
-<!-- python OscFuzz.py -->
+<!-- python OBOrchestration.py -->
 
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge

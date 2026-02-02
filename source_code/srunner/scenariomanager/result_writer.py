@@ -165,7 +165,7 @@ class ResultOutputProvider(object):
             :param expected: The expected value of the criterion (eg 0 for collisions)
             :param actual: The actual value
             :param success: If the test was passed
-            :return: A dict data structure that will be written to JSON
+            :return: A dict experiment_result structure that will be written to JSON
             """
             return {
                 "name": name,

@@ -47,7 +47,7 @@ class RosAgent(AutonomousAgent):
     Please define TEAM_CODE_ROOT in your environment.
     The stack is started by executing $TEAM_CODE_ROOT/start.sh
 
-    The sensor data is published on similar topics as with the carla-ros-bridge. You can find details about
+    The sensor experiment_result is published on similar topics as with the carla-ros-bridge. You can find details about
     the utilized datatypes there.
 
     This agent expects a roscore to be running.
@@ -263,7 +263,7 @@ class RosAgent(AutonomousAgent):
 
     def publish_lidar(self, sensor_id, data):
         """
-        Function to publish lidar data
+        Function to publish lidar experiment_result
         """
         header = self.get_header()
         header.frame_id = 'ego_vehicle/lidar/{}'.format(sensor_id)
@@ -274,7 +274,7 @@ class RosAgent(AutonomousAgent):
             lidar_data, (int(lidar_data.shape[0] / 3), 3))
         # we take the oposite of y axis
         # (as lidar point are express in left handed coordinate system, and ros need right handed)
-        # we need a copy here, because the data are read only in carla numpy
+        # we need a copy here, because the experiment_result are read only in carla numpy
         # array
         lidar_data = -1.0 * lidar_data
         # we also need to permute x and y
@@ -284,7 +284,7 @@ class RosAgent(AutonomousAgent):
 
     def publish_gnss(self, sensor_id, data):
         """
-        Function to publish gnss data
+        Function to publish gnss experiment_result
         """
         msg = NavSatFix()
         msg.header = self.get_header()
@@ -300,10 +300,10 @@ class RosAgent(AutonomousAgent):
 
     def publish_camera(self, sensor_id, data):
         """
-        Function to publish camera data
+        Function to publish camera experiment_result
         """
         msg = self.cv_bridge.cv2_to_imgmsg(data, encoding='bgra8')
-        # the camera data is in respect to the camera's own frame
+        # the camera experiment_result is in respect to the camera's own frame
         msg.header = self.get_header()
         msg.header.frame_id = 'ego_vehicle/camera/rgb/{}'.format(sensor_id)
 
@@ -314,7 +314,7 @@ class RosAgent(AutonomousAgent):
 
     def publish_can(self, sensor_id, data):
         """
-        publish can data
+        publish can experiment_result
         """
         if not self.vehicle_info_publisher:
             self.vehicle_info_publisher = rospy.Publisher(
@@ -356,7 +356,7 @@ class RosAgent(AutonomousAgent):
 
     def publish_hd_map(self, sensor_id, data):
         """
-        publish hd map data
+        publish hd map experiment_result
         """
         roll = -math.radians(data['transform']['roll'])
         pitch = -math.radians(data['transform']['pitch'])
@@ -425,7 +425,7 @@ class RosAgent(AutonomousAgent):
 
         new_data_available = False
 
-        # publish data of all sensors
+        # publish experiment_result of all sensors
         for key, val in input_data.items():
             new_data_available = True
             sensor_type = self.id_to_sensor_type_map[key]
