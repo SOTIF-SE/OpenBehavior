@@ -137,23 +137,27 @@ Experiment records are available in the `experiment_result `folder.
 #### **Step A: Prepare for Scenario Runner (`scen`)**
 1.  **System Dependencies:**
     ```bash
-    sudo apt update && sudo apt install openjdk-17-jdk graphviz -y
+    sudo apt update && sudo apt install openjdk-17-jdk
     ```
 2.  **ANTLR 4.10.1 Setup:**
     ```bash
     sudo apt curl
     curl -O https://www.antlr.org/download/antlr-4.10.1-complete.jar
     sudo cp antlr-4.10.1-complete.jar /usr/local/lib/
+    sudo gedit ~/.bashrc
     # Add to ~/.bashrc
     export CLASSPATH=".:/usr/local/lib/antlr-4.10.1-complete.jar:$CLASSPATH"
     alias antlr4='java -jar /usr/local/lib/antlr-4.10.1-complete.jar'
     alias grun='java org.antlr.v4.gui.TestRig'
+    source ~/.bashrc
     ```
 3.  **Conda Environment:**
     ```bash
     conda create -n scen python==3.7 -y
     conda activate scen
-    pip install antlr4-python3-runtime==4.10 websocket websocket-client
+    # Install antlr4 runtime, websocket, and graphviz
+    pip install antlr4-python3-runtime==4.10 websocket websocket-client graphviz
+    # Install dependency
     pip install -r requirements.txt
     ```
 
