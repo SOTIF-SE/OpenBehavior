@@ -55,7 +55,9 @@ Experimental results demonstrate that OpenBehavior, through its behavioral featu
 Experiment records are provided in the `experiment_result/` directory.  
 This directory contains the **raw result logs of all compared methods across the four functional scenarios**.
 
-Due to the large size of scenario execution data (e.g., simulation traces), **only representative and essential records are included in this repository**.
+Due to the large size of scenario execution data (e.g., simulation traces), **only representative and essential records are included in this repository**.  
+All results can be **reproduced by following the instructions in the next section**, which automatically regenerate the failure scenarios.  
+The complete dataset will be made available at the following location: //.
 
 Using OpenBehavior, we automatically discovered **25 failure scenarios** that expose diverse interaction-induced failures in Apollo.  
 The following section presents **visual demonstrations of these discovered failure scenarios**.
