@@ -265,10 +265,7 @@ class DataBridge(object):
         self.trace['trace'] = self.trace_list
 
         filetype = "trace"
-        scenario, ext = os.path.splitext(scenario)
-        if scenario.startswith("trace_"):
-            scenario = scenario.replace("trace_", "")
-            filetype = "replay"
+        scenario = "s4_trace"
         
         if not os.path.isdir(path + scenario):
             os.mkdir(path + scenario)

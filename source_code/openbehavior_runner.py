@@ -480,7 +480,7 @@ class ScenarioRunner(object):
             #     with open(self._args.config_json, "r") as config_file:
             #         self.manager.able_data = json.load(config_file)
 
-            scenario_path = "/home/abc/scenario_runner/trace/"
+            scenario_path = "/home/abc/OpenBehavior/experiment_result/openbehavior/"
             scenario_filename = None
             if not self._args.openbehavior is None:
                 _, scenario_filename = os.path.split(self._args.openbehavior)
@@ -653,7 +653,7 @@ def main():
     parser.add_argument('--sync', action='store_true',
                         help='Forces the simulation to run synchronously')
     parser.add_argument('--list', action="store_true", help='List all supported scenarios and exit')
-    parser.add_argument('--GA', help='Use to Fuzz')
+    parser.add_argument('--GA', help='Use to Orchestration')
     parser.add_argument('--config_json', help="For mutation")
 
     parser.add_argument(
