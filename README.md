@@ -115,6 +115,7 @@ The following section presents **visual demonstrations of these discovered failu
 <!-- GETTING STARTED -->
 
 ## 🚀 Getting Started
+This section describes the required environment setup and the steps to reproduce our experimental results.
 
 ### 🛠️ Experiment Setup
 
