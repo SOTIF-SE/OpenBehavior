@@ -137,11 +137,12 @@ Experiment records are available in the `experiment_result `folder.
 #### **Step A: Prepare for Scenario Runner (`scen`)**
 1.  **System Dependencies:**
     ```bash
-    sudo apt update && sudo apt install openjdk-17-jdk curl graphviz -y
+    sudo apt update && sudo apt install openjdk-17-jdk graphviz -y
     ```
 2.  **ANTLR 4.10.1 Setup:**
     ```bash
-    curl -O [https://www.antlr.org/download/antlr-4.10.1-complete.jar](https://www.antlr.org/download/antlr-4.10.1-complete.jar)
+    sudo apt curl
+    curl -O https://www.antlr.org/download/antlr-4.10.1-complete.jar
     sudo cp antlr-4.10.1-complete.jar /usr/local/lib/
     # Add to ~/.bashrc
     export CLASSPATH=".:/usr/local/lib/antlr-4.10.1-complete.jar:$CLASSPATH"
