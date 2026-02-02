@@ -204,7 +204,7 @@ This section describes the required environment setup and the steps to reproduce
 
 ---
 
-         
+​         
 
 ### 🛠 Running the Experiments
 
@@ -226,15 +226,35 @@ This section describes the required environment setup and the steps to reproduce
 <!--original: python openbehavior_runner.py --sync  --openscenario2 OpenBehavior_Osc/avunit_s1.osc --reloadWorld -->
 
 
-3.  **Run OBOrchestration** <!-- original: Run OSCFuzz -->
+3. **Run OBOrchestration** <!-- original: Run OSCFuzz -->
 
-     ```bash
-    conda activate law
-    
-    cd judgement
-    
-    python OBOrchestration.py
+    ```bash
+   conda activate law
+   
+   cd judgement
+   
+   python OBOrchestration.py
     ```
-<!-- python OBOrchestration.py -->
+   <!-- python OBOrchestration.py -->
+
+   ### For OSG
+
+   You can run it by
+
+   ```python
+   python RSGen/scripts/search/run.py
+   ```
+
+   
+
+   ### For Avunit
+
+   You can run it by
+
+   ```
+   python Law_Judgement/GeneticAlgorithm.py
+   ```
+
+   
 
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
