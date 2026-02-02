@@ -109,7 +109,7 @@ Detailed visual demonstrations of these failures are shown below.
 The experimental records are organized in the `experiment_result/` directory:
 * **Raw Logs:** Contains the complete execution logs for all compared methods across the four functional scenarios.
 * **Data Scope:** Due to the substantial size of simulation traces (high-fidelity execution data), **representative and essential records** are prioritized in this repository.
-* **Reproducibility:** All results can be **fully reproduced** by following the instructions in the [Reproduction Workflow](#-running-the-experiments) section, which automates the regeneration of failure scenarios.
+* **Reproducibility:** All results can be **fully reproduced** by following the instructions in the [Reproduction Workflow](#running-the-experiments) section, which automates the regeneration of failure scenarios.
 
 
 <!-- GETTING STARTED -->
