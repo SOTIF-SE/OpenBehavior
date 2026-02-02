@@ -50,17 +50,10 @@ The illustrations of these four functional scenarios are shown in the figures be
 
 ## 📊 Experiment Results
 
-Experimental results demonstrate that OpenBehavior, through its behavioral features and designed specifications, uncovers **25 distinct interaction-induced failure patterns** in Apollo, outperforming existing approaches.
+Experimental results demonstrate that **OpenBehavior uncovers 25 distinct interaction-induced failure patterns** in Apollo, significantly outperforming existing baseline approaches.
+Detailed visual demonstrations of these failures are shown below.
 
-Experiment records are provided in the `experiment_result/` directory.  
-This directory contains the **raw result logs of all compared methods across the four functional scenarios**.
-
-Due to the large size of scenario execution data (e.g., simulation traces), **only representative and essential records are included in this repository**.  
-All results can be **reproduced by following the instructions in the next section**, which automatically regenerate the failure scenarios.  
-The complete dataset will be made available at the following location: //.
-
-Using OpenBehavior, we automatically discovered **25 failure scenarios** that expose diverse interaction-induced failures in Apollo.  
-The following section presents **visual demonstrations of these discovered failure scenarios**.
+---
 
 ### 🎥 Discovered Failure Scenarios
 ### R1: Collision Avoidance
@@ -112,6 +105,11 @@ The following section presents **visual demonstrations of these discovered failu
 <!-- </details> -->
 
 
+### 📑 Result Data
+The experimental records are organized in the `experiment_result/` directory:
+* **Raw Logs:** Contains the complete execution logs for all compared methods across the four functional scenarios.
+* **Data Scope:** Due to the substantial size of simulation traces (high-fidelity execution data), **representative and essential records** are prioritized in this repository.
+* **Reproducibility:** All results can be **fully reproduced** by following the instructions in the [Reproduction Workflow](#-running-the-experiments) section, which automates the regeneration of failure scenarios.
 
 
 <!-- GETTING STARTED -->
