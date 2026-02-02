@@ -234,61 +234,6 @@ class GAGeneration:
                 p1[i], p2[i] = p2[i], p1[i]
         return p1, p2
 
-    # 新增遗传算法选择策略，每一代都保留最佳population_size个样本。
-    # 设计新的数据结构来保留历史数据，在设置的generation结束后，选择最佳的
-    # 增加数据存储
-
-    def genetic_fuzz2(self, template):
-        # template没有参与，是否算是一个遗漏？
-
-        population = []
-        temp = []
-        for i in range(self.population_size):
-            population.append(self.mutate(template))
-
-        for gen in range(self.generation):
-
-            gen_dir = f"mutation/generation_{gen + 1}"
-            os.makedirs(gen_dir, exist_ok=True)
-            for idx, scene in enumerate(population):
-                filename = os.path.join(gen_dir, f"ind_{idx}.json")
-                with open(filename, "w") as f:
-                    json.dump(scene, f, indent=4)
-
-            scores = [evaluate(scene, gen, idx) for idx, scene in enumerate(population)]
-
-            scored_pop = list(zip(population, scores))
-            scored_pop = scored_pop + temp
-            # 找最小的
-            scored_pop.sort(key=lambda x: x[1], reverse=False)
-            scored_pop = scored_pop[:self.population_size]
-
-            temp = scored_pop.copy()
-            survivors = [copy.deepcopy(scored_pop[0][0]),
-                         copy.deepcopy(scored_pop[1][0]),
-                         copy.deepcopy(scored_pop[2][0])]
-
-            children = []
-            for i in range(0, self.population_size - 1, 2):
-                if i + 1 <= self.population_size - 2:
-                    p1 = copy.deepcopy(scored_pop[i][0])
-                    p2 = copy.deepcopy(scored_pop[i + 1][0])
-                    if random.random() < self.crossover_prob:
-                        p1, p2 = self.crossover(p1, p2)
-                    if random.random() < self.mutation_prob:
-                        p1 = self.mutate(p1)
-                    if random.random() < self.mutation_prob:
-                        p2 = self.mutate(p2)
-                    children.append(p1)
-                    children.append(p2)
-                else:
-                    children.append(self.mutate(copy.deepcopy(scored_pop[i][0])))
-            population = survivors + children
-
-            print(f"Generation {gen+1}, best fitness: {scores[0]}")
-
-        return population
-
     def selection2(self, scorted_pop):
         selected_population = []
         for i in range(self.population_size):
@@ -317,7 +262,7 @@ class GAGeneration:
             with open(filename, "w") as f:
                 json.dump(scene, f, indent=4)
 
-    def genetic_fuzz(self):
+    def genetic_orchestration(self):
         population = []
         total_gen_time = 0
 
@@ -345,7 +290,7 @@ class GAGeneration:
             scored_pop = list(zip(population, scores))
             scored_pop.sort(key=lambda x: x[1], reverse=True)
             # survivors = [copy.deepcopy(scored_pop[0][0]),
-            #              copy.deepcopy(scored_pop[1][0])]
+                         # copy.deepcopy(scored_pop[1][0])]
             survivors = []
 
             children = []
@@ -382,6 +327,81 @@ class GAGeneration:
         save_result(record_data, record_result_path)
         return population
 
+    def genetic_orchestration2(self):
+
+        population = []
+        temp = []
+        total_gen_time = 0
+
+        # 断点继续
+        config_path = "mutation/generation_0"
+        for filename in sorted(os.listdir(config_path)):
+            if filename.endswith(".json"):
+                file_path = os.path.join(config_path, filename)
+                with open(file_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    population.append(data)
+        # 断点继续
+
+        for gen in range(0, self.generation):
+
+            gen_dir = f"mutation/generation_{gen + 1}"
+            os.makedirs(gen_dir, exist_ok=True)
+            for idx, scene in enumerate(population):
+                filename = os.path.join(gen_dir, f"ind_{idx}.json")
+                with open(filename, "w") as f:
+                    json.dump(scene, f, indent=4)
+
+            scores = [evaluate(scene, gen, idx) for idx, scene in enumerate(population)]
+
+            scored_pop = list(zip(population, scores))
+            scored_pop = scored_pop + temp
+            # 找最小的
+            scored_pop.sort(key=lambda x: x[1], reverse=False)
+            scored_pop = scored_pop[:self.population_size]
+
+            temp = scored_pop.copy()
+            survivors = [copy.deepcopy(scored_pop[0][0]),
+                         copy.deepcopy(scored_pop[1][0])]
+
+            children = []
+            selected_pop = []
+
+            for i in range(self.population_size):
+                selected_pop.append(copy.deepcopy(scored_pop[i][0]))
+            selected_pop = self.selection2(scored_pop)
+            start_gen = time.perf_counter()
+
+            for i in range(0, self.population_size - 1, 2):
+                if i + 1 <= self.population_size - 3:
+                    p1 = copy.deepcopy(selected_pop[i][0])
+                    p2 = copy.deepcopy(selected_pop[i + 1][0])
+                    if random.random() < self.crossover_prob:
+                        p1, p2 = self.crossover(p1, p2)
+                    if random.random() < self.mutation_prob:
+                        p1 = self.mutate(p1)
+                    if random.random() < self.mutation_prob:
+                        p2 = self.mutate(p2)
+                    children.append(p1)
+                    children.append(p2)
+                else:
+                    children.append(self.mutate(copy.deepcopy(selected_pop[i][0])))
+
+            end_gen = time.perf_counter()
+            gen_time = end_gen - start_gen
+            total_gen_time = total_gen_time + gen_time
+            population = survivors + children
+
+            print(f"Generation {gen + 1}, best fitness: {scores[0]}")
+
+        record_result_path = "/home/abc/scenario_runner/scenario_record/obehavior_s4.json"
+        record_data = load_template(record_result_path)
+        record_data["average_gen_scenario_time"] = total_gen_time / (self.generation * self.population_size)
+        save_result(record_data, record_result_path)
+        return population
+
+        return population
+
 
 if __name__ == "__main__":
     APOLLO = "/home/abc/apollo/experiment_result"
@@ -391,7 +411,8 @@ if __name__ == "__main__":
     GA = GAGeneration()
     if not os.path.isdir("mutation/generation_0"):
         GA.random_initial_population(template)
-    results = GA.genetic_fuzz()
+    results = GA.genetic_orchestration()
+    # results = GA.genetic_orchestration2()
 
     for i, scene in enumerate(results[:3]):
         save_result(scene, f"scene_result_{i}.json")
