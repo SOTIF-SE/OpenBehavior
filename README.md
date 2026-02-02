@@ -234,14 +234,14 @@ This section describes the required environment setup and the steps to reproduce
    cd judgement
    
    python OBOrchestration.py
-    ```
+   ```
    <!-- python OBOrchestration.py -->
 
    ### For OSG
 
    You can run it by
 
-   ```python
+   ```
    python RSGen/scripts/search/run.py
    ```
 
