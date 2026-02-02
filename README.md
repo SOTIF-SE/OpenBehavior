@@ -48,8 +48,19 @@ The illustrations of these four functional scenarios are shown in the figures be
 - The **start position and destination of the ego vehicle** (highlighted by the red route line) are fixed.
 - The **trajectories and behaviors of NPC vehicles are not predefined**, allowing diverse and dynamic interactions to emerge during testing. -->
 
+## 📊 Experiment Results
 
-### 🎥 Scenario Failure Demonstrations
+Experimental results demonstrate that OpenBehavior, through its behavioral features and designed specifications, uncovers **25 distinct interaction-induced failure patterns** in Apollo, outperforming existing approaches.
+
+Experiment records are provided in the `experiment_result/` directory.  
+This directory contains the **raw result logs of all compared methods across the four functional scenarios**.
+
+Due to the large size of scenario execution data (e.g., simulation traces), **only representative and essential records are included in this repository**.
+
+Using OpenBehavior, we automatically discovered **25 failure scenarios** that expose diverse interaction-induced failures in Apollo.  
+The following section presents **visual demonstrations of these discovered failure scenarios**.
+
+### 🎥 Discovered Failure Scenarios
 ### R1: Collision Avoidance
 #### T-Junction (R1-T)
 
@@ -99,11 +110,7 @@ The illustrations of these four functional scenarios are shown in the figures be
 <!-- </details> -->
 
 
-## 📊 Experiment Results
 
-Experimental results demonstrate that OpenBehavior’s behavioral features and designed specifications can uncover 25 interaction-induced failure patterns in Apollo, outperforming existing approaches.
-
-Experiment records are available in the `experiment_result `folder.
 
 <!-- GETTING STARTED -->
 
