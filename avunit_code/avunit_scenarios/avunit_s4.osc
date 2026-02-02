@@ -1,0 +1,37 @@
+import avunit_basic.osc
+
+scenario top:
+    path: Path
+    path.set_map("Town04")
+    path.path_min_driving_lanes(2)
+
+    ego_vehicle: Model3
+    npc1: Rubicon
+    npc2: Rubicon
+    npc3: Rubicon
+    npc4: Rubicon
+
+    event start
+    event end
+
+    do serial:
+        init: parallel(duration: 120s):
+            ego_vehicle.drive(path) with:
+                speed([14.4kph..21.6kph])
+                lane(3, at: start)
+            
+            npc1.drive(path) with:
+                speed([14.4kph..21.6kph], at: start)
+                lane(left_of: ego_vehicle, at: start)
+                lane(left_of: ego_vehicle, at: start)
+            npc2.drive(path) with:
+                speed([14.4kph..21.6kph], at: start)
+                lane(left_of: ego_vehicle, at: start)
+                position([5m..20m], behind: ego_vehicle, at: start)
+            npc3.drive(path) with:
+                speed([14.4kph..21.6kph], at: start)
+                lane(right_of: ego_vehicle, at: start)
+                position([5m..20m], ahead_of: ego_vehicle, at: start)
+            npc4.drive(path) with:
+                speed([14.4kph..21.6kph], at: start)
+                lane(right_of: ego_vehicle, at: start)
