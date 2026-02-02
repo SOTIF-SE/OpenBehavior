@@ -42,7 +42,16 @@ We evaluate **OpenBehavior** on the following four functional scenarios related 
 
 ### ⚙️ Scenario Settings
 
-The illustrations of these four functional scenarios are shown in the figures below.  
+The illustrations of these four functional scenarios are shown below.
+
+| **S1 – T-Intersection** | **S2 – Crossroad Intersection** |
+| :--------------------: | :-----------------------------: |
+| <img src="images/s1.png" width="380"> | <img src="images/s2.png" width="380"> |
+
+| **S3 – Lane Following** | **S4 – Lane Change** |
+| :--------------------: | :------------------: |
+| <img src="images/s3.png" width="380"> | <img src="images/s4.png" width="380"> |
+
 <!--During testing:
 
 - The **start position and destination of the ego vehicle** (highlighted by the red route line) are fixed.
