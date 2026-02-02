@@ -48,7 +48,7 @@ The illustrations of these four functional scenarios are shown below.
 | :--------------------: | :-----------------------------: |
 | <img src="images/s1.png" width="380" height="230"> | <img src="images/s2.png" width="380" height="230"> |
 
-| **S3 – Lane Following** | **S4 – Lane Change** |
+| **S3 – Lane Following on a Straight Road** | **S4 – Lane Change on a Straight Road** |
 | :--------------------: | :------------------: |
 | <img src="images/s3.png" width="380" height="230"> | <img src="images/s4.png" width="380" height="230"> |
 
