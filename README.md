@@ -43,6 +43,8 @@ We evaluate **OpenBehavior** on the following four functional scenarios related 
 - **S4 – Lane Change on a Straight Road**  
   The ego vehicle performs a lane change on a straight road with four lanes.
 
+The scenario is implemented using OpenBehavior and specified in `source_code/OpenBehavior_Osc/`.
+
 ### ⚙️ Scenario Settings
 
 The illustrations of these four functional scenarios are shown below.
