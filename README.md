@@ -240,7 +240,7 @@ This section describes the required environment setup and the steps to reproduce
 
    You can run it by
 
-   ```
+   ```bash
    python RSGen/scripts/search/run.py
    ```
 
@@ -250,7 +250,7 @@ This section describes the required environment setup and the steps to reproduce
 
    You can run it by
 
-   ```
+   ```bash
    python Law_Judgement/GeneticAlgorithm.py
    ```
 
