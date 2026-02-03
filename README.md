@@ -236,7 +236,7 @@ This section describes the required environment setup and the steps to reproduce
    ```
    <!-- python OBOrchestration.py -->
 
-   **Reproduction of OSG Data**
+   **Reproduction of OSG**
 
    You can run it by
 
