@@ -266,7 +266,7 @@ class GAGeneration:
         population = []
         total_gen_time = 0
 
-        # 断点继续
+
         config_path = "mutation/generation_0"
         for filename in sorted(os.listdir(config_path)):
             if filename.endswith(".json"):
@@ -274,7 +274,7 @@ class GAGeneration:
                 with open(file_path, "r", encoding="utf-8") as f:
                     data = json.load(f)
                     population.append(data)
-        # 断点继续
+
 
         for gen in range(0, self.generation+1):
 
@@ -333,7 +333,7 @@ class GAGeneration:
         temp = []
         total_gen_time = 0
 
-        # 断点继续
+
         config_path = "mutation/generation_0"
         for filename in sorted(os.listdir(config_path)):
             if filename.endswith(".json"):
@@ -341,7 +341,7 @@ class GAGeneration:
                 with open(file_path, "r", encoding="utf-8") as f:
                     data = json.load(f)
                     population.append(data)
-        # 断点继续
+
 
         for gen in range(0, self.generation):
 
@@ -356,8 +356,8 @@ class GAGeneration:
 
             scored_pop = list(zip(population, scores))
             scored_pop = scored_pop + temp
-            # 找最小的
-            scored_pop.sort(key=lambda x: x[1], reverse=False)
+
+            scored_pop.sort(key=lambda x: x[1], reverse=True)
             scored_pop = scored_pop[:self.population_size]
 
             temp = scored_pop.copy()
@@ -367,17 +367,15 @@ class GAGeneration:
             children = []
             selected_pop = []
 
-            for i in range(self.population_size):
-                selected_pop.append(copy.deepcopy(scored_pop[i][0]))
             selected_pop = self.selection2(scored_pop)
             start_gen = time.perf_counter()
 
             for i in range(0, self.population_size - 1, 2):
                 if i + 1 <= self.population_size - 3:
-                    p1 = copy.deepcopy(selected_pop[i][0])
-                    p2 = copy.deepcopy(selected_pop[i + 1][0])
-                    if random.random() < self.crossover_prob:
-                        p1, p2 = self.crossover(p1, p2)
+                    p1 = copy.deepcopy(selected_pop[i])
+                    p2 = copy.deepcopy(selected_pop[i + 1])
+                    # if random.random() < self.crossover_prob:
+                    #     p1, p2 = self.crossover(p1, p2)
                     if random.random() < self.mutation_prob:
                         p1 = self.mutate(p1)
                     if random.random() < self.mutation_prob:
@@ -385,7 +383,7 @@ class GAGeneration:
                     children.append(p1)
                     children.append(p2)
                 else:
-                    children.append(self.mutate(copy.deepcopy(selected_pop[i][0])))
+                    children.append(self.mutate(copy.deepcopy(selected_pop[i])))
 
             end_gen = time.perf_counter()
             gen_time = end_gen - start_gen
@@ -400,8 +398,6 @@ class GAGeneration:
         save_result(record_data, record_result_path)
         return population
 
-        return population
-
 
 if __name__ == "__main__":
     APOLLO = "/home/abc/apollo/experiment_result"
@@ -411,8 +407,8 @@ if __name__ == "__main__":
     GA = GAGeneration()
     if not os.path.isdir("mutation/generation_0"):
         GA.random_initial_population(template)
-    results = GA.genetic_orchestration()
-    # results = GA.genetic_orchestration2()
+    # results = GA.genetic_orchestration()
+    results = GA.genetic_orchestration2()
 
     for i, scene in enumerate(results[:3]):
         save_result(scene, f"scene_result_{i}.json")
