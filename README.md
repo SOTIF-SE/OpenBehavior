@@ -151,7 +151,7 @@ This section describes the required environment setup and the steps to reproduce
 #### 2. Setup Apollo 8.0
 * **Clone Repository:**
     ```bash
-    git clone -b v8.0.0 [https://github.com/ApolloAuto/apollo.git](https://github.com/ApolloAuto/apollo.git)
+    git clone -b v8.0.0 https://github.com/ApolloAuto/apollo.git
     ```
 * **Installation:** Please follow the [Official Apollo Manual](https://github.com/ApolloAuto/apollo) for full installation.
 
