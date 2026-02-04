@@ -129,7 +129,7 @@ Detailed visual demonstrations of these failures are shown below.
 The experimental records are organized in the `experiment_result/` directory:
 * **Raw Logs:** Contains the complete execution logs for all compared methods across the four functional scenarios.
 * **Data Scope:** Due to the substantial size of simulation traces (high-fidelity execution data), **representative and essential records** are prioritized in this repository. The complete data from one full experimental run is available at: https://doi.org/10.5281/zenodo.18464765
-* **Reproducibility:** All results can be **fully reproduced** by following the instructions in the [Reproduction Workflow](#-running-the-experiments) section, which automatically reruns the scenario generation and evaluation process to rediscover failure-triggering scenarios.
+* **Reproducibility:** All results can be **reproduced** by following the instructions in the [Reproduction Workflow](#-running-the-experiments) section, which automatically reruns the scenario generation and evaluation process to rediscover failure-triggering scenarios.
 
 
 
