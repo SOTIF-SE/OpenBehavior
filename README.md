@@ -28,7 +28,7 @@
 <!-- <center><img src="images/Roadmap.png" width = "625"></center> -->
 <!--![Overview of the OpenBehavior workflow](images/Roadmap.jpg) -->
 
-<p align="center">
+<p align="left">
   <img src="images/Roadmap.jpg" width="700">
 </p>
 
