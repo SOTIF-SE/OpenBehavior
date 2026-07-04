@@ -22,11 +22,15 @@
 
 ## Approach Overview
 <!-- <p align="center">
-  <img src="images/Roadmap.jpg" width="85%">
+  <img src="images/Roadmap.jpg" width="60%">
 </p> -->
 
 <!-- <center><img src="images/Roadmap.png" width = "625"></center> -->
-![Overview of the OpenBehavior workflow](images/Roadmap.jpg)
+<!--![Overview of the OpenBehavior workflow](images/Roadmap.jpg) -->
+
+<p align="center">
+  <img src="images/Roadmap.jpg" width="700">
+</p>
 
 **Figure 2:** *Overview of the OpenBehavior workflow. Users specify scenarios with a behavior-centric language and high-level
 scenario intents using OBSpec, which are then instantiated
@@ -38,7 +42,7 @@ testing of the autonomous driving system.*
 
 For installation instructions, language documentation, tutorials, and usage examples, please visit
 
-👉 https://openbehavior-doc.readthedocs.io/en/latest/
+👉 **[OpenBehavior Documentation](https://openbehavior-doc.readthedocs.io/en/latest/)**
 
 The online documentation includes:
 
