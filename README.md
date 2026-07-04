@@ -2,6 +2,12 @@
 
 <!-- PROJECT LOGO -->
 
+<p align="center">
+
+📖 <a href="https://openbehavior-doc.readthedocs.io/en/latest/"><b>Documentation</b></a>
+
+</p>
+
 <!--## [Project Page](http://www.katrinrenz.de/plant) | [Paper](https://arxiv.org/abs/2210.14222) | [Supplementary](https://www.katrinrenz.de/plant/resources/PlanT_supp.pdf) -->
 
 <!--![Ground-truth obstacles visualization](images/RL.gif)-->
@@ -28,11 +34,24 @@ and adaptively orchestrated to generate interactive scenarios for systematic
 testing of the autonomous driving system.*
 
 
-## 🛣️ Functional Scenarios
+## 📚 Documentation
+
+For installation instructions, language documentation, tutorials, and usage examples, please visit
+
+👉 https://openbehavior-doc.readthedocs.io/en/latest/
+
+The online documentation includes:
+
+- Installation Guide
+- OpenBehavior Language
+- OBSpec Language
+- Tutorials and Examples
+
+## 🛣️ Functional Scenarios For Experient
 
 We evaluate **OpenBehavior** on the following four functional scenarios related to intersections and roads in the real world:
 
-### 🧪 Scenario Overview
+### Scenario Overview
 
 <!--- **[S1 – T-Intersection](avunit/osc1/s1_t_intersection.osc)**  -->
 - **S1 – T-Intersection**  
