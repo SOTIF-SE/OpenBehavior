@@ -2,7 +2,11 @@
 
 <!-- PROJECT LOGO -->
 
+<p align="center">
 
+📖 <a href="https://openbehavior-doc.readthedocs.io/en/latest/"><b>Documentation</b></a>
+
+</p>
 
 <!--## [Project Page](http://www.katrinrenz.de/plant) | [Paper](https://arxiv.org/abs/2210.14222) | [Supplementary](https://www.katrinrenz.de/plant/resources/PlanT_supp.pdf) -->
 
@@ -14,11 +18,7 @@
 
 > By integrating heterogeneous NPC behavior models, OpenBehavior enables complex multi-policy interactions that are difficult to construct manually.  In this example, a learning-based NPC decelerates, while a rule-based vehicle performs a lane change.   Their interaction leads to an unexpected failure in Apollo’s prediction module, ultimately resulting in a collision.
 
-<p align="center">
 
-📖 <a href="https://openbehavior-doc.readthedocs.io/en/latest/"><b>Documentation</b></a>
-
-</p>
 
 ## Approach Overview
 <!-- <p align="center">
