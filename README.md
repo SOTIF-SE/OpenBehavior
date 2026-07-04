@@ -40,7 +40,7 @@ As illustrated above, OpenBehavior integrates diverse NPC behavior models to ena
 </p>
 
 <!--**Figure 2:** *Overview of the OpenBehavior workflow. Users specify scenarios with a behavior-centric language and high-level
-scenario intents using OBSpec, which are then instantiated
+scenario objectives using OBSpec, which are then instantiated
 and adaptively orchestrated to generate interactive scenarios for systematic
 testing of the autonomous driving system.*-->
 
@@ -48,7 +48,7 @@ testing of the autonomous driving system.*-->
 <tr>
 <td width="800">
 
-**Figure 2:** *Overview of the OpenBehavior workflow. Users specify scenarios with a behavior-centric language and high-level scenario intents using OBSpec, which are then instantiated and adaptively orchestrated to generate interactive scenarios for systematic testing of the autonomous driving system.*
+**Figure 2:** *Overview of the OpenBehavior workflow. Users specify scenarios with a behavior-centric language and high-level scenario objectives using OBSpec, which are then instantiated and adaptively orchestrated to generate interactive scenarios for systematic testing of the autonomous driving system.*
 
 </td>
 </tr>
