@@ -1,0 +1,9 @@
+pop_size: 20
+max_gens: 26
+crossover_rate: 0.8
+mutation_rate: 0.02
+tournament_k: 3
+mode: random
+resume: true
+checkpoint_path: ./logs/ga_checkpoint.yaml
+retry_delay_seconds: 3000

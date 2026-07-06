@@ -1,0 +1,32 @@
+ev:
+  start: [631.103637, 235.598999, 0.3]
+  end: [661.925476, 110.645019, 0.3]
+
+npc1:
+  start: [541.305236, 138.147308, 0.3]
+  throttle_range: [0.5, 0.7]
+  brake_chance: 0.3
+  brake_range: [0.0, 0.5]
+  steer_range: [0.0, 0.02]
+
+npc2:
+  start: [535.627014, 141.624038, 0.3]
+  throttle_range: [0.2, 0.6]
+  brake_chance: 0.3
+  brake_range: [0.0, 0.4]
+  steer_range: [0.0, 0.02]
+
+npc3:
+  start: [535.614379, 146.124023, 0.3]
+  throttle_range: [0.2, 0.6]
+  brake_chance: 0.3
+  brake_range: [0.0, 0.4]
+  steer_range: [0.0, 0.02]
+
+npc4:
+  start: [664.809020, 167.597381, 0.3]
+  throttle_range: [0.2, 0.6]
+  brake_chance: 0.3
+  brake_range: [0.0, 0.4]
+  steer_range: [0.0, 0.02]
+
