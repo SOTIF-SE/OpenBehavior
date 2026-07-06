@@ -408,7 +408,7 @@ if __name__ == "__main__":
     if not os.path.isdir("mutation/generation_0"):
         GA.random_initial_population(template)
     # results = GA.genetic_orchestration()
-    results = GA.genetic_orchestration2()
+    results = GA.genetic_orchestration()
 
     for i, scene in enumerate(results[:3]):
         save_result(scene, f"scene_result_{i}.json")
