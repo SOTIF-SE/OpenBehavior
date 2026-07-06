@@ -295,5 +295,37 @@ This section describes the required environment setup and the steps to reproduce
    ```
 
    
+   
+   **Reproduction of AV-Fuzzer & Random**
+   
+   For AV-Fuzzer, you need to modify the `mode` parameter in the `ga.yaml` file.
+   
+   ```
+    AV-Fuzzer/carla_sim/parameters/ga.yaml
+    mode: avfuzzer
+   ```
+   
+   And then, run it by
+   
+   ```bash
+   python AV-Fuzzer/carla_sim/GA.py
+   ```
+   
+   
+   
+   For Random, as described above
+   
+   ```
+    AV-Fuzzer/carla_sim/parameters/ga.yaml
+    mode: random
+   ```
+   
+   And then, run it by
+   
+   ```
+   python AV-Fuzzer/carla_sim/GA.py
+   ```
+   
+   
 
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
