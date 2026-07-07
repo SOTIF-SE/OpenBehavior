@@ -323,6 +323,26 @@ class TraceSignalBuilder(object):
         raise RuntimeError("Unsupported aggregator '{}'".format(aggregator))
 
 
+class RtamtEvaluator(object):
+    def __init__(self):
+        import rtamt
+        self.rtamt = rtamt
+
+    def evaluate(self, stl_rule, signals, times):
+        spec = self.rtamt.STLDenseTimeSpecification(semantics=self.rtamt.Semantics.STANDARD)
+        for variable in signals:
+            spec.declare_var(variable, "float")
+        spec.spec = stl_rule
+        spec.parse()
+        signal_data = [
+            [variable, [[times[idx], value] for idx, value in enumerate(values)]]
+            for variable, values in signals.items()
+        ]
+        robustness = spec.evaluate(*signal_data)
+        score = robustness[0][1]
+        return {"robustness": score, "satisfied": score >= 0}
+
+
 class BasicSTLEvaluator(object):
     PREDICATE_PATTERN = re.compile(
         r"^\s*(?P<var>[A-Za-z_][A-Za-z0-9_]*)\s*(?P<op>>=|<=|==|!=|>|<)\s*(?P<value>-?\d+(?:\.\d+)?)\s*$"
@@ -330,7 +350,7 @@ class BasicSTLEvaluator(object):
 
     TEMPORAL_PATTERN = re.compile(r"^\s*(?P<op>eventually|always)\((?P<body>.*)\)\s*$")
 
-    def evaluate(self, stl_rule, signals):
+    def evaluate(self, stl_rule, signals, times=None):
         temporal_match = self.TEMPORAL_PATTERN.match(stl_rule)
         if temporal_match:
             temporal_op = temporal_match.group("op")
@@ -413,17 +433,30 @@ def summarize_results(results, weights=None):
     return summary
 
 
-def analyze(trace_path, spec_path, weights=None):
+def make_evaluator(evaluator_name):
+    if evaluator_name == "rtamt":
+        return RtamtEvaluator()
+    if evaluator_name == "basic":
+        return BasicSTLEvaluator()
+    if evaluator_name == "auto":
+        try:
+            return RtamtEvaluator()
+        except ImportError:
+            return BasicSTLEvaluator()
+    raise RuntimeError("Unsupported evaluator '{}'".format(evaluator_name))
+
+
+def analyze(trace_path, spec_path, weights=None, evaluator_name="rtamt"):
     with open(trace_path, "r") as trace_file:
         trace_data = json.load(trace_file)
 
     builder = TraceSignalBuilder(trace_data)
-    evaluator = BasicSTLEvaluator()
+    evaluator = make_evaluator(evaluator_name)
     results = []
 
     for rule in parse_spec_file(spec_path):
         signals = builder.build_many(rule["variables"])
-        evaluation = evaluator.evaluate(rule["stl"], signals)
+        evaluation = evaluator.evaluate(rule["stl"], signals, builder.times)
         results.append({
             "oracle": rule["oracle"],
             "raw": rule["raw"],
@@ -445,12 +478,13 @@ def main():
     parser.add_argument("--spec", required=True, help="Path to .spec file")
     parser.add_argument("--safety-weight", type=float, default=1.0, help="Weight for safetyOracle")
     parser.add_argument("--beh-weight", type=float, default=1.0, help="Weight for BehOracle")
+    parser.add_argument("--evaluator", choices=["rtamt", "basic", "auto"], default="rtamt")
     args = parser.parse_args()
     weights = {
         "safetyOracle": args.safety_weight,
         "BehOracle": args.beh_weight,
     }
-    print(json.dumps(analyze(args.trace, args.spec, weights), indent=2))
+    print(json.dumps(analyze(args.trace, args.spec, weights, args.evaluator), indent=2))
 
 
 if __name__ == "__main__":
