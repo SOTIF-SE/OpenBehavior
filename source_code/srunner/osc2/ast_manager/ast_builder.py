@@ -1023,7 +1023,12 @@ class ASTBuilder(OpenSCENARIO2Listener):
         judge_name = ctx.judgeName().getText()
         value_exp = ctx.expression().getText()
 
-        judge = JudgeSymbol(judge_name, value_exp, self.__current_scope)
+        judge_symbol_name = "{}#{}:{}".format(
+            judge_name, ctx.start.line, ctx.start.column
+        )
+        judge = JudgeSymbol(
+            judge_symbol_name, judge_name, value_exp, self.__current_scope
+        )
         self.__current_scope.define(judge, ctx.start)
         self.__current_scope = judge
 

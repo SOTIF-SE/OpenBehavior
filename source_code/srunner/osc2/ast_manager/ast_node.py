@@ -842,15 +842,15 @@ class judgeDeclaration(Declaration):
         self.value_exp = value_exp
 
     def enter_node(self, listener):
-        if hasattr(listener, "enter_judge_delection"):
+        if hasattr(listener, "enter_judge_declaration"):
             listener.enter_judge_declaration(self)
 
     def exit_node(self, listener):
-        if hasattr(listener, "exit_judge_delection"):
+        if hasattr(listener, "exit_judge_declaration"):
             listener.exit_judge_declaration(self)
 
     def accept(self, visitor):
-        if hasattr(visitor, "visit_judge_delection"):
+        if hasattr(visitor, "visit_judge_declaration"):
             return visitor.visit_judge_declaration(self)
         else:
             return visitor.visit_children(self)
