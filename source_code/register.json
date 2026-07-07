@@ -1,0 +1,30 @@
+{
+  "register": [
+    {
+      "id": "behavior_agent",
+      "model_paths": "../../agent/agent.py",
+      "param_sources": {
+        "configfile1": "configs/ba/configfile1.yaml",
+        "configfile2": "configs/ba/configfile2.yaml"
+      },
+      "params": {
+        "max_speed": { "source": "configfile1" },
+        "max_acc": { "source": "configfile1" },
+        "max_steer": { "source": "configfile2" }
+      }
+    },
+    {
+      "id": "RL_agent",
+      "model_paths": "../../agent/agent.py",
+      "param_sources": {
+        "configfile1": "configs/ba/configfile1.yaml",
+        "configfile2": "configs/ba/configfile2.yaml"
+      },
+      "params": {
+        "max_speed": { "source": "configfile1" },
+        "max_acc": { "source": "configfile1" },
+        "max_steer": { "source": "configfile2" }
+      }
+    }
+  ]
+}

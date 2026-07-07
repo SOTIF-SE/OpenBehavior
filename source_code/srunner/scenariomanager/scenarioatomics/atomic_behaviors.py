@@ -50,6 +50,7 @@ from srunner.scenariomanager.actorcontrols.actor_control import ActorControl
 from srunner.scenariomanager.timer import GameTime
 from srunner.tools.scenario_helper import detect_lane_obstacle
 from srunner.tools.scenario_helper import generate_target_waypoint_list_multilane
+from srunner.tools.agent_registry import create_registered_agent, has_registered_agent
 from srunner.scenariomanager.get_obs import GetObs
 
 from team_code.lav_agent import LAVAgent
@@ -335,6 +336,21 @@ class SetBehaviorLogic(AtomicBehavior):
         elif self._target_agent == "adv_ai_agent":
             from adv_agent.adv_manager_oasis_onnx import ADV_Manager
             self.adv_manager = ADV_Manager(self._ego_vehicle, intensity=None, adv_vehicle=self._actor)
+
+        elif has_registered_agent(self._target_agent):
+            gps_route, self.route = interpolate_trajectory(self._world, [_start_position, _end_position],
+                                                           hop_resolution=1.0)
+
+            self.agent = create_registered_agent(self._target_agent)
+            self.agent.set_global_plan(gps_route, self.route)
+            CarlaDataProvider.get_world().tick()
+
+            self.agent.sensor_interface = SensorInterface()
+            self._agent = AgentWrapper(self.agent)
+            self._agent.setup_sensors(self._actor, False)
+
+        else:
+            raise RuntimeError("Unknown behavior model '{}'".format(self._target_agent))
 
         # elif self._target_agent == "Roach":
         #     gps_route, self.route = interpolate_trajectory(self._world, [_start_position, _end_position],
