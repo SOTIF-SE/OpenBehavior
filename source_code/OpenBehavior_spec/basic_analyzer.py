@@ -29,7 +29,8 @@ class TraceSignalBuilder(object):
         self.frames = trace_data.get("trace", [])
         self.times = list(range(len(self.frames)))
         self.npcs = {npc.get("ID"): npc for npc in trace_data.get("npcList", [])}
-        self.actors = ["ego"] + sorted([actor for actor in self.npcs if actor])
+        self.npc_aliases = self._build_npc_aliases()
+        self.actors = ["ego"] + sorted(set([actor for actor in self.npcs if actor] + list(self.npc_aliases.keys())))
         self.special_targets = {"target_position": self._target_position()}
 
     def build_many(self, variable_names):
@@ -146,6 +147,7 @@ class TraceSignalBuilder(object):
         return [bool(frame["ego"].get(field_name, False)) for frame in self.frames]
 
     def _npc_motion(self, actor):
+        actor = self._resolve_actor(actor)
         npc = self.npcs.get(actor)
         if npc is None:
             raise RuntimeError("Unknown NPC actor '{}'".format(actor))
@@ -155,8 +157,9 @@ class TraceSignalBuilder(object):
         return motion[:len(self.frames)]
 
     def _distance(self, actor_a, actor_b):
-        if actor_a == "ego" and actor_b in self.npcs:
-            truth_distance = self._truth_distance_to_ego(actor_b)
+        resolved_actor_b = self._resolve_actor(actor_b)
+        if actor_a == "ego" and resolved_actor_b in self.npcs:
+            truth_distance = self._truth_distance_to_ego(resolved_actor_b)
             if truth_distance is not None:
                 return truth_distance
 
@@ -195,6 +198,17 @@ class TraceSignalBuilder(object):
                 if actor_b in candidates:
                     return actor_a, actor_b
         raise RuntimeError("Cannot parse distance variable '{}'".format(variable_name))
+
+    def _build_npc_aliases(self):
+        npc_ids = sorted([actor for actor in self.npcs if actor])
+        aliases = {}
+        if npc_ids and all(actor.startswith("npc") and actor[3:].isdigit() for actor in npc_ids):
+            for index, actor in enumerate(npc_ids, 1):
+                aliases["npc{}".format(index)] = actor
+        return aliases
+
+    def _resolve_actor(self, actor):
+        return self.npc_aliases.get(actor, actor)
 
     @staticmethod
     def _vector_norm(vector):
