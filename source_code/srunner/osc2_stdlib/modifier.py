@@ -463,6 +463,20 @@ class SetBehaviorLogicModifier(Modifier):
 
 
     def get_lane_change(self):
+        for action in self.get_actions():
+            if action.get("type") != "change_lane":
+                continue
+            param_dict = dict(action.get("args", {}))
+            positional_args = action.get("positional_args", [])
+            if positional_args and "lane_changes" not in param_dict:
+                param_dict["lane_changes"] = positional_args[0]
+            if "lane_change" in param_dict and "lane_changes" not in param_dict:
+                param_dict["lane_changes"] = param_dict["lane_change"]
+            lane_changes = int(float(param_dict.get("lane_changes", 1)))
+            if str(param_dict.get("side", "right")) == "left":
+                return -lane_changes
+            return lane_changes
+
         para = self.args.get('change_lane')
         if not para:
             return None
@@ -475,6 +489,9 @@ class SetBehaviorLogicModifier(Modifier):
             return -int(param_dict['lane_changes'])
         else:
             return int(param_dict['lane_changes'])
+
+    def get_actions(self):
+        return self.args.get("actions", [])
 
 def split_for_model(s):
     result = []

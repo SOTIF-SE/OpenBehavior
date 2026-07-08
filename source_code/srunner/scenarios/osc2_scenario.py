@@ -150,6 +150,363 @@ ego_lane = 2
 car_info = {}
 npc1_start_wp = None
 npc1_start_position = None
+LOGIC_ACTION_MARKER = "__osc2_logic_action__"
+LOGIC_ACTION_FUNCTIONS = ("change_lane", "follow_lane", "change_speed", "keep_speed")
+
+
+def _is_logic_action(value):
+    return isinstance(value, dict) and value.get(LOGIC_ACTION_MARKER)
+
+
+def _logic_action_from_function(func_name, arguments):
+    keyword_args = {}
+    positional_args = []
+
+    if isinstance(arguments, list):
+        arguments = OSC2Helper.flat_list(arguments)
+    else:
+        arguments = [arguments]
+
+    for arg in arguments:
+        if isinstance(arg, tuple):
+            keyword_args[arg[0]] = arg[1]
+        elif arg not in (None, func_name):
+            positional_args.append(arg)
+
+    return {
+        LOGIC_ACTION_MARKER: True,
+        "type": func_name,
+        "args": keyword_args,
+        "positional_args": positional_args,
+    }
+
+
+def _add_lane_change_logic(actor, lane_change, speed_value, father_tree):
+    if lane_change is None:
+        return False
+
+    change_direction = "left" if lane_change < 0 else "right"
+    lane_num = abs(lane_change)
+    change_lane = LaneChange(
+        actor,
+        speed=speed_value,
+        direction=change_direction,
+        lane_changes=lane_num,
+    )
+    if speed_value is None:
+        continue_drive = WaypointFollower(actor)
+    else:
+        continue_drive = WaypointFollower(actor, speed_value)
+
+    father_tree.add_child(change_lane)
+    father_tree.add_child(continue_drive)
+    return True
+
+
+def _get_logic_action_arg(action, *names):
+    args = action.get("args", {})
+    for name in names:
+        if name in args:
+            return args[name]
+    positional_args = action.get("positional_args", [])
+    if positional_args:
+        return positional_args[0]
+    return None
+
+
+def _get_logic_lane_change(action):
+    lane_changes = _get_logic_action_arg(action, "lane_changes", "lane_change")
+    if lane_changes is None:
+        lane_changes = 1
+    side = action.get("args", {}).get("side", "right")
+    positional_args = action.get("positional_args", [])
+    if len(positional_args) > 1:
+        side = positional_args[1]
+
+    lane_changes = int(float(lane_changes))
+    if str(side) == "left":
+        return -lane_changes
+    return lane_changes
+
+
+def _logic_speed_to_kph(speed):
+    if speed is None:
+        return None
+    if isinstance(speed, Physical):
+        return speed.gen_physical_value() * 3.6
+    return float(speed)
+
+
+def _add_change_speed_logic(actor, action, config, actor_name, father_tree):
+    target_speed = _get_logic_action_arg(action, "target_speed", "desired_speed", "speed")
+    delta_speed = _get_logic_action_arg(action, "delta", "speed_delta")
+
+    if target_speed is not None:
+        target_speed = _logic_speed_to_kph(target_speed)
+    elif delta_speed is not None:
+        speed_delta = _logic_speed_to_kph(delta_speed)
+        current_car_conf = config.get_car_config(actor_name)
+        current_car_speed = current_car_conf.get_arg("target_speed") or 0
+        target_speed = current_car_speed * 3.6 + speed_delta
+    else:
+        target_speed = _logic_speed_to_kph(_get_logic_action_arg(action))
+
+    if target_speed is None:
+        return False
+
+    change_speed = ChangeTargetSpeed(actor, target_speed)
+    car_driving = WaypointFollower(actor)
+
+    father_tree.add_child(change_speed)
+    father_tree.add_child(car_driving)
+    return True
+
+
+def _add_set_behavior_logic_actions(modifier, actor, config, actor_name, father_tree):
+    handled = False
+    for action in modifier.get_actions():
+        action_type = action.get("type")
+        if action_type == "change_lane":
+            handled = _add_lane_change_logic(
+                actor, _get_logic_lane_change(action), None, father_tree
+            ) or handled
+        elif action_type == "change_speed":
+            handled = _add_change_speed_logic(
+                actor, action, config, actor_name, father_tree
+            ) or handled
+        elif action_type in ("follow_lane", "keep_speed"):
+            father_tree.add_child(WaypointFollower(actor))
+            handled = True
+    return handled
+
+
+def _parse_bound_value(value):
+    value = str(value).strip()
+    if value.endswith("m"):
+        value = value[:-1].strip()
+    return float(value)
+
+
+def _parse_numeric_constraint(value):
+    if value is None:
+        return None, None, None
+    if isinstance(value, Physical):
+        return value.gen_physical_value(), None, None
+
+    text = str(value).strip().split(",", 1)[0].strip()
+    if text.startswith("[") and text.endswith("]"):
+        low, high = text[1:-1].split("..", 1)
+        return None, _parse_bound_value(low), _parse_bound_value(high)
+    return _parse_bound_value(text), None, None
+
+
+def _constraint_matches(value, exact_value=None, min_value=None, max_value=None, tolerance=0.0):
+    if value is None:
+        return False
+    if exact_value is not None:
+        return abs(float(value) - float(exact_value)) <= tolerance
+    if min_value is not None and max_value is not None:
+        low = min(float(min_value), float(max_value)) - tolerance
+        high = max(float(min_value), float(max_value)) + tolerance
+        return low <= float(value) <= high
+    return True
+
+
+def _get_actor_location(actor):
+    location = CarlaDataProvider.get_location(actor)
+    if location is None and hasattr(actor, "get_location"):
+        location = actor.get_location()
+    return location
+
+
+def _get_actor_waypoint(actor):
+    location = _get_actor_location(actor)
+    if location is None:
+        return None
+    return CarlaDataProvider.get_map().get_waypoint(location)
+
+
+def _get_abstract_lane(actor):
+    waypoint = _get_actor_waypoint(actor)
+    if waypoint is None:
+        return None
+
+    road_lanes = CarlaDataProvider.get_road_lanes(waypoint)
+    for index, lane_wp in enumerate(road_lanes):
+        if lane_wp.road_id == waypoint.road_id and lane_wp.lane_id == waypoint.lane_id:
+            return index + 1
+    return None
+
+def _extract_relation_from_logic_text(text):
+    relation = None
+    reference = None
+    parts = [part.strip() for part in str(text).split(",")]
+    for part in parts[1:]:
+        if ":" not in part:
+            continue
+        key, value = part.split(":", 1)
+        key = key.strip()
+        value = value.strip()
+        if key in ("ahead_of", "behind", "left_of", "right_of", "same_as", "side_of"):
+            relation = key
+            reference = value
+        elif key == "side":
+            relation = value
+    return relation, reference
+
+
+def _lane_constraint(actor_name, exact_value=None, min_value=None, max_value=None, relation=None, reference=None):
+    return {
+        "actor_name": actor_name,
+        "kind": "lane",
+        "exact_value": exact_value,
+        "min_value": min_value,
+        "max_value": max_value,
+        "relation": relation,
+        "reference": reference,
+    }
+
+
+def _position_constraint(actor_name, exact_value=None, min_value=None, max_value=None, relation=None, reference=None):
+    return {
+        "actor_name": actor_name,
+        "kind": "position",
+        "exact_value": exact_value,
+        "min_value": min_value,
+        "max_value": max_value,
+        "relation": relation,
+        "reference": reference,
+    }
+
+
+def _build_phase_start_constraints(actor_name, _location_modifiers, speed_modifiers):
+    constraints = []
+
+    for modifier in speed_modifiers:
+        if isinstance(modifier, SetBehaviorLogicModifier):
+            lane_start = modifier.args.get("lane_start")
+            if lane_start:
+                exact_value, min_value, max_value = _parse_numeric_constraint(lane_start)
+                relation, reference = _extract_relation_from_logic_text(lane_start)
+                constraints.append(
+                    _lane_constraint(actor_name, exact_value, min_value, max_value, relation, reference)
+                )
+
+            position_start = modifier.args.get("position_start")
+            if position_start:
+                exact_value, min_value, max_value = _parse_numeric_constraint(position_start)
+                relation, reference = _extract_relation_from_logic_text(position_start)
+                constraints.append(
+                    _position_constraint(actor_name, exact_value, min_value, max_value, relation, reference)
+                )
+
+    return constraints
+
+
+class PhaseStartCondition(py_trees.behaviour.Behaviour):
+    def __init__(self, constraints, name="PhaseStartCondition"):
+        super(PhaseStartCondition, self).__init__(name)
+        self._constraints = constraints
+        self._checked = False
+
+    def update(self):
+        if self._checked:
+            return py_trees.common.Status.SUCCESS
+
+        for constraint in self._constraints:
+            success, reason = self._check_constraint(constraint)
+            if not success:
+                print("OSC2 phase start check failed: {}".format(reason))
+                return py_trees.common.Status.FAILURE
+
+        self._checked = True
+        return py_trees.common.Status.SUCCESS
+
+    def _check_constraint(self, constraint):
+        actor_name = constraint["actor_name"]
+        actor = CarlaDataProvider.get_actor_by_name(actor_name)
+        if actor is None:
+            return False, "{} is not available".format(actor_name)
+
+        if constraint["kind"] == "lane":
+            return self._check_lane_constraint(actor_name, actor, constraint)
+        if constraint["kind"] == "position":
+            return self._check_position_constraint(actor_name, actor, constraint)
+        return True, ""
+
+    def _check_lane_constraint(self, actor_name, actor, constraint):
+        current_lane = _get_abstract_lane(actor)
+        expected_lane = constraint["exact_value"]
+        min_lane = constraint["min_value"]
+        max_lane = constraint["max_value"]
+
+        reference_name = constraint.get("reference")
+        relation = constraint.get("relation")
+        if reference_name and relation:
+            reference_actor = CarlaDataProvider.get_actor_by_name(reference_name)
+            reference_lane = _get_abstract_lane(reference_actor) if reference_actor else None
+            if reference_lane is None:
+                return False, "{} reference lane for {} is unknown".format(reference_name, actor_name)
+            if relation == "same_as":
+                expected_lane = reference_lane
+            elif relation in ("right_of", "right"):
+                expected_lane = reference_lane + 1
+            elif relation in ("left_of", "left"):
+                expected_lane = reference_lane - 1
+
+        if _constraint_matches(current_lane, expected_lane, min_lane, max_lane):
+            return True, ""
+
+        if expected_lane is not None:
+            expected = int(expected_lane)
+        else:
+            expected = "[{}..{}]".format(int(min_lane), int(max_lane))
+        return False, "{} lane is {}, expected {}".format(actor_name, current_lane, expected)
+
+    def _check_position_constraint(self, actor_name, actor, constraint):
+        reference_name = constraint.get("reference")
+        relation = constraint.get("relation")
+
+        if not reference_name or not relation:
+            return True, ""
+
+        reference_actor = CarlaDataProvider.get_actor_by_name(reference_name)
+        if reference_actor is None:
+            return False, "{} reference actor for {} is not available".format(reference_name, actor_name)
+
+        actor_location = _get_actor_location(actor)
+        reference_location = _get_actor_location(reference_actor)
+        if actor_location is None or reference_location is None:
+            return False, "{} or {} location is unknown".format(actor_name, reference_name)
+
+        forward = reference_actor.get_transform().get_forward_vector()
+        dx = actor_location.x - reference_location.x
+        dy = actor_location.y - reference_location.y
+        projected_distance = dx * forward.x + dy * forward.y
+
+        if relation == "behind":
+            signed_distance = -projected_distance
+            direction_ok = projected_distance <= 0.0
+        elif relation == "ahead_of":
+            signed_distance = projected_distance
+            direction_ok = projected_distance >= 0.0
+        else:
+            return True, ""
+
+        expected = constraint["exact_value"]
+        min_distance = constraint["min_value"]
+        max_distance = constraint["max_value"]
+        tolerance = 2.0
+        if direction_ok and _constraint_matches(signed_distance, expected, min_distance, max_distance, tolerance):
+            return True, ""
+
+        if expected is not None:
+            expected_text = "{:.2f}m {}".format(expected, relation)
+        else:
+            expected_text = "[{:.2f}..{:.2f}]m {}".format(min_distance, max_distance, relation)
+        return False, "{} is {:.2f}m from {}, expected {}".format(
+            actor_name, signed_distance, reference_name, expected_text
+        )
 
 # def read_new_para():
 #     input_folder = "/home/lhy/projects/scenario_runner/config"
@@ -552,8 +909,10 @@ def process_speed_modifier_with_para(
             if start_location is not None:
                 if start_location < 0:
                     wp_lists = ego_car_wp.previous(-start_location)
-                else:
+                elif start_location > 0:
                     wp_lists = ego_car_wp.next(start_location)
+                else:
+                    wp_lists = [ego_car_wp]
                 start_wp = wp_lists[0]
                 lane_dif = start_lane - ego_lane
                 if lane_dif < 0:
@@ -615,7 +974,7 @@ def record_info(car_info):
     scenario_config.write_to_json()
 
 def process_speed_modifier(
-    config, modifiers, duration: float, all_duration: float, father_tree
+    config, modifiers, duration: float, all_duration: float, father_tree, skip_start_constraints=False
 ):
     if not modifiers:
         return
@@ -705,12 +1064,14 @@ def process_speed_modifier(
             agent_type = modifier.get_type()
             bm_name = modifier.get_bm_name()
             model_config = modifier.get_hyperparameters()
-            car_info[actor_name] = {
+            car_info.setdefault(actor_name, {})
+            car_info[actor_name].update({
+                "name": actor.type_id,
                 "behavior_type": agent_type,
                 "model_name": bm_name,
                 "max_speed": model_config.get('max_speed', 10),
                 "max_acc": model_config.get('max_acc', 5)
-            }
+            })
             if agent_type == 'AI':
                 is_model[actor_name] = True
                 max_speed = model_config.get('max_speed', 10)
@@ -745,12 +1106,30 @@ def process_speed_modifier(
 
         elif isinstance(modifier, SetBehaviorLogicModifier):
             actor = CarlaDataProvider.get_actor_by_name(actor_name)
-            start_lane, lane_start_bot, lane_start_top = modifier.get_start_lane()
-            end_lane, lane_end_bot, lane_end_top = modifier.get_end_lane()
-            start_distance, position_start_bot, position_start_top = modifier.get_start_distance()
-            end_distance, position_end_bot, position_end_top = modifier.get_end_distance()
+            start_lane_info = modifier.get_start_lane()
+            end_lane_info = modifier.get_end_lane()
+            start_distance_info = modifier.get_start_distance()
+            end_distance_info = modifier.get_end_distance()
+            start_lane, lane_start_bot, lane_start_top = start_lane_info or (None, None, None)
+            end_lane, lane_end_bot, lane_end_top = end_lane_info or (None, None, None)
+            start_distance, position_start_bot, position_start_top = start_distance_info or (None, None, None)
+            end_distance, position_end_bot, position_end_top = end_distance_info or (None, None, None)
             lane_change = modifier.get_lane_change()
             speed_value = modifier.get_speed()
+            if (
+                start_lane is None and end_lane is None
+                and start_distance is None and end_distance is None
+                and not modifier.get_actions()
+                and lane_change is None and speed_value is None
+            ):
+                LOG_WARNING(f"{actor_name} set_behavior_logic has no constraints or actions; skip it")
+                continue
+            if (
+                start_lane is None and end_lane is None
+                and start_distance is None and end_distance is None
+                and _add_set_behavior_logic_actions(modifier, actor, config, actor_name, father_tree)
+            ):
+                continue
             # ego_distance = ego_speed * duration
             if actor_name != "ego_vehicle":
                 car_info[actor_name]["name"] = actor.type_id
@@ -768,58 +1147,65 @@ def process_speed_modifier(
                 # if ego_total_distance > 0:
                 #     ego_car_wp = ego_car_wp.next(ego_total_distance)[0]
                 if start_distance is not None:
-                    # special for s1
-                    # if actor_name == "npc1":
-                    #     start_wp = CarlaDataProvider.get_waypoint_by_actorname_and_laneid(actor_name, start_lane)
-                    #     start_wp = start_wp.previous(100)[0]
-                    #     start_position = start_wp.transform.location
-                    #     npc1_start_wp = start_wp
-                    #     npc1_start_position = start_position
-                    # elif actor_name == "npc4":
-                    #     start_wp = ego_car_wp.next(100)[0]
-                    #     lane_dif = start_lane - 1
-                    #     if lane_dif < 0:
-                    #         for i in range(abs(lane_dif)):
-                    #             start_wp = start_wp.get_left_lane()
-                    #     elif lane_dif > 0:
-                    #         for i in range(abs(lane_dif)):
-                    #             start_wp = start_wp.get_right_lane()
-                    #     # start_wp = start_wp.get_right_lane().get_right_lane()
-                    #     start_position = start_wp.transform.location
-                    # else:
-                    # npc1_car_wp = CarlaDataProvider.get_map().get_waypoint(npc1_start_position)
-                    start_wp = ego_car_wp
-                    lane_dif = start_lane - 3
-                    if lane_dif < 0:
-                        for i in range(abs(lane_dif)):
-                            start_wp = start_wp.get_left_lane()
-                    elif lane_dif > 0:
-                        for i in range(abs(lane_dif)):
-                            start_wp = start_wp.get_right_lane()
-                    if start_distance < 0:
-                        wp_lists = start_wp.previous(-start_distance)
+                    if skip_start_constraints:
+                        start_position = _get_actor_location(actor)
+                        if start_position is None:
+                            raise RuntimeError(f"no valid current position for {actor_name} car")
                     else:
-                        wp_lists = start_wp.next(start_distance)
-                    start_wp = wp_lists[0]
-                    start_position = start_wp.transform.location
-                    # if start_distance < 0:
-                    #     wp_lists = ego_car_wp.previous(-start_distance)
-                    # else:
-                    #     wp_lists = ego_car_wp.next(start_distance)
-                    # start_wp = wp_lists[0]
-                    # lane_dif = start_lane - ego_lane
-                    # if lane_dif < 0:
-                    #     for i in range(abs(lane_dif)):
-                    #         start_wp = start_wp.get_left_lane()
-                    # elif lane_dif > 0:
-                    #     for i in range(abs(lane_dif)):
-                    #         start_wp = start_wp.get_right_lane()
-                    # start_position = start_wp.transform.location
-                    # if ego_total_distance == 0:
-                    #     npc_spawn = ActorTransformSetter(actor, start_wp.transform)
-                    #     father_tree.add_child(npc_spawn)
-                    npc_spawn = ActorTransformSetter(actor, start_wp.transform)
-                    father_tree.add_child(npc_spawn)
+                        # special for s1
+                        # if actor_name == "npc1":
+                        #     start_wp = CarlaDataProvider.get_waypoint_by_actorname_and_laneid(actor_name, start_lane)
+                        #     start_wp = start_wp.previous(100)[0]
+                        #     start_position = start_wp.transform.location
+                        #     npc1_start_wp = start_wp
+                        #     npc1_start_position = start_position
+                        # elif actor_name == "npc4":
+                        #     start_wp = ego_car_wp.next(100)[0]
+                        #     lane_dif = start_lane - 1
+                        #     if lane_dif < 0:
+                        #         for i in range(abs(lane_dif)):
+                        #             start_wp = start_wp.get_left_lane()
+                        #     elif lane_dif > 0:
+                        #         for i in range(abs(lane_dif)):
+                        #             start_wp = start_wp.get_right_lane()
+                        #     # start_wp = start_wp.get_right_lane().get_right_lane()
+                        #     start_position = start_wp.transform.location
+                        # else:
+                        # npc1_car_wp = CarlaDataProvider.get_map().get_waypoint(npc1_start_position)
+                        start_wp = ego_car_wp
+                        lane_dif = start_lane - 3
+                        if lane_dif < 0:
+                            for i in range(abs(lane_dif)):
+                                start_wp = start_wp.get_left_lane()
+                        elif lane_dif > 0:
+                            for i in range(abs(lane_dif)):
+                                start_wp = start_wp.get_right_lane()
+                        if start_distance < 0:
+                            wp_lists = start_wp.previous(-start_distance)
+                        elif start_distance > 0:
+                            wp_lists = start_wp.next(start_distance)
+                        else:
+                            wp_lists = [start_wp]
+                        start_wp = wp_lists[0]
+                        start_position = start_wp.transform.location
+                        # if start_distance < 0:
+                        #     wp_lists = ego_car_wp.previous(-start_distance)
+                        # else:
+                        #     wp_lists = ego_car_wp.next(start_distance)
+                        # start_wp = wp_lists[0]
+                        # lane_dif = start_lane - ego_lane
+                        # if lane_dif < 0:
+                        #     for i in range(abs(lane_dif)):
+                        #         start_wp = start_wp.get_left_lane()
+                        # elif lane_dif > 0:
+                        #     for i in range(abs(lane_dif)):
+                        #         start_wp = start_wp.get_right_lane()
+                        # start_position = start_wp.transform.location
+                        # if ego_total_distance == 0:
+                        #     npc_spawn = ActorTransformSetter(actor, start_wp.transform)
+                        #     father_tree.add_child(npc_spawn)
+                        npc_spawn = ActorTransformSetter(actor, start_wp.transform)
+                        father_tree.add_child(npc_spawn)
                     if end_distance is not None:
                         distance = end_distance - start_distance + ego_distance
                         if is_model[actor_name]:
@@ -890,25 +1276,30 @@ def process_speed_modifier(
                 car_info[actor_name]["range_position_start"] = [position_start_bot, position_start_top]
                 car_info[actor_name]["range_position_end"] = [position_end_bot, position_end_top]
                 ego_lane = start_lane
-                # wp = CarlaDataProvider.get_waypoint_by_actorname_and_laneid(actor_name, start_lane)
-                wp = CarlaDataProvider.get_waypoint_by_special_laneid(start_lane)
-                # wp = CarlaDataProvider.get_waypoint_by_laneid(start_lane)
-                car_info[actor_name]["start_position"] = {
-                    "lane_position":{
-                        "lane": "lane_" + str(wp.road_id),
-                        "offset": wp.s,
-                        "roadID": wp.lane_id
-                    },
-                    "lane_id": start_lane
-                }
-                start_position = wp.transform.location
-                if wp:
-                    actor_visible = ActorTransformSetter(actor, wp.transform)
-                    car_config = config.get_car_config(actor_name)
-                    car_config.set_arg({"init_transform": wp.transform})
-                    father_tree.add_child(actor_visible)
+                if skip_start_constraints:
+                    start_position = _get_actor_location(actor)
+                    if start_position is None:
+                        raise RuntimeError(f"no valid current position for {actor_name} car")
                 else:
-                    raise RuntimeError(f"no valid position to spawn {actor_name} car")
+                    # wp = CarlaDataProvider.get_waypoint_by_actorname_and_laneid(actor_name, start_lane)
+                    wp = CarlaDataProvider.get_waypoint_by_special_laneid(start_lane)
+                    # wp = CarlaDataProvider.get_waypoint_by_laneid(start_lane)
+                    car_info[actor_name]["start_position"] = {
+                        "lane_position":{
+                            "lane": "lane_" + str(wp.road_id),
+                            "offset": wp.s,
+                            "roadID": wp.lane_id
+                        },
+                        "lane_id": start_lane
+                    }
+                    start_position = wp.transform.location
+                    if wp:
+                        actor_visible = ActorTransformSetter(actor, wp.transform)
+                        car_config = config.get_car_config(actor_name)
+                        car_config.set_arg({"init_transform": wp.transform})
+                        father_tree.add_child(actor_visible)
+                    else:
+                        raise RuntimeError(f"no valid position to spawn {actor_name} car")
                 if is_model[actor_name]:
                     set_behavior_logic = SetBehaviorLogic(actor, start_position, distance, start_lane, end_lane,
                                                           global_priority=True, is_confirm=False)
@@ -1047,8 +1438,10 @@ def process_speed_modifier(
                 print(start_location)
                 if start_location < 0:
                     wp_lists = ego_car_wp.previous(-start_location)
-                else:
+                elif start_location > 0:
                     wp_lists = ego_car_wp.next(start_location)
+                else:
+                    wp_lists = [ego_car_wp]
                 start_wp = wp_lists[0]
                 lane_dif = start_lane - ego_lane
                 if lane_dif < 0:
@@ -1451,6 +1844,8 @@ class OSC2Scenario(BasicScenario):
             self.__cur_behavior = None
             self.__parent_behavior = {}
             self.__duration = 1000000000.0
+            self.__phase_gate_do_members = {}
+            self.__phase_gate_active = False
 
         def get_behavior_tree(self):
             return self.root_behavior
@@ -1500,6 +1895,8 @@ class OSC2Scenario(BasicScenario):
 
         def visit_do_member(self, node: ast_node.DoMember):
             self.__duration = 1000000000.0
+            previous_phase_gate_active = self.__phase_gate_active
+            self.__phase_gate_active = self.__phase_gate_do_members.get(node, False)
             composition_operator = node.composition_operator
             sub_node = None
             if composition_operator in ["serial", "parallel", "one_of"]:
@@ -1542,12 +1939,18 @@ class OSC2Scenario(BasicScenario):
                 parent = self.__parent_behavior[node]
                 parent.add_child(self.__cur_behavior)
 
+            do_member_index = 0
             for child in node.get_children():
                 if not isinstance(child, ast_node.AST):
                     continue
 
                 if isinstance(child, (ast_node.DoMember, ast_node.EmitDirective, ast_node.WaitDirective)):
                     self.__parent_behavior[child] = self.__cur_behavior
+                if isinstance(child, ast_node.DoMember):
+                    self.__phase_gate_do_members[child] = (
+                        composition_operator == "serial" and do_member_index > 0
+                    )
+                    do_member_index += 1
 
             if sub_node is None:
                 for child in node.get_children():
@@ -1586,6 +1989,7 @@ class OSC2Scenario(BasicScenario):
 
             if re.match("\d", str(self.__duration)) and self.__duration != math.inf:
                 self.father_ins.all_duration += int(self.__duration)
+            self.__phase_gate_active = previous_phase_gate_active
 
         def visit_wait_directive(self, node: ast_node.WaitDirective):
             behaviors = py_trees.composites.Sequence(
@@ -2060,7 +2464,9 @@ class OSC2Scenario(BasicScenario):
                         if isinstance(arguments, list):
                             arguments = OSC2Helper.flat_list(arguments)
                             for arg in arguments:
-                                if isinstance(arg, tuple):
+                                if _is_logic_action(arg):
+                                    keyword_args.setdefault("actions", []).append(arg)
+                                elif isinstance(arg, tuple):
                                     if isinstance(arg[1], Physical):
                                         keyword_args[arg[0]] = arg[1]
                                     elif "start" in arg[1]:
@@ -2071,6 +2477,8 @@ class OSC2Scenario(BasicScenario):
                                         keyword_args[arg[0]] = arg[1]
                         elif isinstance(arguments, tuple):
                             keyword_args[arguments[0]] = arguments[1]
+                        elif _is_logic_action(arguments):
+                            keyword_args.setdefault("actions", []).append(arguments)
                         else:
                             raise NotImplementedError(
                                 f"no implement argument of {modifier_name}"
@@ -2155,6 +2563,19 @@ class OSC2Scenario(BasicScenario):
                     self.__cur_behavior.add_child(behavior)
                     return
 
+            phase_start_constraints = []
+            if self.__phase_gate_active:
+                phase_start_constraints = _build_phase_start_constraints(
+                    actor, location_modifiers, speed_modifiers
+                )
+                if phase_start_constraints:
+                    actor_drive.add_child(
+                        PhaseStartCondition(
+                            phase_start_constraints,
+                            name="phase_start:{}".format(behavior_invocation_name),
+                        )
+                    )
+
             process_location_modifier(
                 self.father_ins.config, location_modifiers, self.__duration, actor_drive
             )
@@ -2175,6 +2596,7 @@ class OSC2Scenario(BasicScenario):
                     self.__duration,
                     self.father_ins.all_duration,
                     actor_drive,
+                    skip_start_constraints=bool(phase_start_constraints),
                 )
             behavior.add_child(actor_drive)
             self.__cur_behavior.add_child(behavior)
@@ -2627,6 +3049,10 @@ class OSC2Scenario(BasicScenario):
             LOG_INFO("func name:" + node.func_name)
 
             arguments = OSC2Helper.flat_list(self.visit_children(node))
+            function_name = node.func_name.split(".")[-1]
+            if function_name in LOGIC_ACTION_FUNCTIONS:
+                return _logic_action_from_function(function_name, arguments)
+
             line, column = node.get_loc()
             # retrieval_name = para_type_str_sequence(config=self.father_ins.config, arguments=arguments, line=line, column=column, node=node)
             retrieval_name = arguments[0].split(".")[-1]
