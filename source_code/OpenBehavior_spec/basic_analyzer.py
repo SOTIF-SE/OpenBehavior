@@ -12,6 +12,7 @@ except ImportError:
 
 
 class TraceSignalBuilder(object):
+    VEHICLE_SURFACE_DISTANCE_OFFSET = 2.0
     AGGREGATORS = ["switch_count", "duration", "count", "avg", "std", "max", "min"]
     BASE_SIGNALS = [
         "isChangingLane",
@@ -161,11 +162,14 @@ class TraceSignalBuilder(object):
         if actor_a == "ego" and resolved_actor_b in self.npcs:
             truth_distance = self._truth_distance_to_ego(resolved_actor_b)
             if truth_distance is not None:
-                return truth_distance
+                return [distance - self.VEHICLE_SURFACE_DISTANCE_OFFSET for distance in truth_distance]
 
         positions_a = self._position_series(actor_a)
         positions_b = self._position_series(actor_b)
-        return [self._position_distance(pos_a, pos_b) for pos_a, pos_b in zip(positions_a, positions_b)]
+        return [
+            self._position_distance(pos_a, pos_b) - self.VEHICLE_SURFACE_DISTANCE_OFFSET
+            for pos_a, pos_b in zip(positions_a, positions_b)
+        ]
 
     def _position_series(self, actor):
         if actor in self.special_targets:

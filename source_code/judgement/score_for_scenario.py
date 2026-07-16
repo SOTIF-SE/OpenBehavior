@@ -3,9 +3,22 @@ import math
 import os
 import re
 import statistics
+import sys
 import time
 
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+
+from OpenBehavior_spec.basic_analyzer import analyze
+
 Record_Path = "/home/abc/scenario_runner/scenario_record/openbehavior_s4.json"
+Spec_Path = os.path.join(PROJECT_ROOT, "OpenBehavior_spec", "ob.spec")
+Spec_Evaluator = "rtamt"
+Spec_Weights = {
+    "safetyOracle": 1.0,
+    "BehOracle": 0.1,
+}
 
 
 def load_template(path):
@@ -71,6 +84,7 @@ class ScoreForScenario:
         self.scoreC = 0
         self.change_lane_times = 0
         self.value = 0
+        self.spec_result = None
 
         # record info
         self.record_result_path = Record_Path
@@ -112,7 +126,7 @@ class ScoreForScenario:
         self.start()
         self.read_record_result()
         self.record_result()
-        self.compute_score()
+        self.compute_score_by_spec()
 
     def read_record_result(self):
         if not os.path.exists(self.record_result_path):
@@ -207,6 +221,11 @@ class ScoreForScenario:
 
     # 获取ego目标位置
     def get_target_location(self):
+        destination = self.json_data.get("ego", {}).get("destination", {}).get("location")
+        if destination is not None:
+            self.target_location = destination
+            return
+
         file = "/home/abc/scenario_runner/trace/obehavior_s4/trace_obehavior_s4_0_-1.json"
         with open(file, "r") as f:
             data = json.load(f)
@@ -317,6 +336,19 @@ class ScoreForScenario:
         self.value = testtask_rob * 1.0 + designtask_score * 0.1
         # self.value = testtask_rob
         # return testtask_rob
+
+    def compute_score_by_spec(self):
+        if self.scoreB == -12 and not self.is_collision:
+            self.value = float('-inf')
+            return
+        if self.scoreC > 10 and not self.is_collision:
+            self.value = float('-inf')
+            return
+        self.value = self.compute_spec_value()
+
+    def compute_spec_value(self):
+        self.spec_result = analyze(self.path, Spec_Path, weights=Spec_Weights, evaluator_name=Spec_Evaluator)
+        return self.spec_result["summary"]["total_score"]
 
 
     def init_data_first(self):
