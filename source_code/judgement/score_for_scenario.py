@@ -61,9 +61,14 @@ def log_special_data(data, filename="/home/abc/scenario_runner/special_log.txt")
 #     return change_lane_num
 
 class ScoreForScenario:
-    def __init__(self, json_path, gen, idx):
+    def __init__(self, json_path, gen, idx, zero_behavior_weight=False):
         self.path = json_path
         self.json_data = load_template(json_path)
+        # per-instance copy, so zeroing the behaviour weight does not leak into
+        # the module-level Spec_Weights used by the other callers
+        self.spec_weights = dict(Spec_Weights)
+        if zero_behavior_weight:
+            self.spec_weights["behaviorObjective"] = 0.0
 
         self.timestamp = None
         self.npc_num = None
@@ -347,7 +352,7 @@ class ScoreForScenario:
         self.value = self.compute_spec_value()
 
     def compute_spec_value(self):
-        self.spec_result = analyze(self.path, Spec_Path, weights=Spec_Weights, evaluator_name=Spec_Evaluator)
+        self.spec_result = analyze(self.path, Spec_Path, weights=self.spec_weights, evaluator_name=Spec_Evaluator)
         return self.spec_result["summary"]["total_score"]
 
 

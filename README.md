@@ -266,15 +266,15 @@ This section describes the required environment setup and the steps to reproduce
 <!--original: python openbehavior_runner.py --sync  --openscenario2 OpenBehavior_Osc/avunit_s1.osc --reloadWorld -->
 
 
-3. **Run RQ1**
+3. **Language Level Study**
 
-    **Reproduction of SCENEST**
-   
+   **Reproduction of SCENEST**
+
    ```
    cd avunit_code
    python batch_run_osc.py
    ```
-   
+
    **Reproduction of OpenScenario**
 
    ```
@@ -282,7 +282,7 @@ This section describes the required environment setup and the steps to reproduce
    
    # Run Scenario Scripts
    ```
-   
+
    **Reproduction of  Scenic**
 
    ```
@@ -292,23 +292,46 @@ This section describes the required environment setup and the steps to reproduce
    ```
 
    **Reproduction of GeoScenario**
-   
+
    ```
    git clone git@github.com:rodrigoqueiroz/geoscenarioserver.git
    
    # Run Scenario Scripts
    ```
-   
+
    **Reproduction of OpenBehavior**
-   
+
    ```
    cd source_code
    python batch_run_s4_variants.py
    ```
+
+3. **Ablation Study**
+
+   **Run Multi-Models**
+
+   ```bash
+   # USE source_code/OpenBehavior_Osc/OBOrch_s*.osc
+   python OBOrchestration.py
+   ```
+
+   **Run Orchestration**
+
+   ```bash
+   python OBOrchestration.py --no-use-value
+   ```
+
+   **Run ObSpec-Beh**
+
+   ```bash
+   python OBOrchestration.py --zero-behavior-weight
+   ```
+
    
+
 3. **Run OBOrchestration** <!-- original: Run OSCFuzz -->
 
-    ```bash
+   ```bash
    conda activate law
    
    cd judgement
@@ -336,37 +359,37 @@ This section describes the required environment setup and the steps to reproduce
    ```
 
    
-   
+
    **Reproduction of AV-Fuzzer & Random**
-   
+
    For AV-Fuzzer, you need to modify the `mode` parameter in the `ga.yaml` file.
-   
+
    ```
     AV-Fuzzer/carla_sim/parameters/ga.yaml
     mode: avfuzzer
    ```
-   
+
    And then, run it by
-   
+
    ```bash
    python AV-Fuzzer/carla_sim/GA.py
    ```
+
    
-   
-   
+
    For Random, as described above
-   
+
    ```
     AV-Fuzzer/carla_sim/parameters/ga.yaml
     mode: random
    ```
-   
+
    And then, run it by
-   
+
    ```
    python AV-Fuzzer/carla_sim/GA.py
    ```
-   
+
    
 
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge

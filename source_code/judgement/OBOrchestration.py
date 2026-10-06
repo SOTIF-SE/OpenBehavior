@@ -1,3 +1,4 @@
+import argparse
 import json
 import math
 import os
@@ -25,11 +26,11 @@ def save_result(scene, path):
         json.dump(scene, f, indent=4)
 
 
-def evaluate(scene, gen, idx):
+def evaluate(scene, gen, idx, use_value=True, zero_behavior_weight=False):
     json_trace, runtime = generate_trace(scene, gen, idx)
     # monitor = Monitor(experiment_result)
     # value = monitor.continuous_monitor_for_muti_traffic_rules()
-    record = ScoreForScenario(json_trace, gen, idx)
+    record = ScoreForScenario(json_trace, gen, idx, zero_behavior_weight)
     # judge = JudgeByDis(json_trace)
     # record = RecordTestResult(experiment_result, gen, idx)
     value = record.value
@@ -37,6 +38,8 @@ def evaluate(scene, gen, idx):
     # value处理待定
     # fitness = max(value)
     # return value
+    if not use_value:
+        value = 0
     return value
 
 def generate_trace(scene, gen, idx):
@@ -88,11 +91,16 @@ def generate_trace(scene, gen, idx):
 
 
 class GAGeneration:
-    def __init__(self, population_size=20, generation=26, crossover_prob=1.0, mutation_prob=1.0):
+    def __init__(self, population_size=20, generation=26, crossover_prob=1.0, mutation_prob=1.0,
+                 use_value=True, zero_behavior_weight=False):
         self.population_size = population_size
         self.generation = generation
         self.crossover_prob = crossover_prob
         self.mutation_prob = mutation_prob
+        # use_value: False scores every individual 0 instead of taking evaluate()'s value
+        # zero_behavior_weight: True sets the behaviorObjective weight in spec_weights to 0
+        self.use_value = use_value
+        self.zero_behavior_weight = zero_behavior_weight
         # self.scenario_mode = ["natural", "diverse", "adversarial"]
         # self.mutation_position_start = {}
         # self.mutation_position_end = {}
@@ -285,7 +293,8 @@ class GAGeneration:
                 with open(filename, "w") as f:
                     json.dump(scene, f, indent=4)
 
-            scores = [evaluate(scene, gen, idx) for idx, scene in enumerate(population)]
+            scores = [evaluate(scene, gen, idx, self.use_value, self.zero_behavior_weight)
+                      for idx, scene in enumerate(population)]
 
             scored_pop = list(zip(population, scores))
             scored_pop.sort(key=lambda x: x[1], reverse=True)
@@ -352,7 +361,8 @@ class GAGeneration:
                 with open(filename, "w") as f:
                     json.dump(scene, f, indent=4)
 
-            scores = [evaluate(scene, gen, idx) for idx, scene in enumerate(population)]
+            scores = [evaluate(scene, gen, idx, self.use_value, self.zero_behavior_weight)
+                      for idx, scene in enumerate(population)]
 
             scored_pop = list(zip(population, scores))
             scored_pop = scored_pop + temp
@@ -400,11 +410,18 @@ class GAGeneration:
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="OpenBehavior orchestration GA")
+    parser.add_argument("--no-use-value", dest="use_value", action="store_false", default=True,
+                        help="score every individual 0 instead of using evaluate()'s value")
+    parser.add_argument("--zero-behavior-weight", action="store_true", default=False,
+                        help="set the behaviorObjective weight in spec_weights to 0")
+    args = parser.parse_args()
+
     APOLLO = "/home/abc/apollo/experiment_result"
     if os.path.isdir(APOLLO + "/core"):
         shutil.rmtree(APOLLO + "/core")
     template = load_template("../config/6.json")
-    GA = GAGeneration()
+    GA = GAGeneration(use_value=args.use_value, zero_behavior_weight=args.zero_behavior_weight)
     if not os.path.isdir("mutation/generation_0"):
         GA.random_initial_population(template)
     # results = GA.genetic_orchestration()
