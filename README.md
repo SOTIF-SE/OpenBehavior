@@ -305,9 +305,8 @@ This section describes the required environment setup and the steps to reproduce
    cd source_code
    python batch_run_s4_variants.py
    ```
-   
 
-3. **Run OBOrchestration** <!-- original: Run OSCFuzz -->
+4. **Run OBOrchestration** <!-- original: Run OSCFuzz -->
 
    ```bash
    conda activate law
@@ -370,26 +369,26 @@ This section describes the required environment setup and the steps to reproduce
 
  5. **Ablation Study**
 
-   **Run Multi-Models**
+    **Run Multi-Models**
 
-   ```bash
-   # USE source_code/OpenBehavior_Osc/OBOrch_s*.osc
-   python OBOrchestration.py
-   ```
+    ```bash
+    # USE source_code/OpenBehavior_Osc/OBOrch_s*.osc
+    python OBOrchestration.py
+    ```
 
-   **Run Orchestration**
+    **Run Orchestration**
 
-   ```bash
-   python OBOrchestration.py --no-use-value
-   ```
+    ```bash
+    python OBOrchestration.py --no-use-value
+    ```
 
-   **Run ObSpec-Beh**
+    **Run ObSpec-Beh**
 
-   ```bash
-   python OBOrchestration.py --zero-behavior-weight
-   ```
+    ```bash
+    python OBOrchestration.py --zero-behavior-weight
+    ```
 
+    
 
-   
 
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
