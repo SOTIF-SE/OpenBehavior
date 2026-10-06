@@ -270,14 +270,14 @@ This section describes the required environment setup and the steps to reproduce
 
    **Reproduction of SCENEST**
 
-   ```
+   ```bash
    cd avunit_code
    python batch_run_osc.py
    ```
 
    **Reproduction of OpenScenario**
 
-   ```
+   ```bash
    git clone git@github.com:carla-simulator/scenario_runner.git
    
    # Run Scenario Scripts
@@ -285,7 +285,7 @@ This section describes the required environment setup and the steps to reproduce
 
    **Reproduction of  Scenic**
 
-   ```
+   ```bash
    git clone git@github.com:carla-simulator/Scenic.git
    
    # Run Scenario Scripts
@@ -293,7 +293,7 @@ This section describes the required environment setup and the steps to reproduce
 
    **Reproduction of GeoScenario**
 
-   ```
+   ```bash
    git clone git@github.com:rodrigoqueiroz/geoscenarioserver.git
    
    # Run Scenario Scripts
@@ -301,7 +301,7 @@ This section describes the required environment setup and the steps to reproduce
 
    **Reproduction of OpenBehavior**
 
-   ```
+   ```bash
    cd source_code
    python batch_run_s4_variants.py
    ```
@@ -341,7 +341,7 @@ This section describes the required environment setup and the steps to reproduce
 
    For AV-Fuzzer, you need to modify the `mode` parameter in the `ga.yaml` file.
 
-   ```
+   ```bash
     AV-Fuzzer/carla_sim/parameters/ga.yaml
     mode: avfuzzer
    ```
@@ -356,14 +356,14 @@ This section describes the required environment setup and the steps to reproduce
 
    For Random, as described above
 
-   ```
+   ```bash
     AV-Fuzzer/carla_sim/parameters/ga.yaml
     mode: random
    ```
 
    And then, run it by
 
-   ```
+   ```bash
    python AV-Fuzzer/carla_sim/GA.py
    ```
 
