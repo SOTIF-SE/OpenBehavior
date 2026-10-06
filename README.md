@@ -368,7 +368,7 @@ This section describes the required environment setup and the steps to reproduce
    python AV-Fuzzer/carla_sim/GA.py
    ```
 
-   5.  **Ablation Study**
+ 5. **Ablation Study**
 
    **Run Multi-Models**
 
