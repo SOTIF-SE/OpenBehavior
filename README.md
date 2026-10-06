@@ -29,14 +29,14 @@ As illustrated above, OpenBehavior integrates diverse NPC behavior models to ena
 
 ## Approach Overview
 <!-- <p align="center">
-  <img src="images/Roadmap.jpg" width="60%">
+  <img src="images/Roadmap.png" width="60%">
 </p> -->
 
 <!-- <center><img src="images/Roadmap.png" width = "625"></center> -->
 <!--![Overview of the OpenBehavior workflow](images/Roadmap.jpg) -->
 
 <p align="left">
-  <img src="images/Roadmap.jpg" width="800">
+  <img src="images/Roadmap.png" width="800">
 </p>
 
 <!--**Figure 2:** *Overview of the OpenBehavior workflow. Users specify scenarios with a behavior-centric language and high-level
