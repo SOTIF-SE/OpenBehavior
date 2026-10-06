@@ -17,7 +17,7 @@ Spec_Path = os.path.join(PROJECT_ROOT, "OpenBehavior_spec", "ob.spec")
 Spec_Evaluator = "rtamt"
 Spec_Weights = {
     "safetyOracle": 1.0,
-    "BehOracle": 0.1,
+    "behaviorObjective": 0.1,
 }
 
 

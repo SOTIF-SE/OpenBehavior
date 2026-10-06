@@ -232,6 +232,7 @@ This section describes the required environment setup and the steps to reproduce
 
 #### **Step B: Prepare for Judgement (`law`)**
 1.  **Conda Environment:**
+    
     ```bash
     conda create -n law python==3.7 -y
     conda activate law
@@ -265,6 +266,46 @@ This section describes the required environment setup and the steps to reproduce
 <!--original: python openbehavior_runner.py --sync  --openscenario2 OpenBehavior_Osc/avunit_s1.osc --reloadWorld -->
 
 
+3. **Run RQ1**
+
+    **Reproduction of SCENEST**
+   
+   ```
+   cd avunit_code
+   python batch_run_osc.py
+   ```
+   
+   **Reproduction of OpenScenario**
+
+   ```
+   git clone git@github.com:carla-simulator/scenario_runner.git
+   
+   # Run Scenario Scripts
+   ```
+   
+   **Reproduction of  Scenic**
+
+   ```
+   git clone git@github.com:carla-simulator/Scenic.git
+   
+   # Run Scenario Scripts
+   ```
+
+   **Reproduction of GeoScenario**
+   
+   ```
+   git clone git@github.com:rodrigoqueiroz/geoscenarioserver.git
+   
+   # Run Scenario Scripts
+   ```
+   
+   **Reproduction of OpenBehavior**
+   
+   ```
+   cd source_code
+   python batch_run_s4_variants.py
+   ```
+   
 3. **Run OBOrchestration** <!-- original: Run OSCFuzz -->
 
     ```bash

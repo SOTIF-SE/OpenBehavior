@@ -26,46 +26,46 @@
     <tag k='lane_change_after' v='8.0' />
     <tag k='lane_change_side' v='left' />
   </node>
-  <node id='1002' action='modify' visible='true' lat='0.000889433' lon='0.003613532'>
+  <node id='1002' action='modify' visible='true' lat='0.000852845' lon='0.003676035'>
   </node>
-  <node id='1003' action='modify' visible='true' lat='0.001248739' lon='0.003617286'>
+  <node id='1003' action='modify' visible='true' lat='0.001212152' lon='0.003679790'>
   </node>
-  <node id='1004' action='modify' visible='true' lat='0.001608046' lon='0.003621040'>
+  <node id='1004' action='modify' visible='true' lat='0.001571458' lon='0.003683544'>
   </node>
-  <node id='1005' action='modify' visible='true' lat='0.001967352' lon='0.003624794'>
+  <node id='1005' action='modify' visible='true' lat='0.001930765' lon='0.003687298'>
   </node>
-  <node id='1006' action='modify' visible='true' lat='0.002334287' lon='0.003604253'>
+  <node id='1006' action='modify' visible='true' lat='0.002287800' lon='0.003675328'>
   </node>
-  <node id='1007' action='modify' visible='true' lat='0.002687104' lon='0.003489539'>
+  <node id='1007' action='modify' visible='true' lat='0.002643494' lon='0.003578109'>
   </node>
-  <node id='1008' action='modify' visible='true' lat='0.002996187' lon='0.003284340'>
+  <node id='1008' action='modify' visible='true' lat='0.003008184' lon='0.003356857'>
   </node>
-  <node id='1010' action='modify' visible='true' lat='0.000709910' lon='0.003611723'>
+  <node id='1010' action='modify' visible='true' lat='0.000670143' lon='0.003675008'>
     <tag k='btree' v='drive.btree' />
     <tag k='btype' v='SDV' />
     <tag k='btconfig' v='m_keepvelocity=MVelKeepConfig(vel=MP(12.71,5,3))' />
     <tag k='gs' v='vehicle' />
     <tag k='model' v='vehicle.jeep.wrangler_rubicon' />
-    <tag k='name' v='v2_left_of' />
+    <tag k='name' v='v2_right_of' />
     <tag k='route' v='route_v2' />
     <tag k='vid' v='2' />
     <tag k='yaw' v='270.4' />
   </node>
-  <node id='1011' action='modify' visible='true' lat='0.000772658' lon='0.003612312'>
+  <node id='1011' action='modify' visible='true' lat='0.000916381' lon='0.003613814'>
   </node>
-  <node id='1012' action='modify' visible='true' lat='0.001131965' lon='0.003616066'>
+  <node id='1012' action='modify' visible='true' lat='0.001275687' lon='0.003617568'>
   </node>
-  <node id='1013' action='modify' visible='true' lat='0.001491271' lon='0.003619820'>
+  <node id='1013' action='modify' visible='true' lat='0.001634994' lon='0.003621322'>
   </node>
-  <node id='1014' action='modify' visible='true' lat='0.001850578' lon='0.003623574'>
+  <node id='1014' action='modify' visible='true' lat='0.001994300' lon='0.003625076'>
   </node>
-  <node id='1015' action='modify' visible='true' lat='0.002214470' lon='0.003620447'>
+  <node id='1015' action='modify' visible='true' lat='0.002361702' lon='0.003599018'>
   </node>
-  <node id='1016' action='modify' visible='true' lat='0.002576029' lon='0.003537296'>
+  <node id='1016' action='modify' visible='true' lat='0.002712107' lon='0.003477138'>
   </node>
-  <node id='1017' action='modify' visible='true' lat='0.002902006' lon='0.003360158'>
+  <node id='1017' action='modify' visible='true' lat='0.003016945' lon='0.003265683'>
   </node>
-  <node id='1019' action='modify' visible='true' lat='0.000593133' lon='0.003610828'>
+  <node id='1019' action='modify' visible='true' lat='0.000747398' lon='0.003612126'>
     <tag k='btree' v='drive.btree' />
     <tag k='btype' v='SDV' />
     <tag k='btconfig' v='m_keepvelocity=MVelKeepConfig(vel=MP(12.71,5,3))' />
@@ -76,27 +76,27 @@
     <tag k='vid' v='3' />
     <tag k='yaw' v='-89.6' />
   </node>
-  <node id='1020' action='modify' visible='true' lat='0.000781312' lon='0.003643845'>
+  <node id='1020' action='modify' visible='true' lat='0.000826554' lon='0.003612875'>
   </node>
-  <node id='1021' action='modify' visible='true' lat='0.001140619' lon='0.003647599'>
+  <node id='1021' action='modify' visible='true' lat='0.001185861' lon='0.003616629'>
   </node>
-  <node id='1022' action='modify' visible='true' lat='0.001499925' lon='0.003651353'>
+  <node id='1022' action='modify' visible='true' lat='0.001545167' lon='0.003620383'>
   </node>
-  <node id='1023' action='modify' visible='true' lat='0.001859232' lon='0.003655108'>
+  <node id='1023' action='modify' visible='true' lat='0.001904474' lon='0.003624137'>
   </node>
-  <node id='1024' action='modify' visible='true' lat='0.002226777' lon='0.003650871'>
+  <node id='1024' action='modify' visible='true' lat='0.002269946' lon='0.003614288'>
   </node>
-  <node id='1025' action='modify' visible='true' lat='0.002596050' lon='0.003563301'>
+  <node id='1025' action='modify' visible='true' lat='0.002627817' lon='0.003516474'>
   </node>
-  <node id='1026' action='modify' visible='true' lat='0.002928272' lon='0.003379834'>
+  <node id='1026' action='modify' visible='true' lat='0.002996187' lon='0.003284340'>
   </node>
-  <node id='1028' action='modify' visible='true' lat='0.000601875' lon='0.003642337'>
+  <node id='1028' action='modify' visible='true' lat='0.000651279' lon='0.003612126'>
     <tag k='btree' v='drive.btree' />
     <tag k='btype' v='SDV' />
     <tag k='btconfig' v='m_keepvelocity=MVelKeepConfig(vel=MP(12.71,5,3))' />
     <tag k='gs' v='vehicle' />
     <tag k='model' v='vehicle.audi.a2' />
-    <tag k='name' v='v4_same_as' />
+    <tag k='name' v='v4_left_of' />
     <tag k='route' v='route_v4' />
     <tag k='vid' v='4' />
     <tag k='yaw' v='-89.6' />
@@ -115,7 +115,7 @@
   </node>
   <node id='1035' action='modify' visible='true' lat='0.002947059' lon='0.003405045'>
   </node>
-  <node id='1037' action='modify' visible='true' lat='0.000601634' lon='0.003673777'>
+  <node id='1037' action='modify' visible='true' lat='0.000607261' lon='0.003675008'>
     <tag k='btree' v='drive.btree' />
     <tag k='btype' v='SDV' />
     <tag k='btconfig' v='m_keepvelocity=MVelKeepConfig(vel=MP(12.71,5,3))' />

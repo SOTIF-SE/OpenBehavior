@@ -1,33 +1,3 @@
-#!/usr/bin/env python
-"""
-Run the randomised avunit_s4 variants (avunit_s4_v1.osc .. avunit_s4_v10.osc) and record the
-trajectory and the video of every run.
-
-    python AVUnit_Osc/batch_run_s4_variants.py                   # 10 variants x 20 runs
-    python AVUnit_Osc/batch_run_s4_variants.py --repetitions 1   # one pass, to check the setup
-    python AVUnit_Osc/batch_run_s4_variants.py --new-batch       # new generations, all runs again
-
-Every run starts CARLA, loads Town04, runs one variant, records
-
-    trace/<variant>/trace_<variant>_<generation>_<run>.json        (data_bridge.py)
-    traffic_accident_video/ego_accident_<generation>_<run>.avi     (camera_recorder.py)
-
-and shuts CARLA down again.
-
-The work is done by batch_run_osc.py, this wrapper only adds what is specific to the variants:
-
-  * it finds AVUnit_Osc/avunit_s4_v*.osc instead of srunner/examples/*.osc
-  * the generation of the batch is stored in batch_logs/s4_variants_state.json. batch_run_osc.py
-    recognises a finished run by the trace file of its generation, so after an interruption
-    (Ctrl-C, crash, reboot) just start the script again: same generations -> the runs that are
-    already recorded are skipped and the batch continues where it stopped. A trace file is
-    written at the very end of a run, a crashed run leaves none and is repeated.
-  * the state also stores a fingerprint of the variant files, so regenerated variants (new
-    content) automatically get a new batch instead of resuming onto stale recordings
-  * it refuses to start while a CARLA of somebody else listens on the port, because
-    batch_run_osc.py kills whatever runs on it (--force skips the check)
-"""
-
 import argparse
 import glob
 import hashlib
@@ -41,7 +11,7 @@ import sys
 import time
 
 REPO_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-VARIANT_DIR = os.path.join(REPO_DIR, "AVUnit_Osc")
+VARIANT_DIR = os.path.join(REPO_DIR, "source_code/OpenBehavior_Osc")
 BATCH_RUNNER = os.path.join(REPO_DIR, "batch_run_osc.py")
 VIDEO_DIR = os.path.join(REPO_DIR, "traffic_accident_video")
 STATE_FILE = os.path.join(REPO_DIR, "batch_logs", "s4_variants_state.json")

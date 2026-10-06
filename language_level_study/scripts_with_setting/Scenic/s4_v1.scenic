@@ -2,10 +2,10 @@
 
 Same scenario as scenarios/s4_scenic.scenic (and s4_v1.xml), but with the randomized
 quantities baked in: ego  vehicle.tesla.model3             carla=(  405.60,   -87.00)
-  npc  vehicle.jeep.wrangler_rubicon    carla=(  409.01,   -74.70) lane=right gap=12.3 m
-  npc  vehicle.audi.tt                  carla=(  402.06,   -79.90) lane=left  gap=7.1 m
-  npc  vehicle.audi.a2                  carla=(  409.08,   -81.57) lane=right gap=5.4 m
-  npc  vehicle.audi.tt                  carla=(  405.40,   -64.20) lane=own   gap=22.8 m
+  npc  vehicle.jeep.wrangler_rubicon    carla=(  405.60,   -70.00) lane=own   gap=17.0 m
+  npc  vehicle.audi.tt                  carla=(  405.60,   -81.60) lane=own   gap=5.4 m
+  npc  vehicle.audi.a2                  carla=(  409.10,   -76.20) lane=right gap=10.8 m
+  npc  vehicle.audi.tt                  carla=(  409.10,   -69.20) lane=right gap=17.8 m
 
 All values were drawn by the generator, the script itself contains no random choice,
 so every run of it starts from exactly the same scene.  Run it with
@@ -13,6 +13,8 @@ so every run of it starts from exactly the same scene.  Run it with
     runner/run_scenic_s4.py --scenic scenarios/generated_v2/s4_v1.scenic --config-json <dir>/ind_<i>.json
 
 (weather: ClearSunset)
+The NPC start positions were aligned to scripts_with_setting/openscenario/s4_v1.xml;
+the generator's randomized lane/gap draw was replaced.
 """
 
 param map = localPath('../Town04.xodr')
@@ -34,22 +36,22 @@ ego = Car at Vector(405.6, 87.0),
     with rolename 'ego_vehicle',
     with behavior S4EgoBehavior()
 
-npc1 = Car at Vector(409.01425004060326, 74.70346298017685),
+npc1 = Car at Vector(405.6, 70.0),
     with blueprint 'vehicle.jeep.wrangler_rubicon',
     with color Color(r=0.146461740399346, g=0.7188354727617898, b=0.16022759262970465),
     with behavior NpcFollowLaneBehavior(12.708333333333334)
 
-npc2 = Car at Vector(402.06187427590595, 79.89971775392354),
+npc2 = Car at Vector(405.6, 81.6),
     with blueprint 'vehicle.audi.tt',
     with color Color(r=0.7046056278520025, g=0.6781757952769475, b=0.5447021635789044),
     with behavior NpcFollowLaneBehavior(12.708333333333334)
 
-npc3 = Car at Vector(409.0752944375092, 81.57063920926043),
+npc3 = Car at Vector(409.1, 76.2),
     with blueprint 'vehicle.audi.a2',
     with color Color(r=0.22059974802267657, g=0.9755945178178834, b=0.797810857706151),
     with behavior NpcFollowLaneBehavior(12.708333333333334)
 
-npc4 = Car at Vector(405.4043837565778, 64.20480740188366),
+npc4 = Car at Vector(409.1, 69.2),
     with blueprint 'vehicle.audi.tt',
     with color Color(r=0.516599516949393, g=0.22319578024667075, b=0.6485064180992564),
     with behavior NpcFollowLaneBehavior(12.708333333333334)

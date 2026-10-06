@@ -1,36 +1,3 @@
-#!/usr/bin/env python
-"""
-Batch runner for the OpenSCENARIO 2.0 (.osc) scenarios.
-
-For every scenario file it repeats the whole cycle as many times as --repetitions says
-(20 by default):
-
-    start CARLA -> load the map -> run the scenario -> (trajectory + video are recorded
-    by DataBridge / CameraRecorder inside scenario_runner.py) -> stop CARLA
-
-The recordings are named after the generation and the run number, so nothing is overwritten:
-
-    trace/<file name without extension>/trace_<file stem>_<generation>_<run>.json
-    traffic_accident_video/ego_accident_<generation>_<run>.avi
-
-(data_bridge.py strips the .osc extension, so s4_v3.osc writes into trace/s4_v3/)
-
-Every scenario of the batch gets its own generation (--generation is the one of the first scenario,
-the following ones get +1), and the run number counts the repetitions of that scenario. Run a later
-batch with a higher --generation, otherwise its recordings overwrite the ones of this batch
-(the script warns about that at startup).
-
-Both numbers come from the --config_json argument, which has to match
-"generation_<n>/ind_<m>.json" (data_bridge.py and camera_recorder.py parse it with that regex,
-without it no video is written at all), so this script writes that file itself.
-
-Usage:
-    python batch_run_osc.py                                     # 10 scenarios x 20 runs
-    python batch_run_osc.py --scenarios s4_v1.osc --repetitions 5
-    python batch_run_osc.py --generation 11                     # next batch, no overwriting
-    python batch_run_osc.py --keep-carla                        # one CARLA for the whole batch
-"""
-
 import argparse
 import glob
 import json
@@ -51,7 +18,7 @@ CARLA_SERVER_TIMEOUT = 120
 CARLA_SHUTDOWN_GRACE = 8
 
 REPO_DIR = os.path.dirname(os.path.abspath(__file__))
-EXAMPLES_DIR = os.path.join(REPO_DIR, "srunner", "examples")
+EXAMPLES_DIR = os.path.join(REPO_DIR, "avunit_scenarios")
 SCENARIO_RUNNER = os.path.join(REPO_DIR, "scenario_runner.py")
 VIDEO_DIR = os.path.join(REPO_DIR, "traffic_accident_video")
 

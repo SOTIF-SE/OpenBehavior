@@ -52,6 +52,8 @@ FUNCTION_ALIASES = {
 
 COMPARATORS = [">=", "<=", "==", "!=", ">", "<"]
 
+TEMPORAL_CALL_PATTERN = re.compile(r"\b(?:always|eventually|until)\s*\(")
+
 
 def process_raw_rule(raw_rule, return_variables=False):
     """
@@ -65,6 +67,17 @@ def process_raw_rule(raw_rule, return_variables=False):
     if return_variables:
         return expression, variables
     return expression
+
+
+def has_temporal_operator(stl_rule):
+    """
+    True when the converted STL contains a temporal operator.
+
+    A rule without one is plain arithmetic over the trace signals, so it
+    describes a value of the whole trace instead of a property of the
+    trace prefix starting at time 0.
+    """
+    return TEMPORAL_CALL_PATTERN.search(stl_rule) is not None
 
 
 def parse_spec_line(line, line_no=None):
@@ -82,6 +95,7 @@ def parse_spec_line(line, line_no=None):
         "raw": raw_rule.strip(),
         "stl": stl_rule,
         "variables": variables,
+        "temporal": has_temporal_operator(stl_rule),
     }
 
 

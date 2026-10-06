@@ -346,7 +346,7 @@ class RtamtEvaluator(object):
         import rtamt
         self.rtamt = rtamt
 
-    def evaluate(self, stl_rule, signals, times):
+    def evaluate(self, stl_rule, signals, times, temporal=True):
         spec = self.rtamt.STLDenseTimeSpecification(semantics=self.rtamt.Semantics.STANDARD)
         for variable in signals:
             spec.declare_var(variable, "float")
@@ -357,7 +357,10 @@ class RtamtEvaluator(object):
             for variable, values in signals.items()
         ]
         robustness = spec.evaluate(*signal_data)
-        score = robustness[0][1]
+        # rtamt reports a temporal formula over the whole trace at time 0, but a
+        # formula without temporal operators frame by frame, so the trace total
+        # is the value at the last frame.
+        score = robustness[0][1] if temporal else robustness[-1][1]
         return {"robustness": score, "satisfied": score >= 0}
 
 
@@ -368,7 +371,7 @@ class BasicSTLEvaluator(object):
 
     TEMPORAL_PATTERN = re.compile(r"^\s*(?P<op>eventually|always)\((?P<body>.*)\)\s*$")
 
-    def evaluate(self, stl_rule, signals, times=None):
+    def evaluate(self, stl_rule, signals, times=None, temporal=True):
         temporal_match = self.TEMPORAL_PATTERN.match(stl_rule)
         if temporal_match:
             temporal_op = temporal_match.group("op")
@@ -378,8 +381,8 @@ class BasicSTLEvaluator(object):
             return {"robustness": score, "satisfied": satisfied}
 
         robustness, truth_values = self._predicate_series(stl_rule, signals)
-        score = robustness[0]
-        return {"robustness": score, "satisfied": truth_values[0]}
+        index = 0 if temporal else -1
+        return {"robustness": robustness[index], "satisfied": truth_values[index]}
 
     def _predicate_series(self, predicate, signals):
         match = self.PREDICATE_PATTERN.match(predicate)
@@ -474,12 +477,15 @@ def analyze(trace_path, spec_path, weights=None, evaluator_name="rtamt"):
 
     for rule in parse_spec_file(spec_path):
         signals = builder.build_many(rule["variables"])
-        evaluation = evaluator.evaluate(rule["stl"], signals, builder.times)
+        evaluation = evaluator.evaluate(
+            rule["stl"], signals, builder.times, temporal=rule["temporal"]
+        )
         results.append({
             "oracle": rule["oracle"],
             "raw": rule["raw"],
             "stl": rule["stl"],
             "variables": rule["variables"],
+            "temporal": rule["temporal"],
             "robustness": evaluation["robustness"],
             "satisfied": evaluation["satisfied"],
         })
@@ -500,7 +506,7 @@ def main():
     args = parser.parse_args()
     weights = {
         "safetyOracle": args.safety_weight,
-        "BehOracle": args.beh_weight,
+        "behaviorObjective": args.beh_weight,
     }
     print(json.dumps(analyze(args.trace, args.spec, weights, args.evaluator), indent=2))
 
