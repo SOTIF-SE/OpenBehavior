@@ -12,7 +12,6 @@
         <other_actor x="405.6" y="-70.0" z="0.3" yaw="270.6" model="vehicle.jeep.wrangler_rubicon" /> <!-- same_as lane: 17 m behind -->
         <other_actor x="405.6" y="-81.6" z="0.3" yaw="270.6" model="vehicle.audi.tt" /> <!-- same_as lane: 5 m behind -->
         <other_actor x="409.1" y="-76.2" z="0.3" yaw="270.6" model="vehicle.audi.a2" /> <!-- right_of lane: 11 m behind -->
-        <other_actor x="409.1" y="-69.2" z="0.3" yaw="270.6" model="vehicle.audi.tt" /> <!-- right_of lane: 18 m behind -->
         <weather cloudiness="0" precipitation="0" precipitation_deposits="0" wind_intensity="0" sun_azimuth_angle="0" sun_altitude_angle="75" />
     </scenario>
 </scenarios>

@@ -6,7 +6,6 @@ import adaptive.osc
 # npc1  AI-adv_ai_agent
 # npc2  AI-adv_ai_agent
 # npc3  AI-adv_ai_agent
-# npc4  AI-adv_ai_agent
 # adaptive_targets: npc1, npc3
 
 scenario top:
@@ -18,7 +17,6 @@ scenario top:
     npc1: Rubicon
     npc2: TT
     npc3: A2
-    npc4: TT
 
     adaptive_targets: list of string = [npc1, npc3]
     user_adaptive_npc_bm : string = adapt_npc_bm.adapt(scenario_mode: "avunit_s4")
@@ -32,35 +30,11 @@ scenario top:
                 lane:"2, at:end",
                 position:"150, at:end"
             )
-        npc1.drive(path) with:
-            set_behavior_model(behavior_type: AI, model:adv_ai_agent, hyperparameters: Default)
-            set_behavior_logic(
-                lane:"4, at:start",
-                position:"[10..12], behind:ego_vehicle, at:start",
-                lane:"[1..4], at:end",
-                position:"[-20..30], ahead_of:ego_vehicle, at:end"
-            )
         npc2.drive(path) with:
             set_behavior_model(behavior_type: AI, model:adv_ai_agent, hyperparameters: Default)
             set_behavior_logic(
                 lane:"2, at:start",
                 position:"[7..9], behind:ego_vehicle, at:start",
-                lane:"[1..4], at:end",
-                position:"[-20..30], ahead_of:ego_vehicle, at:end"
-            )
-        npc3.drive(path) with:
-            set_behavior_model(behavior_type: AI, model:adv_ai_agent, hyperparameters: Default)
-            set_behavior_logic(
-                lane:"4, at:start",
-                position:"[18..20], behind:ego_vehicle, at:start",
-                lane:"[1..4], at:end",
-                position:"[-20..30], ahead_of:ego_vehicle, at:end"
-            )
-        npc4.drive(path) with:
-            set_behavior_model(behavior_type: AI, model:adv_ai_agent, hyperparameters: Default)
-            set_behavior_logic(
-                lane:"2, at:start",
-                position:"[14..16], behind:ego_vehicle, at:start",
                 lane:"[1..4], at:end",
                 position:"[-20..30], ahead_of:ego_vehicle, at:end"
             )

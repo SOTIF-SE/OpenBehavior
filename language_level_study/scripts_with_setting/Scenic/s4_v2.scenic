@@ -5,7 +5,6 @@ quantities baked in: ego  vehicle.tesla.model3             carla=(  405.60,   -8
   npc  vehicle.jeep.wrangler_rubicon    carla=(  405.60,   -69.40) lane=own   gap=17.6 m
   npc  vehicle.audi.tt                  carla=(  405.60,   -81.00) lane=own   gap=6.0 m
   npc  vehicle.audi.a2                  carla=(  409.10,   -71.30) lane=right gap=15.7 m
-  npc  vehicle.audi.tt                  carla=(  409.10,   -83.00) lane=right gap=4.0 m
 
 All values were drawn by the generator, the script itself contains no random choice,
 so every run of it starts from exactly the same scene.  Run it with
@@ -49,11 +48,6 @@ npc2 = Car at Vector(405.6, 81.0),
 npc3 = Car at Vector(409.1, 71.3),
     with blueprint 'vehicle.audi.a2',
     with color Color(r=0.7967599214216395, g=0.7344016918939777, b=0.906593649897561),
-    with behavior NpcFollowLaneBehavior(12.708333333333334)
-
-npc4 = Car at Vector(409.1, 83.0),
-    with blueprint 'vehicle.audi.tt',
-    with color Color(r=0.762885483833071, g=0.7897476374617632, b=0.3537869778416035),
     with behavior NpcFollowLaneBehavior(12.708333333333334)
 
 

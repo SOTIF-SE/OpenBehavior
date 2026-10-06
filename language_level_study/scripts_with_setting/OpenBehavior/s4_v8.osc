@@ -6,8 +6,7 @@ import adaptive.osc
 # npc1  Script-cautious
 # npc2  Script-cautious
 # npc3  Script-cautious
-# npc4  Script-cautious
-# adaptive_targets: npc4
+# adaptive_targets: npc3
 
 scenario top:
     path: Path
@@ -18,9 +17,8 @@ scenario top:
     npc1: Rubicon
     npc2: TT
     npc3: A2
-    npc4: TT
 
-    adaptive_targets: list of string = [npc4]
+    adaptive_targets: list of string = [npc3]
     user_adaptive_npc_bm : string = adapt_npc_bm.adapt(scenario_mode: "avunit_s4")
 
     do parallel(duration: 40s):
@@ -45,22 +43,6 @@ scenario top:
             set_behavior_logic(
                 lane:"3, at:start",
                 position:"[5..7], behind:ego_vehicle, at:start",
-                lane:"[1..4], at:end",
-                position:"[-20..30], ahead_of:ego_vehicle, at:end"
-            )
-        npc3.drive(path) with:
-            set_behavior_model(behavior_type: Script, model:cautious, hyperparameters: Default)
-            set_behavior_logic(
-                lane:"4, at:start",
-                position:"[9..11], behind:ego_vehicle, at:start",
-                lane:"[1..4], at:end",
-                position:"[-20..30], ahead_of:ego_vehicle, at:end"
-            )
-        npc4.drive(path) with:
-            set_behavior_model(behavior_type: Script, model:cautious, hyperparameters: Default)
-            set_behavior_logic(
-                lane:"4, at:start",
-                position:"[16..18], behind:ego_vehicle, at:start",
                 lane:"[1..4], at:end",
                 position:"[-20..30], ahead_of:ego_vehicle, at:end"
             )

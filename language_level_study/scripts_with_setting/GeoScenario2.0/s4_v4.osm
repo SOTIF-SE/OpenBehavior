@@ -101,31 +101,6 @@
     <tag k='vid' v='4' />
     <tag k='yaw' v='-89.6' />
   </node>
-  <node id='1029' action='modify' visible='true' lat='0.000853502' lon='0.003613157'>
-  </node>
-  <node id='1030' action='modify' visible='true' lat='0.001212809' lon='0.003616911'>
-  </node>
-  <node id='1031' action='modify' visible='true' lat='0.001572115' lon='0.003620665'>
-  </node>
-  <node id='1032' action='modify' visible='true' lat='0.001931422' lon='0.003624419'>
-  </node>
-  <node id='1033' action='modify' visible='true' lat='0.002297579' lon='0.003610362'>
-  </node>
-  <node id='1034' action='modify' visible='true' lat='0.002653382' lon='0.003505276'>
-  </node>
-  <node id='1035' action='modify' visible='true' lat='0.003016945' lon='0.003265683'>
-  </node>
-  <node id='1037' action='modify' visible='true' lat='0.000679126' lon='0.003612126'>
-    <tag k='btree' v='drive.btree' />
-    <tag k='btype' v='SDV' />
-    <tag k='btconfig' v='m_keepvelocity=MVelKeepConfig(vel=MP(12.71,5,3))' />
-    <tag k='gs' v='vehicle' />
-    <tag k='model' v='vehicle.audi.tt' />
-    <tag k='name' v='v5_left_of' />
-    <tag k='route' v='route_v5' />
-    <tag k='vid' v='5' />
-    <tag k='yaw' v='-89.6' />
-  </node>
   <way id='1009' action='modify' visible='true'>
     <nd ref='1002' />
     <nd ref='1003' />
@@ -158,16 +133,5 @@
     <nd ref='1026' />
     <tag k='gs' v='route' />
     <tag k='name' v='route_v4' />
-  </way>
-  <way id='1036' action='modify' visible='true'>
-    <nd ref='1029' />
-    <nd ref='1030' />
-    <nd ref='1031' />
-    <nd ref='1032' />
-    <nd ref='1033' />
-    <nd ref='1034' />
-    <nd ref='1035' />
-    <tag k='gs' v='route' />
-    <tag k='name' v='route_v5' />
   </way>
 </osm>
