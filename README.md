@@ -305,28 +305,6 @@ This section describes the required environment setup and the steps to reproduce
    cd source_code
    python batch_run_s4_variants.py
    ```
-
-3. **Ablation Study**
-
-   **Run Multi-Models**
-
-   ```bash
-   # USE source_code/OpenBehavior_Osc/OBOrch_s*.osc
-   python OBOrchestration.py
-   ```
-
-   **Run Orchestration**
-
-   ```bash
-   python OBOrchestration.py --no-use-value
-   ```
-
-   **Run ObSpec-Beh**
-
-   ```bash
-   python OBOrchestration.py --zero-behavior-weight
-   ```
-
    
 
 3. **Run OBOrchestration** <!-- original: Run OSCFuzz -->
@@ -389,6 +367,28 @@ This section describes the required environment setup and the steps to reproduce
    ```
    python AV-Fuzzer/carla_sim/GA.py
    ```
+
+   4. **Ablation Study**
+
+   **Run Multi-Models**
+
+   ```bash
+   # USE source_code/OpenBehavior_Osc/OBOrch_s*.osc
+   python OBOrchestration.py
+   ```
+
+   **Run Orchestration**
+
+   ```bash
+   python OBOrchestration.py --no-use-value
+   ```
+
+   **Run ObSpec-Beh**
+
+   ```bash
+   python OBOrchestration.py --zero-behavior-weight
+   ```
+
 
    
 
