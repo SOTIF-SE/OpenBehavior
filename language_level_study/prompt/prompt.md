@@ -4,7 +4,7 @@ The five languages are those listed in `language.md`. The initial configurations
 
 Use [language name and exact version] to write one executable scenario script for the following testing task.
 
-**Testing task.** The scenario takes place on a road with traffic traveling in the same direction. An ego vehicle follows a specified route requiring a lane change to the left. Four NPC vehicles share the road. Describe their driving behaviors to support testing of the ego vehicle’s interactions with surrounding traffic.
+**Testing task.** The scenario takes place on a road with traffic traveling in the same direction. An ego vehicle follows a specified route requiring a lane change to the left. Three NPC vehicles share the road. Describe their driving behaviors to support testing of the ego vehicle’s interactions with surrounding traffic.
 
 **Environment and supplied materials.**
 
@@ -27,7 +27,7 @@ Use these initial conditions exactly. Do not resample positions, add or remove v
 **Requirements.**
 
 1. The specified ego controller drives the ego vehicle. Do not script its driving actions or modify its controller.
-2. Design the subsequent driving behaviors of the four NPCs using the supplied language and tools. No particular action sequence, interaction outcome, or behavior-model combination is required.
+2. Design the subsequent driving behaviors of the three NPCs using the supplied language and tools. No particular action sequence, interaction outcome, or behavior-model combination is required.
 3. You may use supported reactive behaviors, stochastic choices, behavior composition, or model interfaces. Use only capabilities documented in the supplied materials.
 4. Follow the common motion constraints and parameter ranges. Do not force a collision, violation, or particular ego response.
 5. If the script includes stochastic choices, specify their ranges, distributions, sampling times, and seed-setting mechanisms. Otherwise, state that no stochastic choices are used.
