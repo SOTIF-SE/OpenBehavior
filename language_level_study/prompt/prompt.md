@@ -21,7 +21,6 @@ Use [language name and exact version] to write one executable scenario script fo
 - NPC1: [vehicle type, initial position, heading, and velocity].
 - NPC2: [vehicle type, initial position, heading, and velocity].
 - NPC3: [vehicle type, initial position, heading, and velocity].
-- NPC4: [vehicle type, initial position, heading, and velocity].
 
 Use these initial conditions exactly. Do not resample positions, add or remove vehicles, or modify the ego vehicle’s route or destination.
 
