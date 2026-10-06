@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<osm version='0.6' upload='false' generator='JOSM'>
+  <node id='-1' action='modify' visible='true' lat='0.0' lon='0.0'>
+    <tag k='collision' v='yes' />
+    <tag k='gs' v='globalconfig' />
+    <tag k='lanelet' v='maps/Town04.xodr_ll2.osm' />
+    <tag k='mapcosim' v='Town04' />
+    <tag k='name' v='S4 Surround Overtake Town04 v7 (seed 42)' />
+    <tag k='timeout' v='30' />
+    <tag k='version' v='2.0' />
+  </node>
+  <node id='-2' action='modify' visible='true' lat='0.0' lon='0.0'>
+    <tag k='altitude' v='300' />
+    <tag k='area' v='100' />
+    <tag k='gs' v='origin' />
+  </node>
+  <node id='1001' action='modify' visible='true' lat='0.000781312' lon='0.003643845'>
+    <tag k='bsource' v='behavior_agent' />
+    <tag k='btype' v='EV' />
+    <tag k='driver_speed' v='8.33' />
+    <tag k='gs' v='vehicle' />
+    <tag k='model' v='vehicle.tesla.model3' />
+    <tag k='name' v='ego_vehicle' />
+    <tag k='vid' v='1' />
+    <tag k='yaw' v='270.6' />
+    <tag k='lane_change_after' v='8.0' />
+    <tag k='lane_change_side' v='left' />
+  </node>
+  <node id='1002' action='modify' visible='true' lat='0.000844191' lon='0.003644502'>
+  </node>
+  <node id='1003' action='modify' visible='true' lat='0.001203498' lon='0.003648256'>
+  </node>
+  <node id='1004' action='modify' visible='true' lat='0.001562804' lon='0.003652010'>
+  </node>
+  <node id='1005' action='modify' visible='true' lat='0.001922111' lon='0.003655765'>
+  </node>
+  <node id='1006' action='modify' visible='true' lat='0.002292906' lon='0.003642847'>
+  </node>
+  <node id='1007' action='modify' visible='true' lat='0.002657598' lon='0.003537823'>
+  </node>
+  <node id='1008' action='modify' visible='true' lat='0.002980724' lon='0.003338772'>
+  </node>
+  <node id='1010' action='modify' visible='true' lat='0.000664755' lon='0.003642819'>
+    <tag k='btree' v='drive.btree' />
+    <tag k='btype' v='SDV' />
+    <tag k='btconfig' v='m_keepvelocity=MVelKeepConfig(vel=MP(12.71,5,3))' />
+    <tag k='gs' v='vehicle' />
+    <tag k='model' v='vehicle.jeep.wrangler_rubicon' />
+    <tag k='name' v='v2_same_as' />
+    <tag k='route' v='route_v2' />
+    <tag k='vid' v='2' />
+    <tag k='yaw' v='-89.6' />
+  </node>
+  <node id='1011' action='modify' visible='true' lat='0.000916052' lon='0.003645253'>
+  </node>
+  <node id='1012' action='modify' visible='true' lat='0.001275359' lon='0.003649007'>
+  </node>
+  <node id='1013' action='modify' visible='true' lat='0.001634665' lon='0.003652761'>
+  </node>
+  <node id='1014' action='modify' visible='true' lat='0.001993972' lon='0.003656515'>
+  </node>
+  <node id='1015' action='modify' visible='true' lat='0.002367914' lon='0.003629839'>
+  </node>
+  <node id='1016' action='modify' visible='true' lat='0.002726363' lon='0.003505161'>
+  </node>
+  <node id='1017' action='modify' visible='true' lat='0.003038199' lon='0.003288852'>
+  </node>
+  <node id='1019' action='modify' visible='true' lat='0.000736456' lon='0.003643378'>
+    <tag k='btree' v='drive.btree' />
+    <tag k='btype' v='SDV' />
+    <tag k='btconfig' v='m_keepvelocity=MVelKeepConfig(vel=MP(12.71,5,3))' />
+    <tag k='gs' v='vehicle' />
+    <tag k='model' v='vehicle.audi.tt' />
+    <tag k='name' v='v3_same_as' />
+    <tag k='route' v='route_v3' />
+    <tag k='vid' v='3' />
+    <tag k='yaw' v='-89.4' />
+  </node>
+  <node id='1020' action='modify' visible='true' lat='0.000825897' lon='0.003675754'>
+  </node>
+  <node id='1021' action='modify' visible='true' lat='0.001185204' lon='0.003679508'>
+  </node>
+  <node id='1022' action='modify' visible='true' lat='0.001544510' lon='0.003683262'>
+  </node>
+  <node id='1023' action='modify' visible='true' lat='0.001903817' lon='0.003687016'>
+  </node>
+  <node id='1024' action='modify' visible='true' lat='0.002278157' lon='0.003676632'>
+  </node>
+  <node id='1025' action='modify' visible='true' lat='0.002652459' lon='0.003574327'>
+  </node>
+  <node id='1026' action='modify' visible='true' lat='0.002985570' lon='0.003375316'>
+  </node>
+  <node id='1028' action='modify' visible='true' lat='0.000646548' lon='0.003674121'>
+    <tag k='btree' v='drive.btree' />
+    <tag k='btype' v='SDV' />
+    <tag k='btconfig' v='m_keepvelocity=MVelKeepConfig(vel=MP(12.71,5,3))' />
+    <tag k='gs' v='vehicle' />
+    <tag k='model' v='vehicle.audi.a2' />
+    <tag k='name' v='v4_right_of' />
+    <tag k='route' v='route_v4' />
+    <tag k='vid' v='4' />
+    <tag k='yaw' v='-89.6' />
+  </node>
+  <node id='1029' action='modify' visible='true' lat='0.000790295' lon='0.003643939'>
+  </node>
+  <node id='1030' action='modify' visible='true' lat='0.001149602' lon='0.003647693'>
+  </node>
+  <node id='1031' action='modify' visible='true' lat='0.001508908' lon='0.003651447'>
+  </node>
+  <node id='1032' action='modify' visible='true' lat='0.001868215' lon='0.003655202'>
+  </node>
+  <node id='1033' action='modify' visible='true' lat='0.002236246' lon='0.003649917'>
+  </node>
+  <node id='1034' action='modify' visible='true' lat='0.002604916' lon='0.003559841'>
+  </node>
+  <node id='1035' action='modify' visible='true' lat='0.002935883' lon='0.003374122'>
+  </node>
+  <node id='1037' action='modify' visible='true' lat='0.000610858' lon='0.003642406'>
+    <tag k='btree' v='drive.btree' />
+    <tag k='btype' v='SDV' />
+    <tag k='btconfig' v='m_keepvelocity=MVelKeepConfig(vel=MP(12.71,5,3))' />
+    <tag k='gs' v='vehicle' />
+    <tag k='model' v='vehicle.audi.tt' />
+    <tag k='name' v='v5_same_as' />
+    <tag k='route' v='route_v5' />
+    <tag k='vid' v='5' />
+    <tag k='yaw' v='-89.6' />
+  </node>
+  <way id='1009' action='modify' visible='true'>
+    <nd ref='1002' />
+    <nd ref='1003' />
+    <nd ref='1004' />
+    <nd ref='1005' />
+    <nd ref='1006' />
+    <nd ref='1007' />
+    <nd ref='1008' />
+    <tag k='gs' v='route' />
+    <tag k='name' v='route_v2' />
+  </way>
+  <way id='1018' action='modify' visible='true'>
+    <nd ref='1011' />
+    <nd ref='1012' />
+    <nd ref='1013' />
+    <nd ref='1014' />
+    <nd ref='1015' />
+    <nd ref='1016' />
+    <nd ref='1017' />
+    <tag k='gs' v='route' />
+    <tag k='name' v='route_v3' />
+  </way>
+  <way id='1027' action='modify' visible='true'>
+    <nd ref='1020' />
+    <nd ref='1021' />
+    <nd ref='1022' />
+    <nd ref='1023' />
+    <nd ref='1024' />
+    <nd ref='1025' />
+    <nd ref='1026' />
+    <tag k='gs' v='route' />
+    <tag k='name' v='route_v4' />
+  </way>
+  <way id='1036' action='modify' visible='true'>
+    <nd ref='1029' />
+    <nd ref='1030' />
+    <nd ref='1031' />
+    <nd ref='1032' />
+    <nd ref='1033' />
+    <nd ref='1034' />
+    <nd ref='1035' />
+    <tag k='gs' v='route' />
+    <tag k='name' v='route_v5' />
+  </way>
+</osm>
