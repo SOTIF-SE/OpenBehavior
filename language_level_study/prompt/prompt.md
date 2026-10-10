@@ -27,9 +27,6 @@ Use these initial conditions exactly. Do not resample positions, add or remove v
 2. Design the subsequent driving behaviors of the three NPCs using the supplied language and tools. No particular action sequence, interaction outcome, or behavior-model combination is required.
 3. You may use supported reactive behaviors, stochastic choices, behavior composition, or model interfaces. Use only capabilities documented in the supplied materials.
 4. Ensure that NPC behaviors are consistent with the road configuration. Do not force a collision, violation, or particular ego response.
-5. If the script includes stochastic choices, specify their ranges, distributions, sampling times, and seed-setting mechanisms. Otherwise, state that no stochastic choices are used.
-6. Do not invent syntax, APIs, or unavailable behavior implementations. If the task cannot be implemented with the supplied tools, identify the missing capability explicitly.
+5. Do not invent syntax, APIs, or unavailable behavior implementations. If the task cannot be implemented with the supplied tools, identify the missing capability explicitly.
 
-**Required output.** Provide one complete scenario script, its dependencies and
-execution command, a brief description of each NPC’s behavior, and any stochastic
-configuration.
+**Required output.** Provide one complete executable scenario script using the specified language.
