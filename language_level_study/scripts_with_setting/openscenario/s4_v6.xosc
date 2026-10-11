@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSCENARIO>
+  <FileHeader revMajor="1" revMinor="0" date="2026-10-11T12:00:00" description="S4SurroundOvertake_6" author="OpenBehavior"/>
+  <ParameterDeclarations/>
+  <CatalogLocations/>
+  <RoadNetwork>
+    <LogicFile filepath="Town04"/>
+  </RoadNetwork>
+  <Entities>
+  <ScenarioObject name="ego_vehicle">
+    <Vehicle name="vehicle.tesla.model3" vehicleCategory="car">
+      <ParameterDeclarations/>
+      <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+      <BoundingBox>
+        <Center x="1.5" y="0.0" z="0.9"/>
+        <Dimensions width="2.1" length="4.5" height="1.8"/>
+      </BoundingBox>
+      <Axles>
+        <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+        <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+      </Axles>
+      <Properties>
+        <Property name="type" value="ego_vehicle"/>
+        <Property name="scenario_type" value="S4SurroundOvertake"/>
+      </Properties>
+    </Vehicle>
+  </ScenarioObject>
+  <ScenarioObject name="npc1">
+    <Vehicle name="vehicle.jeep.wrangler_rubicon" vehicleCategory="car">
+      <ParameterDeclarations/>
+      <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+      <BoundingBox>
+        <Center x="1.5" y="0.0" z="0.9"/>
+        <Dimensions width="2.1" length="4.5" height="1.8"/>
+      </BoundingBox>
+      <Axles>
+        <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+        <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+      </Axles>
+      <Properties>
+        <Property name="type" value="scenario"/>
+      </Properties>
+    </Vehicle>
+  </ScenarioObject>
+  <ScenarioObject name="npc2">
+    <Vehicle name="vehicle.audi.tt" vehicleCategory="car">
+      <ParameterDeclarations/>
+      <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+      <BoundingBox>
+        <Center x="1.5" y="0.0" z="0.9"/>
+        <Dimensions width="2.1" length="4.5" height="1.8"/>
+      </BoundingBox>
+      <Axles>
+        <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+        <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+      </Axles>
+      <Properties>
+        <Property name="type" value="scenario"/>
+      </Properties>
+    </Vehicle>
+  </ScenarioObject>
+  <ScenarioObject name="npc3">
+    <Vehicle name="vehicle.audi.a2" vehicleCategory="car">
+      <ParameterDeclarations/>
+      <Performance maxSpeed="69.444" maxAcceleration="200" maxDeceleration="10.0"/>
+      <BoundingBox>
+        <Center x="1.5" y="0.0" z="0.9"/>
+        <Dimensions width="2.1" length="4.5" height="1.8"/>
+      </BoundingBox>
+      <Axles>
+        <FrontAxle maxSteering="0.5" wheelDiameter="0.6" trackWidth="1.8" positionX="3.1" positionZ="0.3"/>
+        <RearAxle maxSteering="0.0" wheelDiameter="0.6" trackWidth="1.8" positionX="0.0" positionZ="0.3"/>
+      </Axles>
+      <Properties>
+        <Property name="type" value="scenario"/>
+      </Properties>
+    </Vehicle>
+  </ScenarioObject>
+  </Entities>
+  <Storyboard>
+    <Init>
+      <Actions>
+      <Private entityRef="ego_vehicle">
+        <PrivateAction>
+          <TeleportAction>
+            <Position>
+              <WorldPosition x="405.6" y="-87" z="0.3" h="4.7228609559"/>
+            </Position>
+          </TeleportAction>
+        </PrivateAction>
+      </Private>
+      <Private entityRef="npc1">
+        <PrivateAction>
+          <TeleportAction>
+            <Position>
+              <WorldPosition x="402.1" y="-74.4" z="0.3" h="4.7228609559"/>
+            </Position>
+          </TeleportAction>
+        </PrivateAction>
+      </Private>
+      <Private entityRef="npc2">
+        <PrivateAction>
+          <TeleportAction>
+            <Position>
+              <WorldPosition x="409.1" y="-80.9" z="0.3" h="4.7228609559"/>
+            </Position>
+          </TeleportAction>
+        </PrivateAction>
+      </Private>
+      <Private entityRef="npc3">
+        <PrivateAction>
+          <TeleportAction>
+            <Position>
+              <WorldPosition x="402.1" y="-67.4" z="0.3" h="4.7228609559"/>
+            </Position>
+          </TeleportAction>
+        </PrivateAction>
+      </Private>
+      <GlobalAction>
+        <EnvironmentAction>
+          <Environment name="Environment1">
+            <TimeOfDay animation="false" dateTime="2026-10-11T12:00:00"/>
+            <Weather cloudState="free">
+              <Sun intensity="1" azimuth="0" elevation="1.308996939"/>
+              <Fog visualRange="100000.0"/>
+              <Precipitation precipitationType="dry" intensity="0"/>
+            </Weather>
+            <RoadCondition frictionScaleFactor="1.0"/>
+          </Environment>
+        </EnvironmentAction>
+      </GlobalAction>
+      </Actions>
+    </Init>
+  </Storyboard>
+</OpenSCENARIO>
