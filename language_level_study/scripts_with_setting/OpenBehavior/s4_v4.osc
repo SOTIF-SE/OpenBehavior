@@ -34,16 +34,16 @@ scenario top:
             set_behavior_model(behavior_type: Script, model:normal, hyperparameters: Default)
             set_behavior_logic(
                 lane:"4, at:start",
-                position:"[15..17], behind:ego_vehicle, at:start",
-                lane:"[1..4], at:end",
-                position:"[-20..30], ahead_of:ego_vehicle, at:end"
+                position:"16, behind:ego_vehicle, at:start",
+                lane:"4, at:end",
+                position:"20, ahead_of:ego_vehicle, at:end"
             )
         npc3.drive(path) with:
             set_behavior_model(behavior_type: Script, model:cautious, hyperparameters: Default)
             set_behavior_logic(
                 lane:"3, at:start",
-                position:"[9..11], behind:ego_vehicle, at:start",
-                lane:"[1..4], at:end",
-                position:"[-20..30], ahead_of:ego_vehicle, at:end"
+                position:"10, behind:ego_vehicle, at:start",
+                lane:"3, at:end",
+                position:"20, ahead_of:ego_vehicle, at:end"
             )
         auto_orchestrates_behavior(user_adaptive_npc_bm, adaptive_targets)

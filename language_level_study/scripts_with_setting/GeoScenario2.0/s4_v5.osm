@@ -6,7 +6,7 @@
     <tag k='lanelet' v='maps/Town04.xodr_ll2.osm' />
     <tag k='mapcosim' v='Town04' />
     <tag k='name' v='S4 Surround Overtake Town04 v5 (seed 42)' />
-    <tag k='timeout' v='30' />
+    <tag k='timeout' v='120' />
     <tag k='version' v='2.0' />
   </node>
   <node id='-2' action='modify' visible='true' lat='0.0' lon='0.0'>
