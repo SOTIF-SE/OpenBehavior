@@ -3,7 +3,7 @@ import basic.osc
 scenario top:
     path: Path
     path.set_map("Town04")
-    path.path_min_driving_lanes(4)
+    path.path_min_driving_lanes(3)
 
     ego_vehicle: Model3
     npc1: Rubicon
