@@ -10,6 +10,7 @@ This module provides access to a scenario configuration parser
 """
 
 import glob
+import math
 import os
 import xml.etree.ElementTree as ET
 
@@ -35,6 +36,7 @@ class ScenarioConfigurationParser(object):
         """
 
         list_of_config_files = glob.glob("{}/srunner/examples/*.xml".format(os.getenv('SCENARIO_RUNNER_ROOT', "./")))
+        list_of_config_files += glob.glob("{}/srunner/examples/*.xosc".format(os.getenv('SCENARIO_RUNNER_ROOT', "./")))
 
         if config_file_name != '':
             list_of_config_files.append(config_file_name)
@@ -47,6 +49,12 @@ class ScenarioConfigurationParser(object):
         scenario_configurations = []
 
         for file_name in list_of_config_files:
+            if file_name.endswith(".xosc"):
+                scenario_configurations.extend(
+                    ScenarioConfigurationParser.parse_openscenario_configuration(
+                        file_name, scenario_name, single_scenario_only))
+                continue
+
             tree = ET.parse(file_name)
 
             for scenario in tree.iter("scenario"):
@@ -98,6 +106,101 @@ class ScenarioConfigurationParser(object):
                 scenario_configurations.append(new_config)
 
         return scenario_configurations
+
+    @staticmethod
+    def parse_openscenario_configuration(file_name, scenario_name, single_scenario_only):
+        """
+        Parse an ASAM OpenSCENARIO 1.0 file into the same ScenarioConfiguration the
+        xml scenarios produce: town, entities with their initial poses, and weather.
+
+        Like the xml form, the file describes the initial scene only - the driving
+        behaviour comes from the python scenario class. The class is named by the
+        scenario_type property of the ego vehicle, because OpenSCENARIO itself has
+        no field for it.
+        """
+        root = ET.parse(file_name).getroot()
+        if root.tag != "OpenSCENARIO":
+            return []
+
+        header = root.find("FileHeader")
+        config_name = header.attrib.get("description", None) if header is not None else None
+        logic_file = root.find("RoadNetwork/LogicFile")
+        config_type = None
+
+        # the initial poses are the Init teleports, one per entity
+        poses = {}
+        for private in root.iter("Private"):
+            world_position = private.find(".//WorldPosition")
+            if world_position is not None:
+                poses[private.attrib.get("entityRef", None)] = world_position.attrib
+
+        actors = []
+        for scenario_object in root.iter("ScenarioObject"):
+            vehicle = scenario_object.find("Vehicle")
+            if vehicle is None:
+                continue
+            properties = {property_tag.attrib.get("name", None): property_tag.attrib.get("value", None)
+                          for property_tag in vehicle.iter("Property")}
+            if "scenario_type" in properties:
+                config_type = properties["scenario_type"]
+            pose = poses.get(scenario_object.attrib.get("name", None), {})
+            actors.append(ET.Element("actor", {
+                "model": vehicle.attrib.get("name", "vehicle.*"),
+                "rolename": properties.get("type", "scenario"),
+                "x": pose.get("x", "0"),
+                "y": pose.get("y", "0"),
+                "z": pose.get("z", "0"),
+                "yaw": str(math.degrees(float(pose.get("h", 0)))),   # OpenSCENARIO headings are radians
+            }))
+
+        if single_scenario_only:
+            if config_name != scenario_name:
+                return []
+        elif config_type != scenario_name:
+            return []
+
+        new_config = ScenarioConfiguration()
+        new_config.town = logic_file.attrib.get("filepath", None) if logic_file is not None else None
+        new_config.name = config_name
+        new_config.type = config_type
+        new_config.other_actors = []
+        new_config.ego_vehicles = []
+        new_config.trigger_points = []
+
+        for actor in actors:
+            if actor.attrib["rolename"] == "ego_vehicle":
+                new_config.ego_vehicles.append(ActorConfigurationData.parse_from_node(actor, 'hero'))
+                new_config.trigger_points.append(new_config.ego_vehicles[-1].transform)
+            else:
+                new_config.other_actors.append(ActorConfigurationData.parse_from_node(actor, 'scenario'))
+
+        ScenarioConfigurationParser.parse_openscenario_weather(root, new_config)
+        return [new_config]
+
+    @staticmethod
+    def parse_openscenario_weather(root, new_config):
+        """
+        Apply the Weather of an OpenSCENARIO EnvironmentAction.
+
+        OpenSCENARIO 1.0 has no fields for the wind intensity or the precipitation
+        deposits CARLA knows about, so those keep the carla.WeatherParameters
+        defaults.
+        """
+        weather = root.find(".//Weather")
+        if weather is None:
+            return
+
+        sun = weather.find("Sun")
+        if sun is not None:
+            new_config.weather.sun_azimuth_angle = math.degrees(float(sun.attrib.get("azimuth", 0)))
+            new_config.weather.sun_altitude_angle = math.degrees(float(sun.attrib.get("elevation", 0)))
+            new_config.weather.cloudiness = 100.0 - float(sun.attrib.get("intensity", 0)) * 100.0
+
+        precipitation = weather.find("Precipitation")
+        if precipitation is not None and precipitation.attrib.get("precipitationType", "dry") != "dry":
+            new_config.weather.precipitation = float(precipitation.attrib.get("intensity", 0)) * 100.0
+            new_config.weather.precipitation_deposits = 100.0
+            new_config.weather.wetness = new_config.weather.precipitation
 
     @staticmethod
     def get_list_of_scenarios(config_file_name):
