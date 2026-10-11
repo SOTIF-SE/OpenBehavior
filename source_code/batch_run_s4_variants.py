@@ -1,3 +1,11 @@
+"""Run the S4 OpenBehavior variants as a batch, with resume and one generation per variant.
+
+The variants are the aligned s4_v1..v10 of the language level study, staged in
+avunit_code/avunit_scenarios together with the avunit_basic.osc and adaptive.osc they
+import (an .osc import is resolved against the importing file's own directory). The
+actual work - CARLA per run, recordings, resume - is done by avunit_code/batch_run_osc.py.
+"""
+
 import argparse
 import glob
 import hashlib
@@ -11,8 +19,8 @@ import sys
 import time
 
 REPO_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-VARIANT_DIR = os.path.join(REPO_DIR, "source_code/OpenBehavior_Osc")
-BATCH_RUNNER = os.path.join(REPO_DIR, "batch_run_osc.py")
+VARIANT_DIR = os.path.join(REPO_DIR, "avunit_code", "avunit_scenarios")
+BATCH_RUNNER = os.path.join(REPO_DIR, "avunit_code", "batch_run_osc.py")
 VIDEO_DIR = os.path.join(REPO_DIR, "traffic_accident_video")
 STATE_FILE = os.path.join(REPO_DIR, "batch_logs", "s4_variants_state.json")
 CARLA_PORT = 2000
@@ -75,8 +83,9 @@ def write_state(state):
 def parse_args():
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--pattern", default="avunit_s4_v*.osc",
-                        help="glob of the variants inside AVUnit_Osc (default: avunit_s4_v*.osc)")
+    parser.add_argument("--pattern", default="s4_v*.osc",
+                        help="glob of the variants inside avunit_code/avunit_scenarios "
+                             "(default: s4_v*.osc)")
     parser.add_argument("--repetitions", type=int, default=20,
                         help="how many times every variant is run (default: 20)")
     parser.add_argument("--timeout", type=int, default=600,
