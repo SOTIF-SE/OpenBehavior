@@ -1,4 +1,4 @@
-import avunit_basic.osc
+import basic.osc
 import adaptive.osc
 # npc start lane/position aligned to scripts_with_setting/openscenario/s4_v4.xml (behaviour models and adaptive_targets still come from the generator)
 
